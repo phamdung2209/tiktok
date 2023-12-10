@@ -7,10 +7,13 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
     font-size: 62.5%;
+    background-color: #121212;
 }
 
 body {
@@ -18,5 +21,14 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+    color: #fff;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;
+}

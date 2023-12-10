@@ -1,6 +1,14 @@
+import classnames from 'classnames/bind'
+
+import styles from './Home.module.scss'
+
+const cx = classnames.bind(styles)
+
 function Home() {
     return (
-        <h1>home page</h1>
+        <div className={cx('wrapper')}>
+            <h1>Home</h1>
+        </div>
     );
 }
 
