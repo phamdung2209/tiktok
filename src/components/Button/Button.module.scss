@@ -1,0 +1,119 @@
+.wrapper {
+    font-size: 1.6rem;
+    // padding: 5px 32px;
+    height: 32px;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: var(--primary-color);
+    min-width: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    +.wrapper {
+        margin-left: 16px;
+    }
+}
+
+.primary {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+
+    &:hover {
+        opacity: 0.9;
+        transition: opacity 0.2s ease-in-out;
+    }
+}
+
+.outline {
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
+
+    &:hover {
+        opacity: 0.9;
+        transition: opacity 0.2s ease-in-out;
+    }
+}
+
+.small {
+    min-width: 75px;
+    height: 26px;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
+    font-weight: 500;
+
+    &:hover {
+        opacity: 0.9;
+        transition: opacity 0.2s ease-in-out;
+    }
+}
+
+.large {
+    min-height: 45px;
+    min-width: 140px;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
+
+    &:hover {
+        opacity: 0.9;
+        transition: opacity 0.2s ease-in-out;
+    }
+}
+
+.text {
+    min-width: 110px;
+    padding: 0px 16px;
+    height: 34px;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    border-radius: 2px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.9);
+
+    &:hover {
+        opacity: 0.9;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    // css for the icon
+    svg {
+        margin-right: 8px;
+    }
+}
+
+.disabled {
+    opacity: 0.5;
+    user-select: none;
+    cursor: not-allowed;
+
+    &:hover {
+        opacity: 0.5;
+    }
+
+    svg {
+        opacity: 0.5;
+    }
+}
+
+.rounded {
+    border-radius: 23px;
+    box-shadow: 0 0 2px 1px #494949;
+    background-color: transparent;
+
+    &:hover {
+        box-shadow: 0 0 4px 1px #737373;
+    }
+
+    &:active {
+        box-shadow: 0 0 4px 1px #737373;
+    }
+}

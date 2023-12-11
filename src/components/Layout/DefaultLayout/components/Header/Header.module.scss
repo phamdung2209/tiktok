@@ -1,11 +1,11 @@
 :root {
     --search-button-witdh: 59px;
-
 }
 
 .header {
     box-shadow: 0 1px 0 0 rgba(143, 143, 143, 0.15);
     height: 60px;
+    padding: 0 24px;
 
     .inner {
         width: 100%;
@@ -14,16 +14,28 @@
         align-items: center;
         justify-content: space-between;
 
-        // css thẻ a trong class này
         a {
             display: flex;
             align-items: center;
         }
 
         // search
+        .search-results {
+            width: 527.17px;
+
+            .search-label {
+                height: 30px;
+                padding: 5px 12px;
+                font-size: 1.4rem;
+                line-height: 18px;
+                font-weight: 600;
+                color: rgba(255, 255, 255, 0.5);
+            }
+        }
+
         .search {
+            height: 70%;
             width: 37%;
-            height: 82%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -59,7 +71,7 @@
                 caret-color: var(--primary-color);
             }
 
-            input:not(:placeholder-shown) ~ .search-btn {
+            input:not(:placeholder-shown)~.search-btn {
                 color: rgba(255, 255, 255, 0.75);
             }
 
@@ -92,7 +104,12 @@
                     background-color: #3a3a3a;
                 }
             }
-
         }
+
+        .action {
+            display: flex;
+            align-items: center;
+        }
+
     }
 }
