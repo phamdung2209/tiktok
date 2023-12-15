@@ -30,10 +30,12 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     color: #FFFFFFE6;
+    display: flex;
+    align-items: center;
 }
 
 .account-iconCheck {
-    margin-left: 4px;
+    margin-left: 6px;
     color: #20d5ec;
     background-color: #fff;
     border-radius: 50%;

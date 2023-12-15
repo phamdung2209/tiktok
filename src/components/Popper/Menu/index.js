@@ -35,6 +35,7 @@ function Menu({ children, menuItems = [], onChange = defaultFn }) {
 
     return (
         <Tippy
+            hideOnClick={false}
             interactive={true}
             delay={[0, 800]}
             placement='bottom-end'
@@ -44,7 +45,10 @@ function Menu({ children, menuItems = [], onChange = defaultFn }) {
                         {history.length > 1 && <Header title={currentMenu.title} onBack={() => {
                             setHistory(prev => prev.splice(prev.length - 1, 1))
                         }} />}
-                        {RenderMenuItems()}
+
+                        <div className={cx('menu-scroll')}>
+                            {RenderMenuItems()}
+                        </div>
                     </WapperPopper>
                 </div>
             )}

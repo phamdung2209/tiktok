@@ -11,7 +11,11 @@ function Image({ src, className, fallBack = images.noImage, ...props }, ref) {
     }
     return (
         // eslint-disable-next-line jsx-a11y/alt-text
-        <img className={classNames(styles.wrapper, className)} ref={ref} src={error || src} {...props} onError={handleError} />
+        <img
+            className={classNames(styles.wrapper, className)}
+            ref={ref} src={error || src}
+            {...props} onError={handleError}
+        />
     )
 }
 

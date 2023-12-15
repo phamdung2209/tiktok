@@ -1,31 +1,35 @@
 .wrapper{
     width: 100%;
-    min-height: 100px;
     margin-top: 8px;
     background: rgb(37, 37, 37);
     border-radius: 8px;
-    padding: 8px 0;
-    max-height: min((100vh - 96px) - 60px, 734px);
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(255, 255, 255, 0.1);
+    padding-top: 8px;
+    max-height: min(100vh - 156px, 760px);
+    list-style-type: none;
+    padding-inline-start: 0px;
+
+    display: flex;
+    flex-direction: column;
+
     overflow: hidden;
     overflow-y: auto;
 }
 
-.wrapper::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
-    background-color: rgba(255, 255, 255, 0.1);
-    // custom scrollbar
-    &-thumb {
-        background-color: rgba(255, 255, 255, 0.3);
-        border-radius: 4px;
+// .wrapper::-webkit-scrollbar {
+//     width: 7px;
+//     height: 7px;
+//     background-color: rgba(255, 255, 255, 0.1);
+//     // custom scrollbar
+//     &-thumb {
+//         background-color: rgba(255, 255, 255, 0.3);
+//         border-radius: 4px;
 
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.5);
-        }
+//         &:hover {
+//             background-color: rgba(255, 255, 255, 0.5);
+//         }
 
-        &:active {
-            background-color: rgba(255, 255, 255, 0.7);
-        }
-    }
-}
+//         &:active {
+//             background-color: rgba(255, 255, 255, 0.7);
+//         }
+//     }
+// }

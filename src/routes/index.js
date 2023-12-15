@@ -6,15 +6,16 @@ import HeaderOnly from '~/components/Layout/HeaderOnly'
 import Search from '~/pages/Search'
 import Live from '~/pages/Live'
 import Explore from '~/pages/Explore'
+import routesConfig from '~/config/routes'
 
 const publicRoutes = [
-    { path: '/', component: Home },
-    { path: '/following', component: Following },
-    { path: '/:nickname', component: Profile },
-    { path: '/upload', component: Upload, layout: HeaderOnly },
-    { path: '/search', component: Search, layout: null },
-    { path: '/live', component: Live, },
-    { path: '/explore', component: Explore, },
+    { path: routesConfig.home, component: Home },
+    { path: routesConfig.folowing, component: Following },
+    { path: routesConfig.profile, component: Profile },
+    { path: routesConfig.upload, component: Upload, layout: HeaderOnly },
+    { path: routesConfig.search, component: Search, layout: null },
+    { path: routesConfig.live, component: Live, },
+    { path: routesConfig.explore, component: Explore, },
 ]
 
 const privateRoutes = [

@@ -23,6 +23,7 @@
     overflow: hidden;
     position: relative;
     border: 2px solid transparent;
+    font-family: var(--font-family);
 
     &::before {
         content: "";

@@ -66,8 +66,17 @@ function Search() {
         searchRef.current.focus()
     }
 
+    // handle change search
+    const handleChangeSearch = e => {
+        const value = e.target.value
+        if(!value.startsWith(' ')) {
+            setSearchValue(e.target.value)
+        }
+    }
+
     return (
         <Tippy
+        appendTo={document.body}
             interactive={true}
             visible={searchShow && searchResults.length > 0}
             render={attrs => (
@@ -92,7 +101,7 @@ function Search() {
                     type='text'
                     placeholder='Search'
                     spellCheck={false}
-                    onChange={e => (setSearchValue(e.target.value))}
+                    onChange={handleChangeSearch}
                     onFocus={() => setSearchShow(true)}
                 />
 
@@ -107,7 +116,7 @@ function Search() {
 
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={e=> e.preventDefault()}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </div>
