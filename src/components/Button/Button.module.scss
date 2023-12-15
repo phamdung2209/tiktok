@@ -3,6 +3,7 @@
     // padding: 5px 32px;
     height: 32px;
     font-weight: 600;
+    font-family: 'ProximaNova', san-serif;
     border-radius: 4px;
     background-color: var(--primary-color);
     min-width: 100px;
@@ -15,6 +16,17 @@
     +.wrapper {
         margin-left: 16px;
     }
+}
+
+.icon + .title, .title + .icon {
+    margin-left: 8px;
+}
+
+.icon {
+    display: flex;
+    width: 24px;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .primary {

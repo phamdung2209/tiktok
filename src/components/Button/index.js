@@ -1,14 +1,28 @@
 import { Link } from "react-router-dom"
 import 'tippy.js/dist/tippy.css'
 import Tippy from '@tippyjs/react'
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 
 import styles from './Button.module.scss'
 import classNames from "classnames/bind"
 
 const cx = classNames.bind(styles)
 
-function Button({ to, href, children, onClick, primary, outline, small, large, text, disabled, rounded, ...passProps }) {
+function Button({
+    to,
+    href,
+    children,
+    onClick,
+    primary,
+    outline,
+    small,
+    large,
+    text,
+    disabled,
+    rounded,
+    leftIcon,
+    rightIcon,
+    ...passProps }) {
     const buttonRef = useRef()
     let Comp = 'button'
     const props = {
@@ -41,15 +55,17 @@ function Button({ to, href, children, onClick, primary, outline, small, large, t
         large,
         text,
         disabled,
-        rounded
+        rounded,
     })
 
     return (
-        <Tippy content={buttonRef.current?.textContent}>
+        // <Tippy content={buttonRef.current?.textContent}>
             <Comp className={classes} {...props}>
-                <span ref={buttonRef}>{children}</span>
+                {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
+                <span ref={buttonRef} className={cx('title')}>{children}</span>
+                {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
             </Comp>
-        </Tippy>
+       // </Tippy>
     )
 }
 
