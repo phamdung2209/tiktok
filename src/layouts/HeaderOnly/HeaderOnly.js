@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import Header from '../DefaultLayout/components/Header'
 
 function HeaderOnly({ children }) {
@@ -11,6 +13,10 @@ function HeaderOnly({ children }) {
             </div>
         </div>
     )
+}
+
+Header.propTypes = {
+    children: PropTypes.node
 }
 
 export default HeaderOnly;

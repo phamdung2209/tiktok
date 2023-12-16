@@ -9,10 +9,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import classNames from 'classnames/bind'
 
-import * as searchService from '~/apiServices/searchService'
+import * as searchService from '~/services/searchService'
 import { Wrapper as WapperPopper } from '~/components/Popper'
 import AccountItem from '~/components/AccountItems'
-import { useDebounce } from '~/hooks'
+import useDebounce from '~/hooks'
 import styles from './Search.module.scss'
 
 const cx = classNames.bind(styles)
@@ -69,14 +69,14 @@ function Search() {
     // handle change search
     const handleChangeSearch = e => {
         const value = e.target.value
-        if(!value.startsWith(' ')) {
+        if (!value.startsWith(' ')) {
             setSearchValue(e.target.value)
         }
     }
 
     return (
         <Tippy
-        appendTo={document.body}
+            appendTo={document.body}
             interactive={true}
             visible={searchShow && searchResults.length > 0}
             render={attrs => (
@@ -116,7 +116,7 @@ function Search() {
 
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-                <button className={cx('search-btn')} onMouseDown={e=> e.preventDefault()}>
+                <button className={cx('search-btn')} onMouseDown={e => e.preventDefault()}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </div>

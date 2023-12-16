@@ -1,4 +1,5 @@
 import classNames from "classnames/bind"
+import PropTypes from 'prop-types';
 
 import styles from "./Popper.module.scss"
 
@@ -10,6 +11,10 @@ function Wrapper({children}) {
             {children}
         </div>
     )
+}
+
+Wrapper.propTypes={
+    children: PropTypes.node.isRequired,
 }
 
 export default Wrapper;
