@@ -1,0 +1,41 @@
+.menuItem {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+
+    &.active {
+        color: var(--primary-color);
+
+        .title {
+            color: var(--primary-color);
+        }
+
+        .icon-active {
+            display: block;
+        }
+        .icon-notActive {
+            display: none;
+        }
+
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.04);
+    }
+}
+
+.title {
+    font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    color: var(--font-color);
+    font-weight: 700;
+    font-size: 1.7rem;
+    line-height: 2.4rem;
+    margin-left: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+.icon-active {
+    display: none;
+}

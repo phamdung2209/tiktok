@@ -5,6 +5,7 @@
     --white-color: #fff;
     --font-family: 'ProximaNova', san-serif;
     --backgroud-color: #121212;
+    --font-color: rgba(255, 255, 255, 0.9);
 }
 
 * {
@@ -96,6 +97,18 @@ button {
     font-family: SofiaPro;
     src: url('/assets/fonts/sofiapro-bold.woff');
     font-weight: 700;
+}
+
+@font-face {
+    font-family: TikTokFont;
+    src: url('/assets/fonts/TikTokFont-Bold.woff2');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: TikTokFont;
+    src: url('/assets/fonts/TikTokFont-Regular.woff2');
+    font-weight: 400;
 }
 
 // custom Tippy

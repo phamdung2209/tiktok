@@ -208,7 +208,7 @@ function Header() {
     const currentUser = true
 
     const handleMenuChange = (item) => {
-        console.log(item)
+        // console.log(item)
     }
 
     const USER_ITEMS = [

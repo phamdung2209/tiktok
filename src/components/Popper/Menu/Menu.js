@@ -1,6 +1,6 @@
 import Tippy from "@tippyjs/react/headless";
 import classNames from "classnames/bind";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PropTypes from 'prop-types';
 
 import styles from "./Menu.module.scss";
@@ -14,11 +14,7 @@ function Menu({ children, menuItems = [], onChange = defaultFn }) {
 
     const [history, setHistory] = useState([{ data: menuItems }])
     const currentMenu = history[history.length - 1]
-
-    useEffect(() => {
-        console.log(history)
-    })
-
+    
     const RenderMenuItems = () => {
         return currentMenu.data.map((item, index) => {
             const isParent = !!item.children
