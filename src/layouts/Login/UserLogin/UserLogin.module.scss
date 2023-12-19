@@ -1,0 +1,133 @@
+.login-option {
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 8px;
+    padding: 0px 12px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 44px;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 12px;
+    word-break: keep-all;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.08);
+    border-width: 1px;
+    border-style: solid;
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0);
+
+    &:hover {
+        border-color: rgb(208, 209, 211);
+        background-color: rgb(18, 18, 18);
+    }
+}
+
+.option-icon {
+    left: 12px;
+    font-size: 20px;
+    position: absolute;
+    display: flex;
+}
+
+.form-submit {
+    position: relative;
+    margin-bottom: 9px;
+    width: 100%;
+    margin-top: 10px;
+
+    input {
+        border-radius: 2px;
+        padding-inline-start: 12px;
+        background-color: transparent;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 100%;
+        outline: none;
+        font-size: 16px;
+        height: 44px;
+        caret-color: rgb(255, 59, 92);
+        width: 100%;
+        padding-inline-end: unset;
+        border: none;
+        outline: none;
+    }
+}
+
+.description {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    font-size: 1.5rem;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.login-other {
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: inline-block;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+
+.btn-submit {
+    border-radius: 4px;
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 59, 92);
+    min-width: 120px;
+    min-height: 46px;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 700;
+    font-family: TikTokFont, PingFangSC, sans-serif;
+    display: flex;
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 6px 8px;
+    user-select: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 21px;
+
+    &:hover {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), rgb(254, 44, 85);
+    }
+
+    &:active {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), rgb(254, 44, 85);
+    }
+}
+
+.btn-submit:disabled {
+    border: none;
+    color: rgba(255, 255, 255, 0.34);
+    background-color: rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+}
+
+.back {
+    left: 16px;
+    position: absolute;
+    top: 16px;
+    cursor: pointer;
+    transform: unset;
+}
+
+.back-icon {
+    width: 24px;
+    height: 24px;
+}

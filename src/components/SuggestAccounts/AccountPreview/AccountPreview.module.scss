@@ -1,0 +1,62 @@
+.wrapper{
+    cursor: pointer;
+    padding: 20px;
+    width: 295px;
+}
+
+.account-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+}
+
+.nickname {
+    color: var(--font-color);
+    font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 21px;
+    max-width: 145px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    svg {
+        margin-left: 4px;
+    }
+}
+
+.name {
+    color: rgba(255, 255, 255, 0.75);
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    max-width: 145px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.disFlex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.avatar{
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 23px;
+    object-fit: cover;
+}
+
+.label-color{
+    color: var(--font-color);
+}
+
+.account-info{
+    margin: 20px 0;
+}

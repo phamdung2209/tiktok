@@ -1,4 +1,7 @@
 .navbar{
     width: 20%;
     padding: 20px 0px 26px 8px;
+    overflow-y: overlay;
+    min-height: 100vh;
+    max-height: min(100vh - 156px, 760px);
 }

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import 'tippy.js/dist/tippy.css'
 import { useRef } from "react"
 import PropTypes from 'prop-types'
+import { forwardRef } from 'react'
 
 import styles from './Button.module.scss'
 import classNames from "classnames/bind"
@@ -22,7 +23,7 @@ function Button({
     rounded,
     leftIcon,
     rightIcon,
-    ...passProps }) {
+    ...passProps }, ref) {
     const buttonRef = useRef()
     let Comp = 'button'
     const props = {
@@ -60,7 +61,7 @@ function Button({
 
     return (
         // <Tippy content={buttonRef.current?.textContent}>
-        <Comp className={classes} {...props}>
+        <Comp ref={ref} className={classes} {...props}>
             {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
             <span ref={buttonRef} className={cx('title')}>{children}</span>
             {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
@@ -69,20 +70,20 @@ function Button({
     )
 }
 
-Button.propTypes = {
-    to: PropTypes.string,
-    href: PropTypes.string,
-    children: PropTypes.node.isRequired,
-    onClick: PropTypes.func,
-    primary: PropTypes.bool,
-    outline: PropTypes.bool,
-    small: PropTypes.bool,
-    large: PropTypes.bool,
-    text: PropTypes.bool,
-    disabled: PropTypes.bool,
-    rounded: PropTypes.bool,
-    leftIcon: PropTypes.node,
-    rightIcon: PropTypes.node,
-}
+// Button.propTypes = {
+//     to: PropTypes.string,
+//     href: PropTypes.string,
+//     children: PropTypes.node.isRequired,
+//     onClick: PropTypes.func,
+//     primary: PropTypes.bool,
+//     outline: PropTypes.bool,
+//     small: PropTypes.bool,
+//     large: PropTypes.bool,
+//     text: PropTypes.bool,
+//     disabled: PropTypes.bool,
+//     rounded: PropTypes.bool,
+//     leftIcon: PropTypes.node,
+//     rightIcon: PropTypes.node,
+// }
 
-export default Button
+export default forwardRef(Button)
