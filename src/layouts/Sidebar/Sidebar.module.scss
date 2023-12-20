@@ -1,9 +1,22 @@
 .navbar{
-    width: 20%;
-    padding: 20px 0px 26px 8px;
-    overflow-y: overlay;
-    min-height: 100vh;
-    max-height: min(100vh - 156px, 760px);
+    // width: 20%;
+    // padding: 20px 0px 26px 8px;
+    // overflow-y: overlay;
+    // min-height: 100vh;
+    // max-height: min(100vh - 156px, 760px);
+
+    overflow: hidden auto;
+    overscroll-behavior-y: contain;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    perspective-origin: right top;
+    top: 60px;
+    bottom: 0px;
+    width: 240px;
+    background: rgb(18, 18, 18);
+    position: fixed;
+    z-index: 99;
+    padding-right: 8px;
 }
 
 .avatar-nav{

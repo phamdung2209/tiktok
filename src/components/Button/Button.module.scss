@@ -18,7 +18,8 @@
     }
 }
 
-.icon + .title, .title + .icon {
+.icon+.title,
+.title+.icon {
     margin-left: 8px;
 }
 
@@ -36,6 +37,43 @@
     &:hover {
         opacity: 0.9;
         transition: opacity 0.2s ease-in-out;
+    }
+
+    &:active {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), rgb(254, 44, 85);
+    }
+}
+
+.primaryLonger {
+    color: var(--white-color);
+
+    border-radius: 4px;
+    border: none;
+    background-color: rgb(255, 59, 92);
+    min-height: 36px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: TikTokDisplayFont, PingFangSC, sans-serif;
+    display: flex;
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 6px 8px;
+    user-select: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    min-width: 208px;
+    line-height: 22px;
+
+    &:hover {
+        opacity: 0.9;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    &:active {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), rgb(254, 44, 85);
     }
 }
 

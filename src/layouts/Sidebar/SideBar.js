@@ -4,7 +4,18 @@ import { useState, useEffect, useCallback, useContext } from 'react'
 import styles from './Sidebar.module.scss'
 import config from '~/config'
 import Menu, { MenuItem } from './Menu/'
-import { HomeIcon, UserGrIcon, ExploreIcon, LiveIcon, HomeActiveIcon, UserGrActiveIcon, ExploreActiveIcon, LiveActiveIcon } from '~/assets/icons'
+import {
+    HomeIcon,
+    UserGrIcon,
+    ExploreIcon,
+    LiveIcon,
+    HomeActiveIcon,
+    UserGrActiveIcon,
+    ExploreActiveIcon,
+    LiveActiveIcon,
+    UserNotLoginAvtiveIcon,
+    UserNotLoginIcon
+} from '~/assets/icons'
 import SuggestAccounts from '~/components/SuggestAccounts'
 import * as userService from '~/services/userService'
 import Footer from './Footer'
@@ -54,15 +65,20 @@ function Sidebar() {
         <aside className={cx('navbar')}>
             <Menu>
                 <MenuItem activeIcon={<HomeActiveIcon />} icon={<HomeIcon />} title='For You' to={config.routes.home} />
-                <MenuItem activeIcon={<UserGrActiveIcon />} icon={<UserGrIcon />} title='Following' to={config.routes.folowing} />
+                <MenuItem
+                    activeIcon={user?.auth ? <UserGrActiveIcon /> : <UserNotLoginAvtiveIcon />}
+                    icon={user?.auth ? <UserGrIcon /> : <UserNotLoginIcon />}
+                    title='Following'
+                    to={config.routes.folowing}
+                />
                 <MenuItem activeIcon={<ExploreActiveIcon />} icon={<ExploreIcon />} title='Explore' to={config.routes.explore} />
                 <MenuItem activeIcon={<LiveActiveIcon />} icon={<LiveIcon />} title='LIVE' to={config.routes.live} />
 
                 {user && user.auth ? (
                     <>
                         <MenuItem
-                            activeIcon={<Image className={cx('avatar-nav')} src={dataUser.avatar ?? images.noBg} alt='' />}
-                            icon={<Image className={cx('avatar-nav')} src={dataUser.avatar ?? images.noBg} alt='' />}
+                            activeIcon={<Image className={cx('avatar-nav')} src={dataUser.avatar ?? images.noBg} alt=' ' />}
+                            icon={<Image className={cx('avatar-nav')} src={dataUser.avatar ?? images.noBg} alt=' ' />}
                             title='Profile'
                             to={`/@${dataUser.nickname}`}
                         />

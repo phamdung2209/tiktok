@@ -6,6 +6,7 @@
     --font-family: 'ProximaNova', san-serif;
     --backgroud-color: #121212;
     --font-color: rgba(255, 255, 255, 0.9);
+    --tiktok-font: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
 }
 
 * {
@@ -108,7 +109,25 @@ button {
 @font-face {
     font-family: TikTokFont;
     src: url('/assets/fonts/TikTokFont-Regular.woff2');
-    font-weight: 500;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: TikTokDisplayFont;
+    src: url('/assets/fonts/TikTokDisplayFont-Bold.woff2');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: TikTokDisplayFont;
+    src: url('/assets/fonts/TikTokDisplayFont-Semibold.woff2');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: TikTokDisplayFont;
+    src: url('/assets/fonts/TikTokFont-Semibold.woff2');
+    font-weight: 600;
 }
 
 // custom Tippy

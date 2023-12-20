@@ -1,0 +1,154 @@
+.intro {
+    margin-bottom: 20px;
+}
+
+.share-info {
+    display: flex;
+    align-items: center;
+    color: #ffffffe6;
+    position: relative;
+    max-width: 624px;
+    padding-right: 92px;
+    padding-left: 0px;
+    min-height: 140px;
+}
+
+.avatar {
+    width: 116px;
+    height: 116px;
+    object-fit: cover;
+    border-radius: 9999px;
+}
+
+.share-title {
+    flex: 1 1 0%;
+    cursor: pointer;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.title {
+    font-family: TikTokDisplayFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    word-break: break-word;
+
+    svg {
+        margin-left: 10px;
+    }
+}
+
+.sub-title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    text-overflow: ellipsis;
+    height: 25px;
+    overflow: hidden;
+    max-width: 450px;
+    white-space: nowrap;
+    display: flex;
+    align-items: flex-end;
+}
+
+.btn {
+    font-family: var(--tiktok-font);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    position: relative;
+    width: 208px;
+    height: 36px;
+    padding: 0px;
+    margin: 16px 0px 0px;
+}
+
+.action {
+    position: absolute;
+    top: 11px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    gap: 18px;
+    right: 1px;
+}
+
+.count-info {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 22px;
+}
+
+.unit {
+    color: rgba(255, 255, 255, 0.75);
+    font-family: var(--tiktok-font);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    display: inline-block;
+    margin-left: 6px;
+}
+
+.count-info-number {
+    margin-right: 20px;
+    color: var(--font-color);
+    font-family: var(--tiktok-font);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    display: flex;
+    direction: ltr;
+    -webkit-box-align: baseline;
+    align-items: baseline;
+    cursor: pointer;
+
+    .unit:hover {
+        text-decoration: underline;
+    }
+}
+
+.bio-text {
+    text-align: left;
+    color: var(--font-color);
+    font-family: var(--tiktok-font);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    white-space: pre-line;
+    margin-top: 10px;
+}
+
+.link-bio {
+    font-family: var(--tiktok-font);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 21px;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--primary-color);
+
+    svg {
+        margin-right: 2px;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

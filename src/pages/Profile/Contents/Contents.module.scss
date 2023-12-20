@@ -1,0 +1,105 @@
+.error-container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0px auto;
+    min-height: 400px;
+}
+
+.error-title {
+    font-size: 24px;
+    line-height: 30px;
+    font-family: TikTokDisplayFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 24px;
+}
+
+.error-des {
+    font-size: 16px;
+    line-height: 21px;
+    font-family: var(--tiktok-font);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 8px;
+}
+
+.link-video {
+    // position: relative;
+    // overflow: visible;
+}
+
+.wrapper-video-items {
+    position: relative;
+    overflow: visible;
+}
+
+.count-viewer {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    height: 100px;
+    background: linear-gradient(rgba(22, 24, 35, 0) 2.92%, rgba(22, 24, 35, 0.5) 98.99%);
+    padding: 67px 13px 17px;
+    display: flex;
+    align-items: center;
+
+    svg {
+        margin-right: 4px;
+    }
+}
+
+.post-user {
+    display: grid;
+    width: 100%;
+    gap: 24px 16px;
+    grid-template-columns: repeat(auto-fill, minmax(184px, 1fr));
+
+    .player-video {
+
+        video {
+            object-fit: cover;
+            display: block;
+            border-radius: 4px;
+
+            &:hover {
+                // cursor: wait;
+            }
+        }
+
+    }
+}
+
+.description {
+    position: relative;
+    cursor: pointer;
+
+    .title {
+        font-family: TikTokFont;
+        font-weight: 400;
+        padding: 2px 4px 0px;
+        height: 28px;
+        overflow: hidden;
+        box-sizing: content-box;
+    }
+
+    svg {
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 2px;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        margin-left: auto;
+        position: absolute;
+        right: 0;
+        top: -4px;
+        transform: translate(0, 50%);
+    }
+}

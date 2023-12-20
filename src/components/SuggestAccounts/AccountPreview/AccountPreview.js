@@ -5,6 +5,7 @@ import styles from './AccountPreview.module.scss'
 import Image from "~/components/Image"
 import Button from "~/components/Button"
 import { Tick } from "~/assets/icons"
+import ConvertData from '~/components/ConvertData'
 
 const cx = classNames.bind(styles)
 
@@ -29,13 +30,13 @@ function AccountPreview({ data }) {
             <div className={cx('follow-info', 'disFlex')}>
                 <div className={cx('follow')}>
                     <strong>{
-                        data.followers_count >= 1000 ? `${(data.followers_count / 1000).toFixed(1)}K` : data.followers_count >= 1000000 ? `${(data.followers_count / 1000000).toFixed(1)}M` : data.followers_count >= 1000000000 ? `${(data.followers_count / 1000000000).toFixed(1)}B` : data.followers_count
+                        <ConvertData data={data.followers_count} />
                     }</strong>
                     <span className={cx('label-color')}> Followers</span>
                 </div>
                 <div className={cx('like')}>
                     <strong>{
-                        data.likes_count >= 1000 ? `${(data.likes_count / 1000).toFixed(1)}K` : data.likes_count >= 1000000 ? `${(data.likes_count / 1000000).toFixed(1)}M` : data.likes_count >= 1000000000 ? `${(data.likes_count / 1000000000).toFixed(1)}B` : data.likes_count
+                        <ConvertData data={data.likes_count} />
                     }</strong>
                     <span className={cx('label-color')}> Likes</span>
                 </div>
