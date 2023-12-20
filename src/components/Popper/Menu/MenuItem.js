@@ -1,15 +1,16 @@
-import Button from "~/components/Button";
+import Button from "~/components/Button"
 import classNames from "classnames/bind"
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 import styles from "./Menu.module.scss"
 
 const cx = classNames.bind(styles)
 
-function MenuItem({ data, onClick }) {
+function MenuItem({ data, onClick, user }) {
     const classes = cx('menu-items', {
         separate: data.separate
     })
+
     return (
         <Button leftIcon={data.icon} to={data.to} className={classes} onClick={onClick}>
             {data.title}
@@ -24,4 +25,4 @@ MenuItem.propTypes = {
 
 
 
-export default MenuItem;
+export default MenuItem

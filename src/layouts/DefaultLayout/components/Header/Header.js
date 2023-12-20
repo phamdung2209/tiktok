@@ -1,232 +1,94 @@
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faSignIn, faEarthAsia, faCircleQuestion, faKeyboard, faCirclePlay, faCircleHalfStroke, faUser, faFlag, faCoins, faVideo, faGear, faSignOut } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faEarthAsia, faCircleQuestion, faKeyboard, faCirclePlay, faCircleHalfStroke, faUser, faFlag, faCoins, faVideo, faGear, faSignOut } from '@fortawesome/free-solid-svg-icons'
 import 'tippy.js/dist/tippy.css'
 import TippyTooltip from '@tippyjs/react'
-import Tippy from '@tippyjs/react/headless'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 
 import styles from './Header.module.scss'
 import images from '~/assets/images'
 import Button from '~/components/Button'
-import { Menu as MenuPopper } from '~/components/Popper'
+// import { Menu as MenuPopper } from '~/components/Popper'
 import { faTiktok } from '@fortawesome/free-brands-svg-icons'
-import { MoreIcon } from '~/assets/icons'
-import Image from '~/components/Image'
+// import { MoreIcon } from '~/assets/icons'
+// import Image from '~/components/Image'
 import Search from '../Search'
 import config from '~/config'
 import Login from '~/layouts/Login'
 import { useState } from 'react'
 import { UserContext } from '~/hooks'
 
-const cx = classNames.bind(styles)
-const MENU_ITEMS = [
-    {
-        icon: <FontAwesomeIcon icon={faCirclePlay} />,
-        title: 'LIVE Creator Hub',
-        to: '/live/creators',
-    },
-    {
-        icon: <FontAwesomeIcon icon={faEarthAsia} />,
-        title: 'English',
-        children: {
-            title: 'Language',
-            data: [
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                },
-            ]
-        }
-    },
-    {
-        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
-        title: 'Feedback and help',
-        to: '/feedback',
-    },
-    {
-        icon: <FontAwesomeIcon icon={faKeyboard} />,
-        title: 'Keyboard shortcuts',
-        children: {
-            title: 'Keyboard',
-            data: [
-                {
-                    code: 'en',
-                    title: 'English'
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt'
-                }
-            ]
-        }
-    },
-    {
-        icon: <FontAwesomeIcon icon={faCircleHalfStroke} />,
-        title: 'Dark mode',
-    }
-]
+import MenuItems from './MenuItems'
+import UserItems from './UserItems'
 
+const cx = classNames.bind(styles)
 
 function Header() {
-    const { user } = useContext(UserContext)
+    const { user, dataUser } = useContext(UserContext)
     const currentUser = user.auth
     const [openModal, setOpenModal] = useState(false)
 
-    const handleMenuChange = (item) => {
-        // console.log(item)
-    }
+    useEffect(() => {
+        console.log('User context has changed:', user);
+    }, [user]);
 
-    const handleOpenModal = () => {
-        setOpenModal(true)
-    }
+    const MENU_ITEMS = [
+        {
+            icon: <FontAwesomeIcon icon={faCirclePlay} />,
+            title: 'LIVE Creator Hub',
+            to: '/live/creators',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faEarthAsia} />,
+            title: 'English',
+            children: {
+                title: 'Language',
+                data: [
+                    {
+                        code: 'en',
+                        title: 'English'
+                    },
+                    {
+                        code: 'vi',
+                        title: 'Tiếng Việt'
+                    },
+                ]
+            }
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+            title: 'Feedback and help',
+            to: '/feedback',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faKeyboard} />,
+            title: 'Keyboard shortcuts',
+            children: {
+                title: 'Keyboard',
+                data: [
+                    {
+                        code: 'en',
+                        title: 'English'
+                    },
+                    {
+                        code: 'vi',
+                        title: 'Tiếng Việt'
+                    }
+                ]
+            }
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCircleHalfStroke} />,
+            title: 'Dark mode',
+        }
+    ]
 
     const USER_ITEMS = [
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'View Profile',
-            to: '/@dp22092003',
+            to: `/@${dataUser.nickname}`,
         },
         {
             icon: <FontAwesomeIcon icon={faFlag} />,
@@ -256,6 +118,14 @@ function Header() {
             separate: true,
         },
     ]
+
+    const handleMenuChange = (item) => {
+        // console.log(item)
+    }
+
+    const handleOpenModal = () => {
+        setOpenModal(true)
+    }
 
     return (
         <header className={cx('header')}>
@@ -288,32 +158,42 @@ function Header() {
                         </>
                     ) : (
                         <>
-                            <Button primary to='/login' onClick={handleOpenModal}>Log in</Button>
+                            <Button primary onClick={handleOpenModal}>Log in</Button>
                             {openModal && <Login setOpenModal={setOpenModal} />}
                         </>
                     )}
 
                     {/* more */}
-                    <MenuPopper menuItems={user && currentUser ? USER_ITEMS : MENU_ITEMS} onChange={handleMenuChange}>
+                    {/* <MenuPopper menuItems={user && currentUser ? USER_ITEMS : MENU_ITEMS} currentUser={currentUser} onChange={handleMenuChange}>
                         {user && currentUser ? (
                             <Image
                                 className={cx('user-avatar')}
-                                src='https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-1/271605415_1614588432227494_1107124473320678271_n.jpg?stp=dst-jpg_p320x320&_nc_cat=106&ccb=1-7&_nc_sid=11e7ab&_nc_eui2=AeFdkF5uqgTP9D2hHn2D87EU_KdI4N38JtD8p0jg3fwm0Oy5LQMKdxg3pLPekX_9MhkAbjLPOQDNDgyIH6EPbuxm&_nc_ohc=eR8gD2V7Cl0AX_wL49A&_nc_ht=scontent.fhan14-2.fna&oh=00_AfBgKYQFkZ3yj4qrreSPvT4grLqPWCpIpmc4_ubXPsvmRQ&oe=65813C8D'
-                                alt='@dungpv'
-                                fallBack='https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png'
+                                src={dataUser.avatar ?? images.noBg}
+                                alt=''
+                            // fallBack='https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-1/271605415_1614588432227494_1107124473320678271_n.jpg?stp=dst-jpg_p320x320&_nc_cat=106&ccb=1-7&_nc_sid=11e7ab&_nc_eui2=AeFdkF5uqgTP9D2hHn2D87EU_KdI4N38JtD8p0jg3fwm0Oy5LQMKdxg3pLPekX_9MhkAbjLPOQDNDgyIH6EPbuxm&_nc_ohc=eR8gD2V7Cl0AX_wL49A&_nc_ht=scontent.fhan14-2.fna&oh=00_AfBgKYQFkZ3yj4qrreSPvT4grLqPWCpIpmc4_ubXPsvmRQ&oe=65813C8D'
                             />
                         ) : (
                             <button className={cx('more-btn')}>
-                                {/* <FontAwesomeIcon icon={faEllipsisVertical} /> */}
                                 <MoreIcon />
                             </button>
                         )}
-                    </MenuPopper>
+                    </MenuPopper> */}
 
+                    {user && currentUser ? (
+                        <>
+                            <UserItems USER_ITEMS={USER_ITEMS} user={user} dataUser={dataUser} currentUser={currentUser} handleMenuChange={handleMenuChange} />
+                        </>
+                    ) : (
+                        <>
+                            <MenuItems MENU_ITEMS={MENU_ITEMS} user={user} dataUser={dataUser} currentUser={currentUser} handleMenuChange={handleMenuChange} />
+                        </>
+                    )}
                 </div>
             </div>
         </header >
     )
+
+
 }
 
 export default Header;

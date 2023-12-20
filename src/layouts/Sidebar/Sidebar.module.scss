@@ -5,3 +5,10 @@
     min-height: 100vh;
     max-height: min(100vh - 156px, 760px);
 }
+
+.avatar-nav{
+    width: 27px;
+    height: 27px;
+    object-fit: cover;
+    border-radius: 23px;
+}

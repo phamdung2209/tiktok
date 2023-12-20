@@ -22,7 +22,7 @@ const Image = forwardRef(({ src, className, fallBack = images.noImage, ...props 
 )
 
 Image.propTypes = {
-    src: PropTypes.string.isRequired,
+    src: PropTypes.string,
     className: PropTypes.string,
     fallBack: PropTypes.string,
 }

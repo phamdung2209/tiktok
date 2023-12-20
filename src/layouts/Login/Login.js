@@ -1,5 +1,6 @@
 import classNames from "classnames/bind"
 import { Link } from "react-router-dom"
+import { memo } from "react"
 
 import styles from './Login.module.scss'
 import config from "~/config"
@@ -127,4 +128,4 @@ function Login({ setOpenModal }) {
     )
 }
 
-export default (Login);
+export default memo(Login);

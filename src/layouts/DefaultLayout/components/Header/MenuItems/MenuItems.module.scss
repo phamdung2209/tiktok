@@ -1,0 +1,19 @@
+.more-btn {
+    cursor: pointer;
+    color: var(--white-color);
+    margin-left: 16px;
+    font-size: 1.6rem;
+    background-color: transparent;
+    padding: 0 10px;
+}
+
+.user-avatar{
+    width: 32px;
+    height: 32px;
+    margin-left: 12px;
+    background: transparent;
+    border-radius: 23px;
+    cursor: pointer;
+    object-fit: cover;
+    overflow: hidden;
+}

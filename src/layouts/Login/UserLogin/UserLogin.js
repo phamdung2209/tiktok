@@ -1,11 +1,12 @@
 import classNames from "classnames/bind"
 import PropTypes from 'prop-types'
-import { useEffect, useState, useContext } from "react"
+import { useState, useContext } from "react"
 
 import styles from './UserLogin.module.scss'
 import { ArrowRightIcon } from '~/assets/icons'
 import * as loginService from '~/services/loginService'
 import { UserContext } from "~/hooks"
+import config from "~/config"
 
 
 const cx = classNames.bind(styles)
