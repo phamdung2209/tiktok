@@ -49,11 +49,11 @@
 .nav-line{
     position: absolute;
     height: 2px;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--font-color);
     bottom: 0px;
     transition: all 0.3s ease 0s;
 }
 
 .active {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--font-color);
 }

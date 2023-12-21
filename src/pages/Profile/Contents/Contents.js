@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player'
 import { useEffect, useRef, useState } from "react"
 
 import style from './Contents.module.scss'
-import { LockIcon, PlayIcon, MoreIconProfile } from '~/assets/icons'
+import { LockIcon, PlayIcon, MoreIconProfile, NoContent } from '~/assets/icons'
 import ConvertData from '~/components/ConvertData'
 import * as videoService from '~/services/videoService'
 
@@ -30,48 +30,63 @@ function Contents({ tabClick }) {
     console.log(window.location.pathname)
     return (
         tabClick ? (
-            <div className={cx('wrapper')}>
-                <div className={cx('post-user')}>
-                    {
-                        dataVideo.map((video, index) => (
-                            <div
-                                key={index}
-                            >
+            dataUser.videos && dataUser.videos.length > 0 ? (
+                <div className={cx('wrapper')}>
+                    <div className={cx('post-user')}>
+                        {
+                            dataVideo.map((video, index) => (
                                 <div
-                                    className={cx('wrapper-video-items')}
-                                    style={{ overflow: 'hidden', height: '245.84px' }}
+                                    key={index}
                                 >
-                                    <Link className={cx('link-video')} to={`/@${dataUser.nickname}/video/${dataVideo[index].uuid}`}>
-                                        <ReactPlayer
-                                            width={'100%'}
-                                            height={'100%'}
-                                            className={cx('player-video')}
-                                            url={video.file_url}
-                                        />
-                                        <div className={cx('count-viewer')}>
-                                            <PlayIcon />
-                                            <span>
-                                                <ConvertData data={dataVideo[index].views_count} />
-                                            </span>
-                                        </div>
-
-                                    </Link>
-                                </div>
-
-                                <div className={cx('description')}>
                                     <div
-                                        className={cx('title')}
-                                        ref={desRef}
+                                        className={cx('wrapper-video-items')}
+                                        style={{ overflow: 'hidden', height: '245.84px' }}
                                     >
-                                        {dataVideo[index].description}
+                                        <Link className={cx('link-video')} to={`/@${dataUser.nickname}/video/${dataVideo[index].uuid}`}>
+                                            <ReactPlayer
+                                                width={'100%'}
+                                                height={'100%'}
+                                                className={cx('player-video')}
+                                                url={video.file_url}
+                                            />
+                                            <div className={cx('count-viewer')}>
+                                                <PlayIcon />
+                                                <span>
+                                                    <ConvertData data={dataVideo[index].views_count} />
+                                                </span>
+                                            </div>
+                                        </Link>
                                     </div>
-                                    <MoreIconProfile />
+
+                                    <div className={cx('description')}>
+                                        <div
+                                            className={cx('title')}
+                                            ref={desRef}
+                                        >
+                                            {dataVideo[index].description}
+                                        </div>
+                                        <MoreIconProfile />
+                                    </div>
                                 </div>
-                            </div>
-                        ))
-                    }
+                            ))
+                        }
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div className={cx('error-container')}>
+                    <div className={cx('error-lock')}>
+                        <NoContent />
+                    </div>
+
+                    <div className={cx('error-title')}>
+                        No content
+                    </div>
+
+                    <div className={cx('error-des')}>
+                        This user has not published any videos.
+                    </div>
+                </div>
+            )
         ) : (
             <div className={cx('error-container')}>
                 <div className={cx('error-lock')}>

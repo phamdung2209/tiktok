@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import Tippy from '@tippyjs/react/headless'
 
 import style from './Profile.module.scss'
 import Image from '~/components/Image'
@@ -10,19 +11,22 @@ import { ShareIcon, MoreIconW } from '~/assets/icons'
 import LayoutVideo from './NavVideo'
 import * as videoService from '~/services/videoService'
 import ConvertData from '~/components/ConvertData'
+import { Wrapper as PopperWrapper } from '~/components/Popper'
+import ShareGroup from './ShareGroup'
+import MoreAction from './MoreAction'
 
 const cx = classNames.bind(style)
 
 function Profile() {
 
-    const [dataVideo, setDataVideo] = useState([])
+    // const [dataVideo, setDataVideo] = useState([])
     const [dataUser, setDataUser] = useState({})
 
     useEffect(() => {
         const apiGetUserVideo = async () => {
             const results = await videoService.getUserVideos({ username: window.location.pathname })
             setDataUser(results)
-            setDataVideo([...results.videos])
+            // setDataVideo([...results.videos])
         }
 
         apiGetUserVideo()
@@ -55,8 +59,33 @@ function Profile() {
                     </div>
 
                     <div className={cx('action')}>
-                        <ShareIcon />
-                        <MoreIconW />
+                        <Tippy
+                            interactive={true}
+                            appendTo={document.body}
+                            render={attrs => (
+                                <PopperWrapper>
+                                    <div className={cx('box')} tabIndex='-1' {...attrs}>
+                                        <ShareGroup />
+                                    </div>
+                                </PopperWrapper>
+                            )}
+                        >
+                            <ShareIcon />
+                        </Tippy>
+
+                        <Tippy
+                            appendTo={document.body}
+                            interactive={true}
+                            render={attrs => (
+                                <PopperWrapper>
+                                    <div className={cx('share-group')} tabIndex='-1' {...attrs}>
+                                        <MoreAction />
+                                    </div>
+                                </PopperWrapper>
+                            )}
+                        >
+                            <MoreIconW />
+                        </Tippy>
                     </div>
                 </div>
 
@@ -92,10 +121,12 @@ function Profile() {
                         {dataUser.bio}
                     </p>
 
-                    <Link to={dataUser.website_url} className={cx('link-bio')} target='_blank'>
-                        <LinkIcon />
-                        {dataUser.website_url}
-                    </Link>
+                    {dataUser.website_url && (
+                        <Link to={dataUser.website_url} className={cx('link-bio')} target='_blank'>
+                            <LinkIcon />
+                            {dataUser.website_url}
+                        </Link>
+                    )}
                 </div>
             </div>
 

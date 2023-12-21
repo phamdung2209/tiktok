@@ -17,7 +17,7 @@
     background: rgba(255, 255, 255, 0.08);
     border-width: 1px;
     border-style: solid;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--font-color);
     border-color: rgba(255, 255, 255, 0);
 
     &:hover {
@@ -43,7 +43,7 @@
         border-radius: 2px;
         padding-inline-start: 12px;
         background-color: transparent;
-        color: rgba(255, 255, 255, 0.9);
+        color: var(--font-color);
         line-height: 100%;
         outline: none;
         font-size: 16px;
@@ -57,7 +57,7 @@
 }
 
 .description {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--font-color);
     font-weight: 600;
     font-size: 1.5rem;
     display: flex;

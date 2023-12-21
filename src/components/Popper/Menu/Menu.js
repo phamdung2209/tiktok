@@ -29,8 +29,8 @@ function Menu({ children, menuItems = [], onChange = defaultFn }) {
                         setHistory(prev => [...prev, item.children])
                     } else if (item.separate) {
                         logout()
-                    }
-                    else {
+                    } else
+                     {
                         onChange(item)
                     }
                 }} />

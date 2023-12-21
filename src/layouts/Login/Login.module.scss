@@ -85,7 +85,7 @@
 }
 
 .title {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--font-color);
     font-size: 33px;
     font-weight: bold;
     text-align: center;
@@ -120,14 +120,14 @@
 
         & .agreement-text {
             display: inline;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--font-color);
         }
     }
 
 }
 
 .signUp-container {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--font-color);
     font-family: TikTokFont;
     height: 64px;
     border-top: 0.5px solid rgba(255, 255, 255, 0.12);
