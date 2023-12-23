@@ -25,13 +25,9 @@ import UserItems from './UserItems'
 const cx = classNames.bind(styles)
 
 function Header() {
-    const { user, dataUser } = useContext(UserContext)
+    const { user, loggedInUserData } = useContext(UserContext)
     const currentUser = user.auth
     const [openModal, setOpenModal] = useState(false)
-
-    useEffect(() => {
-        console.log('User context has changed:', user);
-    }, [user]);
 
     const MENU_ITEMS = [
         {
@@ -88,7 +84,7 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'View Profile',
-            to: `/@${dataUser.nickname}`,
+            to: `/@${loggedInUserData.nickname}`,
         },
         {
             icon: <FontAwesomeIcon icon={faFlag} />,
@@ -168,7 +164,7 @@ function Header() {
                         {user && currentUser ? (
                             <Image
                                 className={cx('user-avatar')}
-                                src={dataUser.avatar ?? images.noBg}
+                                src={loggedInUserData.avatar ?? images.noBg}
                                 alt=''
                             // fallBack='https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-1/271605415_1614588432227494_1107124473320678271_n.jpg?stp=dst-jpg_p320x320&_nc_cat=106&ccb=1-7&_nc_sid=11e7ab&_nc_eui2=AeFdkF5uqgTP9D2hHn2D87EU_KdI4N38JtD8p0jg3fwm0Oy5LQMKdxg3pLPekX_9MhkAbjLPOQDNDgyIH6EPbuxm&_nc_ohc=eR8gD2V7Cl0AX_wL49A&_nc_ht=scontent.fhan14-2.fna&oh=00_AfBgKYQFkZ3yj4qrreSPvT4grLqPWCpIpmc4_ubXPsvmRQ&oe=65813C8D'
                             />
@@ -181,11 +177,11 @@ function Header() {
 
                     {user && currentUser ? (
                         <>
-                            <UserItems USER_ITEMS={USER_ITEMS} user={user} dataUser={dataUser} currentUser={currentUser} handleMenuChange={handleMenuChange} />
+                            <UserItems USER_ITEMS={USER_ITEMS} user={user} loggedInUserData={loggedInUserData} currentUser={currentUser} handleMenuChange={handleMenuChange} />
                         </>
                     ) : (
                         <>
-                            <MenuItems MENU_ITEMS={MENU_ITEMS} user={user} dataUser={dataUser} currentUser={currentUser} handleMenuChange={handleMenuChange} />
+                            <MenuItems MENU_ITEMS={MENU_ITEMS} user={user} loggedInUserData={loggedInUserData} currentUser={currentUser} handleMenuChange={handleMenuChange} />
                         </>
                     )}
                 </div>

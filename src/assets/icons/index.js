@@ -1,4 +1,4 @@
-import { useRef, forwardRef } from "react"
+import { forwardRef } from "react"
 
 export const MessagesActive = (({ width = '3.2rem', height = '3.2rem', className }) => (
     <svg
@@ -300,8 +300,13 @@ export const Report = ({ className }) => (
 )
 
 export const Block = ({ className }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" class="css-1ovyiqb-StyledBlock e1vhy9gd4" stroke="rgba(255, 255, 255, 0.9)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" className={className} stroke="rgba(255, 255, 255, 0.9)">
         <path d="m4.48 3.994 7.526 7.527A5.333 5.333 0 0 0 4.48 3.994Zm7.056 8-7.53-7.53a5.333 5.333 0 0 0 7.529 7.529ZM3.765 3.75a6 6 0 1 1 8.47 8.5 6 6 0 0 1-8.47-8.5Z" clipRule="evenodd"></path>
     </svg>
 )
 
+export const EditIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" >
+        <path fill="currentColor" fillRule="evenodd" d="M15.393 2.226a.842.842 0 0 0-1.17.02L8.142 8.33a.842.842 0 0 0-.247.595v2.34c0 .464.377.841.842.841h2.183a.842.842 0 0 0 .596-.246l6.237-6.238a.843.843 0 0 0-.02-1.211l-2.34-2.184ZM9.58 9.273l5.26-5.26 1.107 1.033-5.374 5.375H9.58V9.273ZM9.58 2a.42.42 0 0 1 .42.421v.842a.421.421 0 0 1-.42.421H4.526a.842.842 0 0 0-.842.842v10.948c0 .465.377.842.842.842h10.947a.842.842 0 0 0 .842-.842V10.42c0-.232.189-.421.421-.421h.842c.233 0 .422.188.422.421v5.053A2.526 2.526 0 0 1 15.473 18H4.526A2.526 2.526 0 0 1 2 15.474V4.526A2.526 2.526 0 0 1 4.526 2H9.58Z" clipRule="evenodd"></path>
+    </svg>
+)

@@ -7,6 +7,7 @@ import Search from '~/pages/Search'
 import Live from '~/pages/Live'
 import Explore from '~/pages/Explore'
 import config from '~/config'
+import VideoDetail from '~/pages/VideoDetail'
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -16,6 +17,7 @@ const publicRoutes = [
     { path: config.routes.search, component: Search, layout: null },
     { path: config.routes.live, component: Live, },
     { path: config.routes.explore, component: Explore, },
+    { path: config.routes.videoDetail, component: VideoDetail, layout: null }
 ]
 
 const privateRoutes = [

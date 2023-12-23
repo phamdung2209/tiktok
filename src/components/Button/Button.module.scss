@@ -18,8 +18,8 @@
     }
 }
 
-.icon+.title,
-.title+.icon {
+.icon + .title,
+.title + .icon {
     margin-left: 8px;
 }
 
@@ -165,5 +165,28 @@
 
     &:active {
         box-shadow: 0 0 4px 1px #737373;
+    }
+}
+
+.nomal {
+    border-radius: 999px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    background: rgba(84, 84, 84, 0.5);
+    transition: all 0.2s ease;
+    color: var(--white-color);
+    font-size: 1.4rem;
+    font-weight: 600;
+    min-width: fit-content;
+
+    &:hover {
+        background: rgba(84, 84, 84, 0.7);
+    }
+
+    &:active {
+        background: rgba(84, 84, 84, 0.9);
     }
 }

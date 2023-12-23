@@ -8,6 +8,7 @@ const routesConfig = {
     explore: '/explore',
     login: '/login',
     signup: '/signup',
+    videoDetail: '/:nickname/video/:uuid',
 }
 
 export default routesConfig

@@ -3,15 +3,27 @@
 }
 
 .header {
-    height: 60px;
-    padding: 0 24px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background-color: var(--backgroud-color);
+    // height: 60px;
+    // padding: 0 24px;
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // z-index: 100;
+    // background-color: var(--backgroud-color);
+    // box-shadow: rgba(255, 255, 255, 0.12) 0px 1px 1px;
+
+    justify-content: space-around;
     box-shadow: rgba(255, 255, 255, 0.12) 0px 1px 1px;
+    height: 60px;
+    width: 100%;
+    top: 0px;
+    position: fixed;
+    -webkit-box-align: center;
+    align-items: center;
+    background: rgb(18, 18, 18);
+    z-index: 1000;
+    padding: 0 16px;
 
     .inner {
         width: 100%;

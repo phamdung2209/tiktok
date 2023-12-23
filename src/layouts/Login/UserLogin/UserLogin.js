@@ -19,7 +19,7 @@ function UserLogin({ mediaLogin = [] }) {
 
 
     // login
-    const { login } = useContext(UserContext);
+    const { login } = useContext(UserContext)
 
     const currentMenu = history[history.length - 1]
 

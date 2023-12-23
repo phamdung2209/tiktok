@@ -1,5 +1,5 @@
 import classNames from "classnames/bind"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import ReactPlayer from 'react-player'
 import { useEffect, useRef, useState } from "react"
 
@@ -16,38 +16,63 @@ function Contents({ tabClick }) {
 
     const [dataVideo, setDataVideo] = useState([])
     const [dataUser, setDataUser] = useState({})
+    const [playVideo, setPlayVideo] = useState(0)
+    const [resetPoster, setResetPoster] = useState(true)
+    const playerRef = useRef(null)
+    const location = useLocation()
 
     useEffect(() => {
         const apiGetUserVideo = async () => {
-            const results = await videoService.getUserVideos({ username: window.location.pathname })
-            setDataUser(results)
-            setDataVideo([...results.videos])
+            const results = await videoService.getUserVideos({ username: location.pathname })
+
+            if (results) {
+                setDataUser(results)
+                setDataVideo([...results?.videos])
+            }
         }
 
         apiGetUserVideo()
-    }, [])
+    }, [location.pathname])
 
-    console.log(window.location.pathname)
     return (
         tabClick ? (
-            dataUser.videos && dataUser.videos.length > 0 ? (
+            dataUser?.videos && dataUser?.videos?.length > 0 ? (
                 <div className={cx('wrapper')}>
                     <div className={cx('post-user')}>
                         {
                             dataVideo.map((video, index) => (
                                 <div
                                     key={index}
+                                    onMouseEnter={() => {
+                                        setPlayVideo(index)
+                                    }}
                                 >
                                     <div
                                         className={cx('wrapper-video-items')}
                                         style={{ overflow: 'hidden', height: '245.84px' }}
                                     >
-                                        <Link className={cx('link-video')} to={`/@${dataUser.nickname}/video/${dataVideo[index].uuid}`}>
+                                        <Link className={cx('link-video')} to={`/@${dataUser?.nickname}/video/${dataVideo[index].uuid}`}>
                                             <ReactPlayer
+                                                ref={(ref) => (playerRef[index] = ref)}
+                                                muted={true}
+                                                playing={playVideo === index}
                                                 width={'100%'}
                                                 height={'100%'}
                                                 className={cx('player-video')}
                                                 url={video.file_url}
+
+                                                onPause={() => {
+                                                    playerRef[index].player.player.player.currentTime = 0
+                                                    setResetPoster(true)
+                                                }}
+
+                                                config={{
+                                                    file: {
+                                                        attributes: {
+                                                            poster: video.thumb_url,
+                                                        },
+                                                    },
+                                                }}
                                             />
                                             <div className={cx('count-viewer')}>
                                                 <PlayIcon />
@@ -98,11 +123,11 @@ function Contents({ tabClick }) {
                 </div>
 
                 <div className={cx('error-des')}>
-                    Videos liked by emiliopiano are currently hidden
+                    Videos liked by {dataUser?.nickname} are currently hidden
                 </div>
             </div>
         )
     )
 }
 
-export default Contents;
+export default Contents

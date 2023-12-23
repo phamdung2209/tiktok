@@ -35,7 +35,7 @@ function Sidebar() {
     const [pages, setPages] = useState(INIT_PAGE)
     const [isSee, setIsSee] = useState(false)
     const [loading, setLoading] = useState(false)
-    const { user, dataUser } = useContext(UserContext)
+    const { user, loggedInUserData } = useContext(UserContext)
     const [openModal, setOpenModal] = useState(false)
 
     useEffect(() => {
@@ -77,10 +77,10 @@ function Sidebar() {
                 {user && user.auth ? (
                     <>
                         <MenuItem
-                            activeIcon={<Image className={cx('avatar-nav')} src={dataUser.avatar ?? images.noBg} alt=' ' />}
-                            icon={<Image className={cx('avatar-nav')} src={dataUser.avatar ?? images.noBg} alt=' ' />}
+                            activeIcon={<Image className={cx('avatar-nav')} src={loggedInUserData.avatar ?? images.noBg} alt=' ' />}
+                            icon={<Image className={cx('avatar-nav')} src={loggedInUserData.avatar ?? images.noBg} alt=' ' />}
                             title='Profile'
-                            to={`/@${dataUser.nickname}`}
+                            to={`/@${loggedInUserData.nickname}`}
                         />
                     </>
                 ) : (

@@ -23,6 +23,7 @@ function Button({
     leftIcon,
     rightIcon,
     primaryLonger,
+    nomal,
     ...passProps }, ref) {
     const buttonRef = useRef()
     let Comp = 'button'
@@ -58,6 +59,7 @@ function Button({
         disabled,
         rounded,
         primaryLonger,
+        nomal
     })
 
     return (

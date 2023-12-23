@@ -152,3 +152,85 @@
         text-decoration: underline;
     }
 }
+
+.error-container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0px auto;
+    min-height: 400px;
+}
+
+.error-title {
+    font-size: 24px;
+    line-height: 30px;
+    font-family: TikTokDisplayFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 700;
+    color: var(--font-color);
+    margin-top: 24px;
+}
+
+.error-des {
+    font-size: 16px;
+    line-height: 21px;
+    font-family: var(--tiktok-font);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 8px;
+}
+
+.bio {
+    max-width: 624px;
+
+    a {
+        width: fit-content;
+    }
+}
+
+.btn-edit-profile {
+    button {
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 4px;
+        color: rgba(255, 255, 255, 0.9);
+        border-color: rgba(255, 255, 255, 0);
+        background-color: rgba(255, 255, 255, 0.08);
+        min-height: 36px;
+        font-weight: 600;
+        position: relative;
+        -webkit-box-pack: center;
+        justify-content: center;
+        user-select: none;
+        cursor: pointer;
+        box-sizing: border-box;
+        height: 36px;
+        font-size: 16px;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        padding: 0px 16px;
+        min-width: 136px;
+        line-height: 24px;
+        transition: all 0.1s ease-in-out;
+
+        svg {
+            min-width: 30px;
+            scale: 0.8;
+        }
+
+        &:hover {
+            border-color: rgb(208, 209, 211);
+            background-color: rgb(18, 18, 18);
+        }
+
+        &:active {
+            border-color: rgb(208, 209, 211);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+    }
+}
