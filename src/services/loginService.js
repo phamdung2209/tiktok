@@ -23,6 +23,6 @@ export const getUserData = async (accessToken) => {
         return res.data;
     } catch (err) {
         console.log('Error fetching user data:', err);
-        throw err; // Rethrow lỗi để bên gọi có thể xử lý
+        throw err; 
     }
 };

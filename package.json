@@ -19,6 +19,7 @@
     "react-player": "^2.14.1",
     "react-router-dom": "^6.20.1",
     "react-scripts": "5.0.1",
+    "react-scroll": "^1.9.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

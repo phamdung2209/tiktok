@@ -1,0 +1,15 @@
+.wrapper {
+    flex: 1 0 600px;
+    max-width: 100%;
+    background: rgb(0, 0, 0);
+    position: relative;
+    overflow: hidden;
+    padding: 0px 80px;
+}
+
+.header {
+    button {
+        height: 40px;
+        width: 40px;
+    }
+}

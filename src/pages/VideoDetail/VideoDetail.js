@@ -1,7 +1,10 @@
 import classNames from "classnames/bind"
+import ReactPlayer from "react-player"
 
 import styles from './VideoDetail.module.scss'
 import Button from "~/components/Button"
+import { CloseIconBold, ReportMode } from '~/assets/icons'
+import Search from '~/layouts/DefaultLayout/components/Search'
 
 const cx = classNames.bind(styles)
 
@@ -9,23 +12,31 @@ function VideoDetail() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('video')}>
-                <div>
+                <div className={cx('header')}>
+                    <Button nomal>
+                        <CloseIconBold />
+                    </Button>
+
                     <div>
-                        <Button nomal>
-                            Report
-                        </Button>
-                        <Button nomal>
-                            &times;
-                        </Button>
+                        <Search />
                     </div>
 
                     <div>
-                        Search
-                    </div>
-
-                    <div>
+                        <ReportMode />
                         report
                     </div>
+                </div>
+
+                <div className={cx('video__content')}>
+                    <ReactPlayer
+
+                    >
+                        x
+                    </ReactPlayer>
+                </div>
+
+                <div className={cx('side-bar')}>
+
                 </div>
             </div>
 

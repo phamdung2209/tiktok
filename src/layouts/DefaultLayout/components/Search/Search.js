@@ -34,17 +34,6 @@ function Search() {
 
         setLoading(true)
 
-        // fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
-        //     .then(res => res.json())
-        //     .then(res => {
-        //         setSearchResults(res.data)
-        //         setLoading(false)
-        //     })
-        //     .catch(err => {
-        //         console.log(err)
-        //         setLoading(false)
-        //     })
-
         // custom request
         const fetchApi = async () => {
             setLoading(true)

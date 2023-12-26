@@ -10,7 +10,7 @@ export const getFollowingLists = async (page = 1, accessToken) => {
                 Authorization: `Bearer ${accessToken}`,
             },
         })
-        console.log('res: ', res.data)
+        
         return res
     } catch (err) {
         console.log(err)

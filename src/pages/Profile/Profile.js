@@ -1,11 +1,12 @@
 import classNames from 'classnames/bind'
 import { Link, useLocation } from 'react-router-dom'
-import { useState, useEffect, useContext, useRef } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Tippy from '@tippyjs/react/headless'
+import TippyToolTip from '@tippyjs/react'
 
 import style from './Profile.module.scss'
 import Image from '~/components/Image'
-import { TickLarge, LinkIcon, NoContent, EditIcon } from '~/assets/icons'
+import { TickLarge, LinkIcon, NoContent, EditIcon, FollowedIcon } from '~/assets/icons'
 import Button from '~/components/Button'
 import { ShareIcon, MoreIconW } from '~/assets/icons'
 import LayoutVideo from './NavVideo'
@@ -25,6 +26,7 @@ function Profile() {
     const location = useLocation()
     const [followingLists, setFollowingLists] = useState([])
     const { loggedInUserData } = useContext(UserContext)
+    const assetToken = localStorage.getItem('accessToken')
 
     useEffect(() => {
         const apiGetUserVideo = async () => {
@@ -46,24 +48,28 @@ function Profile() {
         if (dataUser && dataUser?.first_name !== undefined && dataUser?.last_name !== undefined && dataUser?.nickname !== undefined) {
             updateTitle()
         }
-    }, [location.pathname, dataUser])
+    }, [dataUser, location.pathname])
 
     useEffect(() => {
         const apiFetch = async (page = 1) => {
-            const results = await followService.getFollowingLists(page, localStorage.getItem('accessToken'))
-
+            if (!assetToken) return
+            const results = await followService.getFollowingLists(page, assetToken)
             if (results && results.data.length > 0) {
                 setFollowingLists(prev => [...prev, ...results.data])
             }
 
-            if (followingLists.length <= results.meta.pagination.total && results.meta.pagination.current_page < results.meta.pagination.total_pages) {
+            if (followingLists.length <= results?.meta.pagination.total && results?.meta.pagination.current_page < results?.meta.pagination.total_pages) {
                 apiFetch(page + 1)
             }
 
             return results
         }
         apiFetch()
-    }, [])
+
+        if (assetToken === null) {
+            setFollowingLists([])
+        }
+    }, [assetToken]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className={cx('wrapper')}>
@@ -100,84 +106,71 @@ function Profile() {
                                     {dataUser?.first_name} {dataUser?.last_name}
                                 </h2>
                                 <div className={cx('btn')}>
-                                    {/* {loggedInUserData.nickname === dataUser?.nickname ?
-                                        (
-                                            <div className={cx('btn-edit-profile')}>
-                                                <Button text leftIcon={<EditIcon />}>
-                                                    Edit Profile
-                                                </Button>
-                                            </div>
-                                        ) : (
-                                            <Button primaryLonger>
-                                                {dataUser?.is_followed ? 'Following' : 'Follow'}
-                                            </Button>
-                                        )
-                                    } */}
-
-                                    {/* {loggedInUserData ?
-                                        (
-                                            loggedInUserData.nickname === dataUser?.nickname ? (
+                                    {loggedInUserData ? (
+                                        dataUser?.nickname ? (
+                                            loggedInUserData.nickname === dataUser.nickname ? (
                                                 <div className={cx('btn-edit-profile')}>
                                                     <Button text leftIcon={<EditIcon />}>
                                                         Edit Profile
                                                     </Button>
                                                 </div>
                                             ) : (
-                                                true ? (
-                                                    <div>
+                                                followingLists.some(user => user.id === dataUser?.id) ? (
+                                                    <div className={cx('btn-followed')}>
                                                         <Button outline>
                                                             Messages
                                                         </Button>
-
-                                                        <div>
-                                                            unfollow
-                                                        </div>
+                                                        <TippyToolTip
+                                                            content='Unfollow'
+                                                            placement='bottom'
+                                                        >
+                                                            <div className={cx('btn-followed-sub')}>
+                                                                <FollowedIcon />
+                                                            </div>
+                                                        </TippyToolTip>
                                                     </div>
                                                 ) : (
-                                                    <>
-                                                        <Button primaryLonger>
-                                                            {false ? 'Following' : 'Follow'}
-                                                        </Button>
-                                                    </>
+                                                    <Button primaryLonger>
+                                                        Follow
+                                                    </Button>
                                                 )
                                             )
                                         ) : (
-                                            <>
-                                                <Button primaryLonger>
-                                                    {false ? 'Following' : 'Follow'}
-                                                </Button>
-                                            </>
-                                        )} */}
-
-                                    {loggedInUserData ? (
-                                        loggedInUserData.nickname === dataUser?.nickname ? (
-                                            <div className={cx('btn-edit-profile')}>
-                                                <Button text leftIcon={<EditIcon />}>
-                                                    Edit Profile
-                                                </Button>
-                                            </div>
-                                        ) : (
-                                            followingLists.some(user => user.id === dataUser?.id) ? (
-                                                <div>
-                                                    <Button outline>
-                                                        Messages
-                                                    </Button>
-
-                                                    <div>
-                                                        Unfollow
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <Button primaryLonger>
-                                                    {dataUser?.is_followed ? 'Following' : 'Follow'}
-                                                </Button>
-                                            )
+                                            <Button primaryLonger>
+                                                Follow
+                                            </Button>
                                         )
                                     ) : (
                                         <Button primaryLonger>
-                                            {dataUser?.is_followed ? 'Following' : 'Follow'}
+                                            Follow
                                         </Button>
                                     )}
+
+                                    {/* {loggedInUserData.nickname === dataUser.nickname && (
+                                        <div className={cx('btn-edit-profile')}>
+                                            <Button text leftIcon={<EditIcon />}>
+                                                Edit Profile
+                                            </Button>
+                                        </div>
+                                    )}
+
+                                    {followingLists.some(user => user.id === dataUser?.id) && (
+                                        <div>
+                                            <Button outline>
+                                                Messages
+                                            </Button>
+                                            <div>
+                                                Unfollow
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {loggedInUserData.nickname !== dataUser.nickname && !followingLists.some(user => user.id === dataUser?.id) && (
+                                        <Button primaryLonger>
+                                            Follow
+                                        </Button>
+                                    )} */}
+
                                 </div>
                             </div>
 

@@ -132,15 +132,107 @@ button {
 
 // custom Tippy
 .tippy-box {
+    text-align: left;
+    text-decoration: none;
+    border-radius: 8px;
     font-weight: 600;
+    font-size: 16px;
+    line-height: 2.1rem;
     background-color: rgba(84, 84, 84, 0.92);
     color: rgb(255, 255, 255);
-    line-height: 2.2rem;
-    font-size: 1.6rem;
-    padding: 1px 0;
-    border-radius: 6px;
+    padding: 3px;
 }
 
 .tippy-arrow {
     color: rgba(84, 84, 84, 0.92);
+}
+
+.go-to-top {
+    border: none;
+    outline: none;
+    padding: 0px;
+    cursor: pointer;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 52px;
+    background: rgb(255, 59, 92);
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 8px;
+
+    &:hover {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), rgb(254, 44, 85);
+    }
+
+    &:active {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), rgb(254, 44, 85);
+    }
+}
+
+.bottom-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+    background-color: green;
+}
+
+.bottom-container {
+    right: 24px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 7;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 8px;
+    transform: translateY(40px);
+    transition: all 400ms cubic-bezier(0.65, 0, 0.35, 1) 0s;
+}
+
+.tran {
+    transform: none;
+}
+
+
+.get-app {
+    margin-bottom: 12px;
+    display: flex;
+    position: relative;
+
+    .btn-get-app {
+        border: 1px solid rgba(255, 255, 255, 0);
+        background: none rgb(37, 37, 37);
+        outline: none;
+        color: rgba(255, 255, 255, 0.75);
+        font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        position: relative;
+        right: 0px;
+        bottom: 0px;
+        padding: 0px 8px;
+        min-width: 90px;
+        height: 32px;
+        box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 8px;
+        border-radius: 52px;
+        cursor: pointer;
+        line-height: 30px;
+        text-align: center;
+        white-space: nowrap;
+        transition: transform 0.3s cubic-bezier(0.4, 0.14, 0.3, 1) 0s;
+        transform-origin: right bottom;
+        transform: none;
+
+        &:hover {
+            border-color: rgba(255, 255, 255, 0);
+            background-color: rgb(46, 46, 46);
+        }
+
+        &:active {
+            border-color: rgba(255, 255, 255, 0);
+            background-color: rgba(255, 255, 255, 0.12);
+        }
+    }
 }
