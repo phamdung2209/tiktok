@@ -1,4 +1,31 @@
 .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header {
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: space-around;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 85px;
+
+    button {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+.video {
     flex: 1 0 600px;
     max-width: 100%;
     background: rgb(0, 0, 0);
@@ -7,9 +34,109 @@
     padding: 0px 80px;
 }
 
-.header {
-    button {
-        height: 40px;
+// description
+.description {
+    flex: 0 0 544px;
+    width: 544px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+}
+
+.des-header {
+    width: 100%;
+    box-sizing: border-box;
+    border-top: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-container {
+    padding-top: 24px;
+    width: 100%;
+    overflow: hidden auto;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    position: relative;
+    padding: 0px 32px 24px;
+}
+
+.profile-wrapper {
+    margin-left: -32px;
+    margin-right: -32px;
+}
+
+.pro-des {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 16px;
+}
+
+.tab-menu-wrapper {
+    padding: 0px 32px;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+}
+
+.pro-des-info {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0px;
+    margin-bottom: 15px;
+    position: relative;
+    justify-content: space-between;
+
+    .pro-des-info__avatar {
         width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 999px;
     }
+
+    a {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.info-user {
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    flex: 1;
+}
+
+.pro-des-info__nickname {
+    font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.pro-des-info__name {
+    font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.main-content {
+    bottom: 1px;
+    // fill: rgba(255, 255, 255, 0.9);
+    font-size: 1.6rem;
+    line-height: 21px;
+    word-break: break-word;
 }
