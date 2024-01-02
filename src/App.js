@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Fragment, useState, useEffect } from 'react'
-import { animateScroll as scroll, Link } from 'react-scroll'
+import { animateScroll as scroll } from 'react-scroll'
 
 import { publicRoutes } from '~/routes'
 import DefaultLayout from './layouts'
@@ -45,26 +45,27 @@ function App() {
         </Routes>
       </Router>
 
-
-      <div className={`bottom-container ${isScrolling ? 'tran' : ''}`}>
-        <div className='get-app'>
-          <button className='btn-get-app'>
-            Get App
+      {!window.location.pathname.includes('/video') && (
+        <div className={`bottom-container ${isScrolling ? 'tran' : ''}`}>
+          <div className='get-app'>
+            <button className='btn-get-app'>
+              Get App
+            </button>
+          </div>
+          <button
+            onClick={() => {
+              scroll.scrollToTop({
+                duration: 500,
+                smooth: 'easeInOutQuart',
+                delay: 100,
+              })
+            }}
+            className={`go-to-top`}
+          >
+            <GoToTop />
           </button>
         </div>
-        <button
-          onClick={() => {
-            scroll.scrollToTop({
-              duration: 500,
-              smooth: 'easeInOutQuart',
-              delay: 100,
-            })
-          }}
-          className={`go-to-top`}
-        >
-          <GoToTop />
-        </button>
-      </div>
+      )}
     </>
   )
 }

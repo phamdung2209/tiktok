@@ -23,15 +23,69 @@
         height: 40px;
         width: 40px;
     }
+
+    div {
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .video {
     flex: 1 0 600px;
     max-width: 100%;
     background: rgb(0, 0, 0);
-    position: relative;
     overflow: hidden;
     padding: 0px 80px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 992px;
+}
+
+.blur {
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    filter: blur(2px);
+    left: 50%;
+    top: 50%;
+    transform: scale(11);
+    opacity: 0.3;
+
+    img {
+        position: absolute;
+        inset: 0px;
+        box-sizing: border-box;
+        padding: 0px;
+        border: none;
+        margin: auto;
+        display: block;
+        width: 0px;
+        height: 0px;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+
+    span {
+        box-sizing: border-box;
+        display: block;
+        overflow: hidden;
+        width: initial;
+        height: initial;
+        background: none;
+        opacity: 1;
+        border: 0px;
+        margin: 0px;
+        padding: 0px;
+        position: absolute;
+        inset: 0px;
+    }
 }
 
 // description
@@ -41,6 +95,13 @@
     display: flex;
     flex-direction: column;
     padding: 0px;
+    padding-top: 24px;
+    background-color: #121212;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    color: var(--font-color);
 }
 
 .des-header {
@@ -107,6 +168,16 @@
         flex: 1;
         display: flex;
         align-items: center;
+
+        .pro-des-info__nickname {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        &:hover .pro-des-info__nickname {
+            text-decoration: underline;
+        }
     }
 }
 
@@ -122,6 +193,11 @@
     font-weight: 700;
     font-size: 18px;
     line-height: 24px;
+
+    svg {
+        margin-left: 4px;
+
+    }
 }
 
 .pro-des-info__name {
@@ -135,8 +211,326 @@
 
 .main-content {
     bottom: 1px;
-    // fill: rgba(255, 255, 255, 0.9);
     font-size: 1.6rem;
     line-height: 21px;
     word-break: break-word;
+}
+
+.music {
+    display: block;
+    font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    line-height: 21px;
+    font-weight: 400;
+    font-size: 1.4rem;
+    margin-top: 8px;
+    flex: 0 0 auto;
+    margin-left: 1px;
+    transition: all 0.3s ease 0s;
+
+    a {
+        display: flex;
+        align-items: center;
+
+        svg {
+            margin-right: 8px;
+        }
+
+        &:hover {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: underline;
+        }
+
+        &:active {
+            color: rgba(255, 255, 255, 0.9);
+        }
+    }
+}
+
+.AnchorTagWrapper {
+    display: flex;
+    gap: 2px 6px;
+    flex-wrap: wrap;
+    margin-left: -2px;
+}
+
+.like-share {
+    padding: 0px 32px;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+}
+
+.like-share-wrapper {
+    position: relative;
+    padding: 16px 0px 0px;
+}
+
+.center-row {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.copy-link-container {
+    color: rgba(255, 255, 255, 0.75);
+    font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.group__item,
+.groups {
+    display: flex;
+    align-items: center;
+}
+
+.like-group__item {
+    margin-right: 20px;
+
+    button {
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        font-size: 0px;
+        border-radius: 50%;
+        transition: all 200ms ease-in-out 0s;
+        width: 32px;
+        height: 32px;
+        background-color: rgba(255, 255, 255, 0.12);
+        padding: 6px;
+        margin-right: 6px;
+    }
+
+    strong {
+        color: rgba(255, 255, 255, 0.75);
+        font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+    }
+}
+
+.share-group__item {
+    display: block;
+    font-size: 0rem;
+    margin-right: 8px;
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 24px;
+        width: 24px;
+    }
+}
+
+.copy-link-container {
+    color: rgba(255, 255, 255, 0.75);
+    font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.text-copy-link {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    flex: 1 1 auto;
+    padding: 7px 0px 5px 12px;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.btn-copy-link {
+    border: none;
+    background: none rgba(255, 255, 255, 0.08);
+    outline: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 700;
+    flex: 0 0 auto;
+    cursor: pointer;
+    padding: 7px 18px;
+    transition: all 0.2s ease 0s;
+    user-select: none;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.04);
+    }
+
+    &:active {
+        background-color: rgba(255, 255, 255, 0.12);
+    }
+}
+
+.tab-menu-wrapper {
+    position: sticky;
+    top: -28px;
+    background: rgb(18, 18, 18);
+    z-index: 1;
+    margin-bottom: 24px;
+}
+
+.menu-tabs {
+    padding-top: 18px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.tab-item {
+    border-bottom: none;
+    width: 50%;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    overflow: auto;
+    line-height: 24px;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    // transition: all 0.2s ease 0s;
+
+    &.active {
+        color: rgba(255, 255, 255, 0.9);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+    }
+}
+
+.menu-tabs-line {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    margin-left: -32px;
+    margin-right: -32px;
+    margin-bottom: -1px;
+}
+
+.des-bottom {
+    flex: 0 0 auto;
+    background-color: rgb(18, 18, 18);
+    margin: 0px 30px;
+    padding: 11px 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comment-by-me {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.12);
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 0px 9px;
+    flex: 1 1 auto;
+    margin: 10px 8px 10px 0px;
+
+    input {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: rgba(255, 255, 255, 0.75);
+        font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+        font-size: 14px;
+        line-height: 17px;
+        white-space: pre-wrap;
+        flex: 1;
+        caret-color: var(--primary-color);
+
+        &::placeholder {
+            color: #fff;
+        }
+    }
+
+    svg {
+        flex: 0 0 32px;
+        width: 32px;
+        height: 32px;
+        padding: 5px;
+        margin: 3px;
+        cursor: pointer;
+        background-color: transparent;
+        border-radius: 8px;
+    }
+}
+
+.post.disabled {
+    color: rgb(255, 59, 92);
+    font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 0 0 48px;
+    font-size: 14px;
+    line-height: 39px;
+    text-align: right;
+    margin-right: 4px;
+    user-select: none;
+}
+
+.post {
+    color: rgba(255, 255, 255, 0.34);
+    font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 600;
+    cursor: default;
+    flex: 0 0 48px;
+    font-size: 14px;
+    line-height: 39px;
+    text-align: right;
+    margin-right: 4px;
+    user-select: none;
+}
+
+.btn-report {
+    font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 10px 16px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 100px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    background-color: rgba(84, 84, 84, 0.5);
+    right: 20px;
+    transition: all 0.2s ease 0s;
+    user-select: none;
+
+    svg {
+        margin-right: 5px;
+    }
+
+    &:hover {
+        background-color: rgba(37, 37, 37, 0.6);
+    }
+
+    &:active {
+        opacity: 0.5;
+    }
 }

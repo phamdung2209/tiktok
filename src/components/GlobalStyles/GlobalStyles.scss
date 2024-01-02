@@ -73,6 +73,7 @@ li {
 button {
     outline: none;
     border: none;
+    user-select: none;
 }
 
 // Fonts emmbeded
@@ -113,6 +114,12 @@ button {
 }
 
 @font-face {
+    font-family: TikTokFont;
+    src: url('/assets/fonts/TikTokFont-Semibold.woff2');
+    font-weight: 500;
+}
+
+@font-face {
     font-family: TikTokDisplayFont;
     src: url('/assets/fonts/TikTokDisplayFont-Bold.woff2');
     font-weight: 700;
@@ -126,7 +133,7 @@ button {
 
 @font-face {
     font-family: TikTokDisplayFont;
-    src: url('/assets/fonts/TikTokFont-Semibold.woff2');
+    src: url('/assets/fonts/TikTokDisplayFont-Semibold.woff2');
     font-weight: 600;
 }
 

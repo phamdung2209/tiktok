@@ -24,6 +24,7 @@ function Button({
     rightIcon,
     primaryLonger,
     nomal,
+    dark,
     ...passProps }, ref) {
     const buttonRef = useRef()
     let Comp = 'button'
@@ -59,7 +60,8 @@ function Button({
         disabled,
         rounded,
         primaryLonger,
-        nomal
+        nomal,
+        dark
     })
 
     return (
