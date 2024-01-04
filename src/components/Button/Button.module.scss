@@ -84,13 +84,35 @@
 }
 
 .outline {
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    background-color: transparent;
+    font-family: var(--tiktok-font);
+    font-size: 1.6rem;
+    font-weight: 500;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    color: rgb(255, 59, 92);
+    border-color: rgb(255, 59, 92);
+    background-color: rgba(255, 255, 255, 0.08);
+    min-width: 106px;
+    min-height: 28px;
+    line-height: 22px;
+    display: flex;
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 6px 8px;
+    user-select: none;
+    cursor: pointer;
+    box-sizing: border-box;
 
     &:hover {
-        opacity: 0.9;
-        transition: opacity 0.2s ease-in-out;
+        background-color: rgba(254, 44, 85, 0.06);
+    }
+
+    &:active {
+        background-color: rgba(254, 44, 85, 0.16);
     }
 }
 
@@ -183,17 +205,17 @@
     height: 24px;
     background: rgba(84, 84, 84, 0.5);
     transition: all 0.2s ease;
-    color: var(--white-color);
+    color: var(--font-color);
     font-size: 1.4rem;
     font-weight: 600;
     min-width: fit-content;
 
     &:hover {
-        background: rgba(84, 84, 84, 0.7);
+        background-color: rgba(37, 37, 37, 0.6);
     }
 
     &:active {
-        background: rgba(84, 84, 84, 0.9);
+        opacity: 0.5;
     }
 }
 

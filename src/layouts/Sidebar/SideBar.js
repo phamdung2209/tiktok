@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'
 import { useState, useEffect, useCallback, useContext } from 'react'
+import ReactDOM from 'react-dom'
 
 import styles from './Sidebar.module.scss'
 import config from '~/config'
@@ -86,7 +87,8 @@ function Sidebar() {
                 ) : (
                     <>
                         <MenuItem icon={<UserLargeIcon />} title='Profile' to='/@' onClick={handleOpenModal} />
-                        {openModal && <Login openModal={openModal} setOpenModal={setOpenModal} />}
+                        {/* {openModal && <Login openModal={openModal} setOpenModal={setOpenModal} />} */}
+                        {openModal && ReactDOM.createPortal(<Login setOpenModal={setOpenModal} />, document.body)}
                     </>
                 )}
             </Menu>

@@ -101,41 +101,124 @@ button {
     font-weight: 700;
 }
 
+// @font-face {
+//     font-family: TikTokFont;
+//     src: url('/assets/fonts/TikTokFont-Bold.woff2');
+//     font-weight: 700;
+// }
+
+// @font-face {
+//     font-family: TikTokFont;
+//     src: url('/assets/fonts/TikTokFont-Regular.woff2');
+//     font-weight: 400;
+// }
+
+// @font-face {
+//     font-family: TikTokFont;
+//     src: url('/assets/fonts/TikTokFont-Semibold.woff2');
+//     font-weight: 500;
+// }
+
+// @font-face {
+//     font-family: TikTokDisplayFont;
+//     src: url('/assets/fonts/TikTokDisplayFont-Bold.woff2');
+//     font-weight: bold;
+// }
+
+// @font-face {
+//     font-family: TikTokDisplayFont;
+//     src: url('/assets/fonts/TikTokDisplayFont-Semibold.woff2');
+//     font-weight: 500;
+// }
+
+// @font-face {
+//     font-family: TikTokDisplayFont;
+//     src: url('/assets/fonts/TikTokDisplayFont-Regular.woff2');
+//     font-weight: normal;
+// }
+
+// test
 @font-face {
-    font-family: TikTokFont;
-    src: url('/assets/fonts/TikTokFont-Bold.woff2');
-    font-weight: 700;
+    font-family: 'TikTokFont';
+    src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.woff2?_default_font=1&v=2) format('woff2'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.woff?_default_font=1&v=2) format('woff'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.otf?_default_font=1&v=2) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
-    font-family: TikTokFont;
-    src: url('/assets/fonts/TikTokFont-Regular.woff2');
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: TikTokFont;
-    src: url('/assets/fonts/TikTokFont-Semibold.woff2');
+    font-family: 'TikTokFont';
+    src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.woff2?_default_font=1&v=2) format('woff2'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.woff?_default_font=1&v=2) format('woff'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.otf?_default_font=1&v=2) format('opentype');
     font-weight: 500;
+    font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
-    font-family: TikTokDisplayFont;
-    src: url('/assets/fonts/TikTokDisplayFont-Bold.woff2');
-    font-weight: 700;
+    font-family: 'TikTokFont';
+    src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.woff2?_default_font=1&v=2) format('woff2'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.woff?_default_font=1&v=2) format('woff'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.otf?_default_font=1&v=2) format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
-    font-family: TikTokDisplayFont;
-    src: url('/assets/fonts/TikTokDisplayFont-Semibold.woff2');
-    font-weight: 600;
+    font-family: 'TikTokFont';
+    src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.woff2?_default_font=1&v=2) format('woff2'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.woff?_default_font=1&v=2) format('woff'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.otf?_default_font=1&v=2) format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
-    font-family: TikTokDisplayFont;
-    src: url('/assets/fonts/TikTokDisplayFont-Semibold.woff2');
-    font-weight: 600;
+    font-family: 'TikTokDisplayFont';
+    src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Regular.woff2?_default_font=1&v=2) format('woff2'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Regular.woff?_default_font=1&v=2) format('woff'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Regular.otf?_default_font=1&v=2) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: fallback;
 }
+
+@font-face {
+    font-family: 'TikTokDisplayFont';
+    src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff2?_default_font=1&v=2) format('woff2'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff?_default_font=1&v=2) format('woff'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.otf?_default_font=1&v=2) format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: 'TikTokDisplayFont';
+    src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff2?_default_font=1&v=2) format('woff2'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff?_default_font=1&v=2) format('woff'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.otf?_default_font=1&v=2) format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: 'TikTokDisplayFont';
+    src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Bold.woff2?_default_font=1&v=2) format('woff2'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Bold.woff?_default_font=1&v=2) format('woff'),
+        url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Bold.otf?_default_font=1&v=2) format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: fallback;
+}
+
+// end
 
 // custom Tippy
 .tippy-box {

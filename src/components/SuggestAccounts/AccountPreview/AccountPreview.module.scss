@@ -1,7 +1,8 @@
-.wrapper{
+.wrapper {
     cursor: pointer;
     padding: 20px;
     width: 295px;
+    padding-top: 10px;
 }
 
 .account-item {
@@ -12,58 +13,76 @@
     transition: all 0.2s ease-in-out;
 }
 
-.nickname {
-    color: var(--font-color);
-    font-family: var(--tiktok-font);
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 21px;
-    max-width: 145px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+.account-info {
+    margin: 15px 0;
 
-    svg {
-        margin-left: 4px;
+    .name {
+        a {
+            color: rgba(255, 255, 255, 0.75);
+            font-family: var(--font-family);
+            font-weight: 600;
+            font-size: 1.4rem;
+            line-height: 18px;
+            max-width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+
+    .nickname {
+        a {
+            color: var(--font-color);
+            font-family: var(--tiktok-font);
+            font-weight: 700;
+            font-size: 1.8rem;
+            max-width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            line-height: 24px;
+        }
+
+        svg {
+            margin-left: 4px;
+        }
     }
 }
 
-.name {
-    color: rgba(255, 255, 255, 0.75);
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 15px;
-    max-width: 145px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.disFlex{
+.disFlex {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    strong {
+        font-family: TikTokDisplayFont, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 700;
+        margin-right: 6px;
+        font-size: 1.7rem;
+        line-height: 20px;
+        display: inline-block;
+        color: var(--font-color);
+    }
 }
 
-.avatar{
+.avatar {
     width: 4.4rem;
     height: 4.4rem;
     border-radius: 23px;
     object-fit: cover;
 }
 
-.label-color{
-    color: var(--font-color);
-}
-
-.account-info{
-    margin: 15px 0;
+.label-color {
+    color: rgba(255, 255, 255, 0.75);
+    font-family: TikTokDisplayFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-size: 17px;
+    line-height: 20px;
+    display: inline-block;
 }
 
 .user-card-bio {
-    font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
-    font-size: 14px;
+    font-family: var(--tiktok-font);
+    font-size: 1.4rem;
     line-height: 18px;
     padding-top: 16px;
     margin-top: 16px;

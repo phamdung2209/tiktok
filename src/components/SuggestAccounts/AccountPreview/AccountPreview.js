@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import styles from './AccountPreview.module.scss'
 import Image from '~/components/Image'
@@ -27,32 +28,40 @@ function AccountPreview({ data }) {
             <>
                 <div className={cx('wrapper')}>
                     <div className={cx('account-title', 'disFlex')}>
-                        <Image className={cx('avatar')} src={`${data.avatar}`} alt={`${data.nickname}`} />
-                        <Button primary>Follow</Button>
+                        <Link to={`/@${data.nickname}`}>
+                            <Image className={cx('avatar')} src={`${data.avatar}`} alt={`${data.nickname}`} />
+                        </Link>
+                        {dataUser?.is_followed ? (
+                            <Button outline>Follow</Button>
+                        ) : (
+                            <Button dark>Following</Button>
+                        )}
                     </div>
 
                     <div className={cx('account-info')}>
                         <div className={cx('nickname')}>
-                            <strong>{`${data.nickname}`}</strong>
-                            <Tick />
+                            <Link to={`/@${data.nickname}`}>
+                                <strong>{`${data.nickname}`}</strong>
+                                {data.tick && <Tick />}
+                            </Link>
                         </div>
                         <div className={cx('name')}>
-                            {`${data.first_name} ${data.last_name}`}
+                            <Link to={`/@${data.nickname}`}>{`${data.first_name} ${data.last_name}`}</Link>
                         </div>
                     </div>
 
                     <div className={cx('follow-info', 'disFlex')}>
                         <div className={cx('follow')}>
-                            <strong>{
-                                <ConvertData data={data.followers_count} />
-                            }</strong>
-                            <span className={cx('label-color')}> Followers</span>
+                            <strong><ConvertData data={data.followers_count} /></strong>
+                            <span className={cx('label-color')}>Followers</span>
                         </div>
                         <div className={cx('like')}>
-                            <strong>{
-                                <ConvertData data={data.likes_count} />
-                            }</strong>
-                            <span className={cx('label-color')}> Likes</span>
+                            <strong>
+                                {
+                                    <ConvertData data={data.likes_count} />
+                                }
+                            </strong>
+                            <span className={cx('label-color')}>Likes</span>
                         </div>
                     </div>
 

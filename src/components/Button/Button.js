@@ -61,7 +61,7 @@ function Button({
         rounded,
         primaryLonger,
         nomal,
-        dark
+        dark,
     })
 
     return (

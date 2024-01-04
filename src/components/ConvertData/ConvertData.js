@@ -13,22 +13,14 @@ export const FormattedDate = ({ data }) => {
     const month = publishedAtDate.getMonth() + 1
     const year = publishedAtDate.getFullYear()
 
-    return `${month}-${day}`
+    const currentYear = new Date().getFullYear()
+
+    if (currentYear === year) {
+        return `${month}-${day}`
+    }
+
+    return `${year}-${month}-${day}`
 }
-
-// export const FormattedTime = ({ data }) => {
-//     if (!data) {
-//         return null
-//     }
-
-//     const publishedAtDate = new Date(data)
-
-//     const hours = publishedAtDate.getHours()
-//     const minutes = publishedAtDate.getMinutes()
-//     const seconds = publishedAtDate.getSeconds()
-
-//     return `${minutes}:${seconds}`
-// }
 
 export const FormattedTime = ({ seconds }) => {
     if (!seconds) {

@@ -69,13 +69,13 @@ const MEDIA_LOGIN = [
     }
 ]
 
-function Login({ setOpenModal }) {
+function Login({ setOpenModal, ...props }) {
     const handleClose = () => {
         setOpenModal(false)
     }
 
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper', props.className)}>
             <div className={cx('overlay')}>
                 <div className={cx('container')}>
                     <div className={cx('login-container')}>

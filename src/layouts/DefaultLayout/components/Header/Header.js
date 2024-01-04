@@ -4,15 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faEarthAsia, faCircleQuestion, faKeyboard, faCirclePlay, faCircleHalfStroke, faUser, faFlag, faCoins, faVideo, faGear, faSignOut } from '@fortawesome/free-solid-svg-icons'
 import 'tippy.js/dist/tippy.css'
 import TippyTooltip from '@tippyjs/react'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
+import ReactDOM from 'react-dom'
 
 import styles from './Header.module.scss'
 import images from '~/assets/images'
 import Button from '~/components/Button'
-// import { Menu as MenuPopper } from '~/components/Popper'
 import { faTiktok } from '@fortawesome/free-brands-svg-icons'
-// import { MoreIcon } from '~/assets/icons'
-// import Image from '~/components/Image'
 import Search from '../Search'
 import config from '~/config'
 import Login from '~/layouts/Login'
@@ -155,7 +153,7 @@ function Header() {
                     ) : (
                         <>
                             <Button primary onClick={handleOpenModal}>Log in</Button>
-                            {openModal && <Login setOpenModal={setOpenModal} />}
+                            {openModal && ReactDOM.createPortal(<Login setOpenModal={setOpenModal} />, document.body)}
                         </>
                     )}
 

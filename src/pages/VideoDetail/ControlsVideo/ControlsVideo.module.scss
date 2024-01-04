@@ -57,7 +57,7 @@
     left: 0px;
     top: 50%;
     transform: translateY(-50%);
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .current-seek {
@@ -67,7 +67,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    cursor: pointer;
+    cursor: pointer !important;
     transform-origin: left center;
 }
 
@@ -80,7 +80,7 @@
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
+    cursor: pointer !important;
     z-index: 1;
 
     // js

@@ -311,6 +311,15 @@
         background-color: rgba(255, 255, 255, 0.12);
         padding: 6px;
         margin-right: 6px;
+
+        svg {
+            transition: all 200ms ease-in-out 0s;
+        }
+
+        &:hover svg {
+            scale: 1.5;
+            animation: shaking 0.4s ease-in-out forwards;
+        }
     }
 
     strong {
@@ -319,6 +328,23 @@
         font-size: 12px;
         line-height: 16px;
         text-align: center;
+    }
+}
+
+@keyframes shaking {
+    0% {
+        rotate: -19deg;
+        transform-origin: bottom center;
+    }
+
+    50% {
+        rotate: 10deg;
+        transform-origin: bottom center;
+    }
+
+    100% {
+        rotate: 0deg;
+        transform-origin: bottom center;
     }
 }
 
@@ -525,6 +551,114 @@
     svg {
         margin-right: 5px;
     }
+
+    &:hover {
+        background-color: rgba(37, 37, 37, 0.6);
+    }
+
+    &:active {
+        opacity: 0.5;
+    }
+}
+
+// volume control
+.voice-controls {
+    position: absolute;
+    z-index: 1;
+    bottom: 20px;
+    right: 90px;
+    transition: all 0.2s ease 0s;
+
+    Button {
+        transition: opacity 0.3s ease 0s;
+        height: 100%;
+        width: 100%;
+    }
+
+    &:hover svg {
+        opacity: 0.8;
+    }
+}
+
+.volume-control {
+    width: 28px;
+    height: 96px;
+    margin: 8px 6px;
+    display: block;
+    position: relative;
+    background: rgba(84, 84, 84, 0.5);
+    border-radius: 32px;
+}
+
+.volume-progress {
+    width: 4px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.34);
+    position: absolute;
+    left: 12px;
+    top: 8px;
+    bottom: 8px;
+    cursor: pointer;
+}
+
+.volume-circle {
+    width: 16px;
+    height: 16px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    position: absolute;
+    left: 6px;
+    bottom: 0px;
+    cursor: pointer;
+    z-index: 1;
+
+    // js
+    transform: translateY(-8px);
+}
+
+.volume-control-bar {
+    width: 4px;
+    height: 80px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 12px;
+    bottom: 8px;
+    cursor: pointer;
+    transform: scaleY(0);
+    transform-origin: center bottom;
+
+    //js
+    transform: scaleY(0);
+}
+
+// change video
+.prev-video {
+    transform: rotate(-90deg);
+    top: calc(50% - 48px);
+    margin-top: -24px;
+}
+
+.next-video {
+    transform: rotate(90deg);
+    top: calc(50% + 8px);
+    margin-top: -24px;
+}
+
+.btn-change-video {
+    background: rgba(84, 84, 84, 0.5);
+    border-radius: 999px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    right: 90px;
+    transition: all 0.2s ease;
 
     &:hover {
         background-color: rgba(37, 37, 37, 0.6);
