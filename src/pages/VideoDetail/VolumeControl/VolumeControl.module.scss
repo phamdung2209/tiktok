@@ -1,0 +1,73 @@
+// volume control
+.wrapper {
+    position: absolute;
+    z-index: 1;
+    bottom: 20px;
+    // right: 90px;
+    right: 9%;
+    transition: all 0.2s ease 0s;
+
+    Button {
+        transition: opacity 0.3s ease 0s;
+        height: 100%;
+        width: 100%;
+    }
+
+    &:hover svg {
+        opacity: 0.8;
+    }
+}
+
+.volume-control {
+    width: 28px;
+    height: 96px;
+    margin: 8px 6px;
+    display: block;
+    position: relative;
+    background: rgba(84, 84, 84, 0.5);
+    border-radius: 32px;
+    transition: all 0.2s ease-out 0s;
+    user-select: none;
+
+    &:hover {
+        background-color: rgba(37, 37, 37, 0.6);
+    }
+}
+
+.volume-progress {
+    width: 4px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.34);
+    position: absolute;
+    left: 12px;
+    top: 8px;
+    bottom: 8px;
+    cursor: pointer;
+    transition: all 0.05s ease-out;
+}
+
+.volume-circle {
+    width: 16px;
+    height: 16px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    position: absolute;
+    left: 6px;
+    bottom: 0px;
+    cursor: pointer;
+    z-index: 1;
+    transition: all 0.05s ease-out;
+}
+
+.volume-control-bar {
+    width: 4px;
+    height: 80px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    left: 12px;
+    bottom: 8px;
+    cursor: pointer;
+    transform: scaleY(0);
+    transform-origin: center bottom;
+    transition: all 0.05s ease-out;
+}

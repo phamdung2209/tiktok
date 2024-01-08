@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -7,6 +7,11 @@ import styles from './Image.module.scss'
 
 const Image = forwardRef(({ src, className, fallBack = images.noImage, ...props }, ref) => {
     const [error, setError] = useState('')
+
+    useEffect(() => {
+        setError('')
+    }, [src])
+
     const handleError = () => {
         setError(fallBack)
     }

@@ -91,12 +91,13 @@
         font-size: 1.8rem;
 
         &:hover {
-            background-color: #484848;
+            // background-color: #484848f2;
+            background-color: rgba(255, 255, 255, 0.12);
             transition: all 0.03s ease-in-out;
         }
 
         &:active {
-            background-color: #3a3a3a;
+            background-color: rgba(255, 255, 255, 0.03);
         }
     }
 }

@@ -23,10 +23,8 @@ import {
     Tick,
     A,
     Emotion,
-    VoiceMutedIcon,
     PrevIcon,
     NextIcon,
-    VoiceIcon,
 } from '~/assets/icons'
 import Search from '~/layouts/DefaultLayout/components/Search'
 import Image from '~/components/Image'
@@ -39,14 +37,25 @@ import AccountPreview from '~/components/SuggestAccounts/AccountPreview'
 import { Wrapper as WrapperPopper } from '~/components/Popper'
 import ControlsVideo from './ControlsVideo'
 import Login from '~/layouts/Login'
+import VolumeControl from './VolumeControl'
 
 const cx = classNames.bind(styles)
 
 function VideoDetail() {
     const [line, setLine] = useState(0)
     const [data, setData] = useState([])
-    const [muted, setMuted] = useState(false)
+    const [muted, setMuted] = useState(true)
     const [openModal, setOpenModal] = useState(false)
+    const [isDelete, setIsDelete] = useState(false)
+    const [changeVideo, setChangeVideo] = useState({
+        prev: false,
+        next: false,
+    })
+
+    const [volume, setVolume] = useState(JSON.parse(localStorage.getItem('volume')) ?? 0.5)
+    const [attrs, setAttrs] = useState({
+        isFocusText: false,
+    })
 
     const navigator = useNavigate()
     const accessToken = localStorage.getItem('accessToken')
@@ -60,6 +69,7 @@ function VideoDetail() {
     const uuid = location.pathname.split('/')[3]
 
     useEffect(() => {
+        setIsDelete(false)
         if (!accessToken) {
             setOpenModal(true)
         }
@@ -73,7 +83,7 @@ function VideoDetail() {
         }
 
         apiGetUserVideo()
-    }, [location.pathname, accessToken, uuid])
+    }, [location.pathname, accessToken, uuid, postComment, isDelete])
 
     useEffect(() => {
         const updateTitle = () => {
@@ -181,8 +191,7 @@ function VideoDetail() {
         setCommentValue('')
         postRef.current.focus()
     }
-    const [hasPrev, setHasPrev] = useState(false)
-    const [hasNext, setHasNext] = useState(false)
+
     useEffect(() => {
         const apiGetUserVideo = async () => {
             const results = await videoService.getUserVideos({ username: `/${location.pathname.split('/')[1]}` })
@@ -191,27 +200,38 @@ function VideoDetail() {
                 const index = results.videos.findIndex((item) => item.uuid === data.uuid)
 
                 if (results.videos.length === 1) {
-                    setHasPrev(false)
-                    setHasNext(false)
+                    setChangeVideo({
+                        prev: false,
+                        next: false,
+                    })
                 } else {
                     if (index <= 0) {
-                        setHasPrev(false)
-                        setHasNext(true)
+                        setChangeVideo({
+                            prev: false,
+                            next: true,
+                        })
                     } else if (index > 0 && index < results.videos.length - 1) {
-                        setHasPrev(true)
-                        setHasNext(true)
+                        setChangeVideo({
+                            prev: true,
+                            next: true,
+                        })
                     } else if (index >= results.videos.length - 1) {
-                        setHasNext(false)
-                        setHasPrev(true)
+                        setChangeVideo({
+                            prev: true,
+                            next: false,
+                        })
                     } else {
-                        setHasPrev(false)
+                        setChangeVideo({
+                            ...changeVideo,
+                            prev: false,
+                        })
                     }
                 }
             }
-            console.log(results.videos.length);
         }
 
         apiGetUserVideo()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.pathname, data.uuid])
 
     const handleChangePrevVideo = () => {
@@ -302,9 +322,11 @@ function VideoDetail() {
                     </div>
 
                     <div className={cx('header')}>
-                        <Button nomal onClick={handleCloseTab}>
-                            <CloseIconBold />
-                        </Button>
+                        <div className={cx('btn-close')}>
+                            <Button nomal onClick={handleCloseTab}>
+                                <CloseIconBold />
+                            </Button>
+                        </div>
 
                         <div>
                             <Search />
@@ -316,32 +338,29 @@ function VideoDetail() {
                         </div>
                     </div>
 
-                    <ControlsVideo data={data} muted={muted} />
-                    {hasPrev && (
+                    <ControlsVideo
+                        postRef={postRef}
+                        setMuted={setMuted}
+                        data={data}
+                        muted={muted}
+                        setVolume={setVolume}
+                        volume={volume}
+                        isFocusText={attrs.isFocusText}
+                    />
+
+                    {changeVideo.prev && (
                         <Button nomal className={cx('prev-video', 'btn-change-video')} onClick={handleChangePrevVideo}>
                             <PrevIcon />
                         </Button>
                     )}
 
-                    {hasNext && (
+                    {changeVideo.next && (
                         <Button nomal className={cx('next-video', 'btn-change-video')} onClick={handleChangeNextVideo}>
                             <NextIcon />
                         </Button>
                     )}
 
-                    <div className={cx('voice-controls')}>
-                        <div className={cx('volume-control')}>
-                            <div className={cx('volume-progress')}></div>
-
-                            <div className={cx('volume-circle')}></div>
-
-                            <div className={cx('volume-control-bar')}></div>
-                        </div>
-
-                        <Button nomal onClick={() => setMuted(!muted)}>
-                            {muted ? <VoiceMutedIcon /> : <VoiceIcon />}
-                        </Button>
-                    </div>
+                    <VolumeControl volume={volume} setVolume={setVolume} muted={muted} setMuted={setMuted} />
                 </div>
 
                 <div className={cx('description')}>
@@ -413,6 +432,7 @@ function VideoDetail() {
                                     <div className={cx('pro-des-content')}>
                                         <div className={cx('main-content')}>
                                             {data && data.description} #couple #lovestory
+                                            {/* startsWith('#') -> add <Link to="/tag">tag</Link> */}
                                         </div>
 
                                         <div className={cx('music')}>
@@ -500,7 +520,7 @@ function VideoDetail() {
                             <div className={cx('comment-wrapper')}>
                                 {line === 0 ? (
                                     // <Comment comments={comments} />
-                                    <Comment postComment={postComment} />
+                                    <Comment postComment={postComment} isDelete={isDelete} setIsDelete={setIsDelete} />
                                 ) : (
                                     <CreatorVideos />
                                 )}
@@ -521,6 +541,19 @@ function VideoDetail() {
                                     if (e.key === 'Enter') {
                                         handleSubmitComment()
                                     }
+                                }}
+                                onFocus={() => {
+                                    setAttrs({
+                                        ...attrs,
+                                        isFocusText: true,
+                                    })
+                                }}
+
+                                onBlur={() => {
+                                    setAttrs({
+                                        ...attrs,
+                                        isFocusText: false,
+                                    })
                                 }}
                             />
                             <A />

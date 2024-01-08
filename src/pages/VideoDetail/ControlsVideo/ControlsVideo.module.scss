@@ -33,6 +33,7 @@
     height: 24px;
     flex: 1 1 auto;
     position: relative;
+    user-select: none;
 }
 
 .seekbar-time {
@@ -124,4 +125,87 @@
     top: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
+}
+
+.animation-seek-video {
+    position: absolute;
+    left: 50%;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    z-index: 5;
+    width: unset;
+    top: unset;
+    bottom: 81px;
+    transform: translate(-50%, 0px);
+    height: 40px;
+    padding: 8px 16px;
+    padding-inline: 8px 8px;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    animation: 2000ms linear 0s 1 normal none running animation-1kguwp9;
+
+    span {
+        color: rgba(255, 255, 255, 0.9);
+        font-family: var(--tiktok-font);
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .seek-arrow {
+        width: 40px;
+        height: 20px;
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        margin-inline-start: unset;
+        margin-inline-end: -8px;
+
+        overflow: hidden;
+        margin: 0px auto;
+        outline: none;
+
+        svg {
+            animation: animation-seek 1s linear infinite;
+        }
+
+
+    }
+}
+
+@keyframes animation-seek {
+    0% {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateX(-10px);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes animation-1kguwp9 {
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

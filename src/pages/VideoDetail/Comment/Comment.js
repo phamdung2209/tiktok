@@ -14,7 +14,7 @@ import { UserContext } from '~/hooks/userContext'
 
 const cx = classNames.bind(styles)
 
-function Comment({ postComment }) {
+function Comment({ postComment, isDelete, setIsDelete }) {
     const [comments, setComments] = useState([])
     const [page, setPage] = useState(1)
 
@@ -40,6 +40,7 @@ function Comment({ postComment }) {
         apiGetVideoComments()
     }, [location.pathname, postComment])
 
+
     const handleDeleteComment = (comment) => {
         const idComment = comment.id
         const apiDeleteComment = async () => {
@@ -48,6 +49,8 @@ function Comment({ postComment }) {
         }
 
         apiDeleteComment()
+
+        setIsDelete(!isDelete)
     }
     const handleLikeComments = (comment) => {
         if (comment.is_liked) {
@@ -115,7 +118,7 @@ function Comment({ postComment }) {
                                 )}
                             >
                                 <Link to={`/@${comment.user.nickname}`} className={cx('--hover-user')}>
-                                    <Image alt=" " src={comment.user.avatar} />
+                                    <Image src={comment?.user?.avatar} alt=" " />
                                 </Link>
                             </Tippy>
                         </div>
