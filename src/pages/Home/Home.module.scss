@@ -1,3 +1,38 @@
-.wrapper {  
-    // width: 70%;
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 692px;
+}
+
+.recommend-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px 0px;
+    position: relative;
+    max-width: 692px;
+    height: unset;
+    width: unset;
+    transition-property: margin;
+    transition-duration: 0.3s;
+    margin-bottom: 0px;
+}
+
+.avatar img {
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+}
+
+.content-container {
+    margin-left: 12px;
+    width: 624px;
+    flex: 1 1 624px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }

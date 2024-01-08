@@ -2,6 +2,7 @@
 
 :root {
     --primary-color: #FF3B5C;
+    --btn-text-color: rgb(255, 59, 92);
     --white-color: #fff;
     --font-family: 'ProximaNova', san-serif;
     --backgroud-color: #121212;
@@ -251,7 +252,7 @@ button {
     width: 32px;
     height: 32px;
     border-radius: 52px;
-    background: rgb(255, 59, 92);
+    background: var(--btn-text-color);
     box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 8px;
 
     &:hover {

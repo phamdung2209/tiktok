@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper {
     padding: 16px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -63,13 +63,13 @@
     color: rgba(255, 255, 255, 0.75);
 }
 
-.see-more{
+.see-more {
     background-color: transparent;
     border: none;
     padding: 0px 8px;
     margin-top: 8px;
     cursor: pointer;
-    color: rgb(255, 59, 92);
+    color: var(--btn-text-color);
     font-size: 14px;
     line-height: 18px;
     font-weight: 600;

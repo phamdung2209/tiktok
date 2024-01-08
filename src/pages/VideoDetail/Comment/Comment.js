@@ -17,6 +17,9 @@ const cx = classNames.bind(styles)
 function Comment({ postComment, isDelete, setIsDelete }) {
     const [comments, setComments] = useState([])
     const [page, setPage] = useState(1)
+    const [action, setAction] = useState({
+        showBtn: true,
+    })
 
     const accessToken = localStorage.getItem('accessToken')
     const location = useLocation()
@@ -51,6 +54,10 @@ function Comment({ postComment, isDelete, setIsDelete }) {
         apiDeleteComment()
 
         setIsDelete(!isDelete)
+        setAction({
+            ...action,
+            showBtn: false
+        })
     }
     const handleLikeComments = (comment) => {
         if (comment.is_liked) {
@@ -163,31 +170,39 @@ function Comment({ postComment, isDelete, setIsDelete }) {
                                 delay={[100, 100]}
                                 placement="bottom-end"
                                 offset={[0, 0]}
+                                onHide={() => {
+                                    setAction({
+                                        ...action,
+                                        showBtn: true,
+                                    })
+                                }}
                                 render={(attrs) => (
                                     <div tabIndex="-1" {...attrs}>
-                                        <WrapperPopper>
-                                            <div className={cx('popper')}>
-                                                <div className={cx('popper-item')}>
-                                                    {comment.user.id === loggedInUserData.id ? (
-                                                        <>
-                                                            <DeleteIcon />
-                                                            <span onClick={() => handleDeleteComment(comment)}>
-                                                                Delete
-                                                            </span>
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <Flag />
-                                                            <span
-                                                            // onClick={() => handleDeleteComment(comment)}
-                                                            >
-                                                                Report
-                                                            </span>
-                                                        </>
-                                                    )}
+                                        {action.showBtn && (
+                                            <WrapperPopper>
+                                                <div className={cx('popper')}>
+                                                    <div className={cx('popper-item')}>
+                                                        {comment.user.id === loggedInUserData.id ? (
+                                                            <>
+                                                                <DeleteIcon />
+                                                                <span
+                                                                    onClick={() => handleDeleteComment(comment)}
+                                                                >
+                                                                    Delete
+                                                                </span>
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <Flag />
+                                                                <span>
+                                                                    Report
+                                                                </span>
+                                                            </>
+                                                        )}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </WrapperPopper>
+                                            </WrapperPopper>
+                                        )}
                                     </div>
                                 )}
                                 appendTo={() => document.body}
@@ -205,8 +220,7 @@ function Comment({ postComment, isDelete, setIsDelete }) {
                             </div>
                         </div>
                     </div>
-                ))
-                }
+                ))}
             </div >
         )
     )

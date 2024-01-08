@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Tippy from '@tippyjs/react/headless'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useContext } from 'react'
 import ReactDOM from 'react-dom'
 
 import styles from './VideoDetail.module.scss'
@@ -38,6 +38,8 @@ import { Wrapper as WrapperPopper } from '~/components/Popper'
 import ControlsVideo from './ControlsVideo'
 import Login from '~/layouts/Login'
 import VolumeControl from './VolumeControl'
+import { UserContext } from '~/hooks'
+import VideoSetting from './VideoSetting'
 
 const cx = classNames.bind(styles)
 
@@ -55,7 +57,10 @@ function VideoDetail() {
     const [volume, setVolume] = useState(JSON.parse(localStorage.getItem('volume')) ?? 0.5)
     const [attrs, setAttrs] = useState({
         isFocusText: false,
+        validText: false,
     })
+
+    const { loggedInUserData } = useContext(UserContext)
 
     const navigator = useNavigate()
     const accessToken = localStorage.getItem('accessToken')
@@ -174,10 +179,16 @@ function VideoDetail() {
         const value = e.target.value
         if (!value.startsWith(' ')) {
             setCommentValue(e.target.value)
+            setAttrs({
+                ...attrs,
+                validText: true,
+            })
         }
     }
 
     const handleSubmitComment = () => {
+        if (attrs.validText === false) return
+
         if (commentValue) {
             const apiPostComment = async () => {
                 const results = await videoService.postComment(uuid, commentValue)
@@ -190,6 +201,11 @@ function VideoDetail() {
 
         setCommentValue('')
         postRef.current.focus()
+
+        setAttrs({
+            ...attrs,
+            validText: false,
+        })
     }
 
     useEffect(() => {
@@ -410,23 +426,28 @@ function VideoDetail() {
                                             </Link>
                                         </Tippy>
 
-                                        {data.user.is_followed ? (
-                                            <Button dark onClick={handleUnfollowUser}>
-                                                Following
-                                            </Button>
+                                        {loggedInUserData.nickname === data.user.nickname ? (
+                                            <VideoSetting />
                                         ) : (
-                                            <>
-                                                <Button primary onClick={handleFollowUser}>
-                                                    Follow
+                                            data.user.is_followed ? (
+                                                <Button dark onClick={handleUnfollowUser}>
+                                                    Following
                                                 </Button>
+                                            ) : (
+                                                <>
+                                                    <Button primary onClick={handleFollowUser}>
+                                                        Follow
+                                                    </Button>
 
-                                                {openModal &&
-                                                    ReactDOM.createPortal(
-                                                        <Login setOpenModal={setOpenModal} />,
-                                                        document.body,
-                                                    )}
-                                            </>
+                                                    {openModal &&
+                                                        ReactDOM.createPortal(
+                                                            <Login setOpenModal={setOpenModal} />,
+                                                            document.body,
+                                                        )}
+                                                </>
+                                            )
                                         )}
+
                                     </div>
 
                                     <div className={cx('pro-des-content')}>
@@ -560,7 +581,11 @@ function VideoDetail() {
                             <Emotion />
                         </div>
 
-                        <div className={cx('post')} onClick={handleSubmitComment}>
+                        <div className={cx(
+                            'post',
+                            { disabled: !attrs.validText })}
+                            onClick={handleSubmitComment}
+                        >
                             Post
                         </div>
                     </div>

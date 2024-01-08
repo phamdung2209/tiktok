@@ -1,0 +1,57 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    height: 100%;
+    margin: unset;
+}
+
+.video-card {
+    position: relative;
+    box-sizing: border-box;
+    background-size: cover;
+    cursor: pointer;
+    margin-right: 20px;
+    height: calc(316.667px + 17.3611vw);
+    border-radius: 10px;
+    overflow: hidden;
+
+    video {
+        object-fit: cover;
+    }
+}
+
+.action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.action-icon {
+
+    button {
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        font-size: 0px;
+        border-radius: 50%;
+        transition: all 200ms ease-in-out 0s;
+        width: 48px;
+        height: 48px;
+        background-color: rgba(255, 255, 255, 0.12);
+        margin-top: 8px;
+        margin-bottom: 6px;
+    }
+}
+
+.action-count {
+    color: rgba(255, 255, 255, 0.75);
+    font-family: var(--tiktok-font);
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+
+    font-weight: 700;
+}

@@ -1,0 +1,46 @@
+.wrapper {
+    cursor: pointer;
+}
+
+.video-setting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wapper-settings {
+    font-family: var(--tiktok-font);
+    line-height: 21px;
+    list-style: none;
+    margin: 0px;
+    padding: 0 16px;
+    white-space: nowrap;
+    min-width: 200px;
+    padding-bottom: 8px;
+    user-select: none;
+}
+
+.setting-title {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--font-color);
+    font-family: var(--tiktok-font);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 21px;
+    list-style: none;
+    margin: 0px;
+    padding: 15px 0;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        color: var(--btn-text-color);
+    }
+
+    &.separate {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+}

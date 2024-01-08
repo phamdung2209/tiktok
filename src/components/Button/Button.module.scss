@@ -55,7 +55,7 @@
 
     border-radius: 4px;
     border: none;
-    background-color: rgb(255, 59, 92);
+    background-color: var(--btn-text-color);
     min-height: 36px;
     font-size: 18px;
     font-family: TikTokDisplayFont, PingFangSC, sans-serif;
@@ -90,8 +90,8 @@
     border-width: 1px;
     border-style: solid;
     border-radius: 4px;
-    color: rgb(255, 59, 92);
-    border-color: rgb(255, 59, 92);
+    color: var(--btn-text-color);
+    border-color: var(--btn-text-color);
     background-color: rgba(255, 255, 255, 0.08);
     min-width: 106px;
     min-height: 28px;

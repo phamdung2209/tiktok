@@ -152,10 +152,11 @@
 
     span {
         margin-left: 12px;
+        width: 100%;
     }
 
     &:hover {
-        color: rgb(255, 59, 92);
+        color: var(--btn-text-color);
     }
 
     &:active {

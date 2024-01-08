@@ -46,22 +46,6 @@ export const getVideoComments = async ({ uuid }, page) => {
     }
 }
 
-// export const postComment = async ({ uuid, comment }) => {
-//     try {
-//         const res = await request.post(`videos/${uuid}/comments`, {
-//             comment
-//         }, {
-//             headers: {
-//                 Authorization: `Bearer ${accessToken}`,
-//             },
-//         })
-
-//         return res.data
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
-
 export const postComment = async (uuid, comment) => {
     const body = {
         uuid,
@@ -143,6 +127,25 @@ export const actionUnLikeComments = async ({ idComment }) => {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
+        })
+
+        return res.data
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const getVideoForYou = async (page, type) => {
+    try {
+        const res = await request.get(`videos`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+
+            params: {
+                page,
+                type: 'for-you'
+            }
         })
 
         return res.data
