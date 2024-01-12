@@ -10,6 +10,7 @@ import { Tick } from '~/assets/icons'
 import ConvertData from '~/components/ConvertData'
 import { useEffect } from 'react'
 import * as videoService from '~/services/videoService'
+import * as followService from '~/services/followService'
 
 const cx = classNames.bind(styles)
 
@@ -23,6 +24,36 @@ function AccountPreview({ data }) {
         apiGetUserVideo()
     }, [data.nickname])
 
+    const handleFollowUser = idUser => {
+        const followUser = async ({ idUser }) => {
+            const results = await followService.followUser({ idUser })
+
+            if (results) {
+                setDataUser({
+                    ...dataUser,
+                    is_followed: true
+                })
+            }
+        }
+
+        followUser({ idUser })
+    }
+
+    const handleUnFollowUser = idUser => {
+        const unfollowUser = async ({ idUser }) => {
+            const results = await followService.unfollowUser({ idUser })
+
+            if (results) {
+                setDataUser({
+                    ...dataUser,
+                    is_followed: false
+                })
+            }
+        }
+
+        unfollowUser({ idUser })
+    }
+
     return (
         dataUser && (
             <>
@@ -31,10 +62,17 @@ function AccountPreview({ data }) {
                         <Link to={`/@${data.nickname}`}>
                             <Image className={cx('avatar')} src={`${data.avatar}`} alt={`${data.nickname}`} />
                         </Link>
-                        {dataUser?.is_followed ? (
-                            <Button outline>Follow</Button>
+
+                        {dataUser.is_followed !== undefined && dataUser.is_followed ? (
+                            <Button
+                                dark
+                                onClick={() => handleUnFollowUser(data.id)}
+                            >Following</Button>
                         ) : (
-                            <Button dark>Following</Button>
+                            <Button
+                                outline
+                                onClick={() => handleFollowUser(data.id)}
+                            >Follow</Button>
                         )}
                     </div>
 
@@ -56,18 +94,17 @@ function AccountPreview({ data }) {
                             <span className={cx('label-color')}>Followers</span>
                         </div>
                         <div className={cx('like')}>
-                            <strong>
-                                {
-                                    <ConvertData data={data.likes_count} />
-                                }
-                            </strong>
+                            <strong>{<ConvertData data={data.likes_count} />}</strong>
                             <span className={cx('label-color')}>Likes</span>
                         </div>
                     </div>
 
-                    <div className={cx('user-card-bio')}>
-                        {dataUser.bio}
-                    </div>
+                    {dataUser.bio && (
+                        <div className={cx('user-card-bio')}>
+                            {dataUser.bio}
+                        </div>
+                    )}
+
                 </div>
             </>
         )

@@ -1,4 +1,5 @@
 import { forwardRef } from 'react'
+import '~/components/GlobalStyles/GlobalStyles.scss'
 
 export const MessagesActive = ({ width = '3.2rem', height = '3.2rem', className }) => (
     <svg
@@ -1100,6 +1101,10 @@ export const LikeLargeIcon = ({ className }) => (
     </svg>
 )
 
+export const LikedLargeIcon = ({ className }) => (
+    <svg width="24" data-e2e="" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#LikeRedShadowColor_filter0_d)"><path fillRule="evenodd" clipRule="evenodd" d="M15 4.5C21 4.5 24 8.5 24 8.5C24 8.5 27 4.5 33 4.5C40 4.5 45 9.99998 45 17C45 25 38.4622 32.1314 32.5 37.5C28.8191 40.8144 26 43 24 43C22 43 19.101 40.7978 15.5 37.5C9.63898 32.1325 3 25 3 17C3 9.99998 8 4.5 15 4.5Z" fill="#FE2C55"></path></g><path fillRule="evenodd" clipRule="evenodd" d="M4.80371 24.3995C7.17815 29.3932 11.5185 33.8538 15.4999 37.4999C19.1009 40.7978 21.9999 42.9999 23.9999 42.9999C25.9999 42.9999 28.819 40.8144 32.4999 37.4999C38.4621 32.1314 44.9999 24.9999 44.9999 16.9999C44.9999 16.8252 44.9968 16.6513 44.9906 16.4785C41.1344 27.3238 27.3575 37 23.5001 37C20.6255 37 11.2219 31.6262 4.80371 24.3995Z" fill="black" fillOpacity="0.03"></path><defs><filter id="LikeRedShadowColor_filter0_d" x="0.6" y="3.3" width="46.8" height="43.3" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB"><feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix><feOffset dy="1.2"></feOffset><feGaussianBlur stdDeviation="1.2"></feGaussianBlur><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"></feColorMatrix><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend></filter></defs></svg>
+)
+
 export const CommentLargeIcon = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 48 48" height="24" fill="currentColor">
         <path d="M3.5 21.44C3.5 11.47 13.04 4 24 4s20.5 7.47 20.5 17.44c0 5.85-2.93 10.69-6.47 14.37a41.67 41.67 0 0 1-11.06 7.97A2.05 2.05 0 0 1 24 41.95v-3.08c-10.96 0-20.5-7.47-20.5-17.43Zm11.79 3.07a2.56 2.56 0 1 0 0-5.12 2.56 2.56 0 0 0 0 5.12Zm8.71 0a2.56 2.56 0 1 0 0-5.12 2.56 2.56 0 0 0 0 5.12Zm11.27-2.56a2.56 2.56 0 1 0-5.12 0 2.56 2.56 0 0 0 5.12 0Z"></path>
@@ -1115,5 +1120,115 @@ export const FlagLargeIcon = ({ className }) => (
 export const ShareLargeIcon = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 20 20" height="24" fill="currentColor">
         <path fill="currentColor" fillRule="evenodd" d="M10.938 3.175a.674.674 0 0 1 1.138-.488l6.526 6.215c.574.547.554 1.47-.043 1.991l-6.505 5.676a.674.674 0 0 1-1.116-.508V13.49s-6.985-1.258-9.225 2.854c-.209.384-1.023.518-.857-1.395.692-3.52 2.106-9.017 10.082-9.017V3.175Z" clipRule="evenodd"></path><path fill="#161823" fillRule="evenodd" d="m15.754 6.212 1.295 2.59a1.122 1.122 0 0 1-.268 1.349l-5.799 5.042s-.28 1.403.562 1.403c.842 0 7.578-6.174 7.578-6.174s.28-.842-.561-1.684c-.843-.842-2.807-2.526-2.807-2.526Z" clipRule="evenodd" opacity=".03"></path><path fill="url(#pc-share-44d9fe83_a)" fillRule="evenodd" d="M10.937 6.23v7.297s-6.683-.942-8.777 2.246C.146 18.839.331 12.309 3.363 9.057c3.033-3.252 7.574-2.827 7.574-2.827Z" clipRule="evenodd" opacity=".09"></path><defs><radialGradient id="pc-share-44d9fe83_a" cx="0" cy="0" r="1" gradientTransform="rotate(-113.046 11.628 5.43) scale(8.93256 8.78076)" gradientUnits="userSpaceOnUse"><stop></stop><stop offset=".995" stopOpacity=".01"></stop><stop offset="1" stopOpacity=".01"></stop></radialGradient></defs>
+    </svg>
+)
+
+export const LocateIcon = ({ className }) => (
+    <svg fontSize="14px" viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M0 5a5 5 0 0 1 5-5h38a5 5 0 0 1 5 5v38a5 5 0 0 1-5 5H5a5 5 0 0 1-5-5V5Z" fill="#13BD90"></path><path fillRule="evenodd" clipRule="evenodd" d="M24 40.5c.88 0 14-11.43 14-19.1 0-7.68-6.27-13.9-14-13.9s-14 6.22-14 13.9c0 7.67 13.13 19.1 14 19.1Zm0-14.76c2.9 0 5.25-2.34 5.25-5.21A5.23 5.23 0 0 0 24 15.32a5.23 5.23 0 0 0-5.25 5.2A5.23 5.23 0 0 0 24 25.75Z" fill="#fff"></path></svg>
+)
+
+export const MoreSolidIcon = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 48 48" height="24" fill="currentColor">
+        <path d="M4 24a5 5 0 1 1 10 0 5 5 0 0 1-10 0Zm15 0a5 5 0 1 1 10 0 5 5 0 0 1-10 0Zm20-5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"></path>
+    </svg>
+)
+
+export const PlayMdIcon = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 48 48" height="20" fill="#fff">
+        <path d="M43 26.6a3 3 0 0 0 0-5.2L14.5 4.95a3 3 0 0 0-4.5 2.6v32.9a3 3 0 0 0 4.5 2.6L43 26.6Z"></path>
+    </svg>
+)
+
+export const PauseMdIcon = ({ className }) => (
+    <svg width="20" data-e2e="" height="20" viewBox="0 0 48 48" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M8 6C8 5.44771 8.44772 5 9 5H17C17.5523 5 18 5.44772 18 6V42C18 42.5523 17.5523 43 17 43H9C8.44772 43 8 42.5523 8 42V6Z"></path><path d="M30 6C30 5.44771 30.4477 5 31 5H39C39.5523 5 40 5.44772 40 6V42C40 42.5523 39.5523 43 39 43H31C30.4477 43 30 42.5523 30 42V6Z"></path></svg>
+)
+
+export const MutedMdIcon = ({ className }) => (
+    <svg width="24" data-e2e="" height="24" viewBox="0 0 48 48" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M25 10.8685C25 8.47242 22.3296 7.04325 20.3359 8.37236L10.3944 15H6C4.34315 15 3 16.3431 3 18V30C3 31.6568 4.34314 33 6 33H10.3944L20.3359 39.6276C22.3296 40.9567 25 39.5276 25 37.1315V10.8685ZM29.2929 18.1213L35.1716 24L29.2929 29.8787C28.9024 30.2692 28.9024 30.9024 29.2929 31.2929L30.7071 32.7071C31.0976 33.0976 31.7308 33.0976 32.1213 32.7071L38 26.8284L43.8787 32.7071C44.2692 33.0976 44.9024 33.0976 45.2929 32.7071L46.7071 31.2929C47.0976 30.9024 47.0976 30.2692 46.7071 29.8787L40.8284 24L46.7071 18.1213C47.0976 17.7308 47.0976 17.0976 46.7071 16.7071L45.2929 15.2929C44.9024 14.9024 44.2692 14.9024 43.8787 15.2929L38 21.1716L32.1213 15.2929C31.7308 14.9024 31.0976 14.9024 30.7071 15.2929L29.2929 16.7071C28.9024 17.0976 28.9024 17.7308 29.2929 18.1213Z"></path></svg>
+)
+
+export const UnMutedMdIcon = ({ className }) => (
+    <svg width="24" data-e2e="" height="24" viewBox="0 0 48 48" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M20.3359 8.37236C22.3296 7.04325 25 8.47242 25 10.8685V37.1315C25 39.5276 22.3296 40.9567 20.3359 39.6276L10.3944 33H6C4.34314 33 3 31.6568 3 30V18C3 16.3431 4.34315 15 6 15H10.3944L20.3359 8.37236ZM21 12.737L12.1094 18.6641C11.7809 18.8831 11.3948 19 11 19H7V29H11C11.3948 29 11.7809 29.1169 12.1094 29.3359L21 35.263V12.737ZM32.9998 24C32.9998 21.5583 32.0293 19.3445 30.4479 17.7211C30.0625 17.3255 29.9964 16.6989 30.3472 16.2724L31.6177 14.7277C31.9685 14.3011 32.6017 14.2371 33.0001 14.6195C35.4628 16.9832 36.9998 20.3128 36.9998 24C36.9998 27.6872 35.4628 31.0168 33.0001 33.3805C32.6017 33.7629 31.9685 33.6989 31.6177 33.2724L30.3472 31.7277C29.9964 31.3011 30.0625 30.6745 30.4479 30.2789C32.0293 28.6556 32.9998 26.4418 32.9998 24ZM37.0144 11.05C36.6563 11.4705 36.7094 12.0995 37.1069 12.4829C40.1263 15.3951 42.0002 19.4778 42.0002 23.9999C42.0002 28.522 40.1263 32.6047 37.1069 35.5169C36.7094 35.9003 36.6563 36.5293 37.0144 36.9498L38.3109 38.4727C38.6689 38.8932 39.302 38.9456 39.7041 38.5671C43.5774 34.9219 46.0002 29.7429 46.0002 23.9999C46.0002 18.2569 43.5774 13.078 39.7041 9.43271C39.302 9.05421 38.6689 9.10664 38.3109 9.52716L37.0144 11.05Z"></path></svg>
+)
+
+export const NotInterestIcon = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 48 48" height="1em" fill="currentColor">
+        <path d="M27.98 5.6c.07-.33.1-.5.19-.64.07-.12.19-.24.3-.32.15-.1.3-.13.58-.2C30.1 4.17 31.28 4 32.57 4 40.42 4 46 10.11 46 17.7c0 4.3-1.79 8.24-4.19 11.66-2.4 3.42-5.5 6.46-8.39 9a48.16 48.16 0 0 1-4.86 3.9C27.16 43.2 25.58 44 24 44c-1.58 0-3.17-.81-4.58-1.75a44.38 44.38 0 0 1-4.85-3.9c-2.83-2.54-5.94-5.58-8.35-9C3.82 25.94 2 22 2 17.69 2 10.1 7.58 4 15.43 4c3.43 0 6 1.17 7.7 2.31.23.16.53.31.7.54a1 1 0 0 1 .19.38c.03.16.02.33 0 .67l-.45 5.3 3.47 3.19c.32.3.48.44.56.62a1 1 0 0 1 .1.5c-.03.2-.13.4-.33.79l-2 3.86.5 2.09c.43 1.83.64 2.75.42 3.1a1 1 0 0 1-.9.47c-.42-.02-1.04-.73-2.29-2.15l-1.75-2c-.26-.3-.4-.45-.45-.62a1 1 0 0 1-.06-.47c.02-.18.11-.36.3-.7l1.93-3.71L20 15.34c-.21-.2-.32-.3-.39-.4a1 1 0 0 1-.13-.35c-.02-.13-.01-.27.01-.56l.41-4.98A9.73 9.73 0 0 0 15.43 8C9.93 8 6 12.17 6 17.7c0 3.17 1.34 6.3 3.5 9.35 2.14 3.05 4.98 5.85 7.74 8.33a40.65 40.65 0 0 0 4.39 3.55c1.3.86 2.04 1.08 2.37 1.08.32 0 1.04-.2 2.34-1.07a44.5 44.5 0 0 0 4.43-3.57 49.64 49.64 0 0 0 7.77-8.31C40.68 24 42 20.87 42 17.69 42 12.17 38.06 8 32.57 8c-1.37 0-2.75.46-3.86.97-.56.26-.83.38-1 .34a.48.48 0 0 1-.33-.26c-.08-.16-.02-.44.1-1l.5-2.45Z"></path>
+    </svg>
+)
+
+export const Loading = ({ className }) => (
+    <svg
+        preserveAspectRatio="none"
+        viewBox="0 0 200 200"
+        width="48"
+        height="48"
+        style={{
+            display: 'block',
+            margin: '6px auto',
+        }}
+    >
+        <defs>
+            <mask id="redhole-1705022992824">
+                <rect width="100%" height="100%" fill="white"></rect>
+                <circle
+                    style={{
+                        strokeWidth: 0,
+                        r: '36px',
+                        cy: '99px',
+                        cx: '128px',
+                        animation: '1s cubic-bezier(0.05, 0, 1, 1) 0s infinite normal none running animation-1gjz153',
+                        fill: 'rgb(0, 0, 0)',
+                    }}
+                ></circle>
+            </mask>
+            <mask id="greenhole-1705022992824">
+                <rect width="100%" height="100%" fill="white"></rect>
+                <circle
+                    style={{
+                        strokeWidth: 0,
+                        r: '36px',
+                        cy: '99px',
+                        cx: '60px',
+                        animation: '1s cubic-bezier(0.05, 0, 1, 1) 0s infinite normal none running animation-1u0u36m',
+                        fill: 'rgb(0, 0, 0)',
+                    }}
+                ></circle>
+            </mask>
+        </defs>
+        <circle
+            strokeWidth="2"
+            stroke="#3AF2FF"
+            style={{
+                stroke: 0,
+                r: '36px',
+                cy: '99px',
+                fill: 'rgb(15, 15, 15)',
+                cx: '60px',
+                animation: '1s cubic-bezier(0.05, 0, 1, 1) 0s infinite normal none running animation-1u0u36m',
+            }}
+        ></circle>
+        <circle
+            mask="url(#redhole-1705022992824)"
+            style={{
+                strokeWidth: 0,
+                r: '36px',
+                cy: '99px',
+                fill: 'rgb(58, 242, 255)',
+                cx: '60px',
+                animation: '1s cubic-bezier(0.05, 0, 1, 1) 0s infinite normal none running animation-1u0u36m',
+            }}
+        ></circle>
+        <circle
+            mask="url(#greenhole-1705022992824)"
+            style={{
+                strokeWidth: 0,
+                r: '36px',
+                cy: '99px',
+                fill: 'rgb(254, 44, 85)',
+                cx: '128px',
+                animation: '1s cubic-bezier(0.05, 0, 1, 1) 0s infinite normal none running animation-1gjz153',
+            }}
+        ></circle>
     </svg>
 )

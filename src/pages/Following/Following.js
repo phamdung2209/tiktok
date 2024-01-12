@@ -4,7 +4,7 @@ import { useLocation, Link } from 'react-router-dom'
 import { animateScroll as scroll } from 'react-scroll'
 import Tippy from '@tippyjs/react/headless'
 
-import styles from './Home.module.scss'
+import styles from './Following.module.scss'
 import Image from '~/components/Image'
 import VideoWrapper from './VideoWrapper'
 import * as videoService from '~/services/videoService'
@@ -14,30 +14,33 @@ import LoadingWrapper from '~/components/LoadingWrapper'
 
 const cx = classnames.bind(styles)
 
-function Home() {
+function Following() {
     const [videoList, setVideoList] = useState([])
     const [renderedPages, setRenderedPages] = useState([])
     const [hasMore, setHasMore] = useState(true)
-    const [totalPages, setTotalPages] = useState(40)
+    const [totalPages, setTotalPages] = useState(1)
     const [actions, setActions] = useState({
         isHoverUser: false,
     })
 
     const loadingRef = useRef(null)
+    const accessToken = localStorage.getItem('accessToken')
 
     const location = useLocation()
 
     useEffect(() => {
-        const getTotalPages = async () => {
-            const results = await videoService.getVideoForYou(1, 'for-you')
-            setTotalPages(results.meta.pagination.total_pages)
-        }
+        if (accessToken) {
+            const getTotalPages = async () => {
+                const results = await videoService.getVideoForYou(1, 'following')
+                setTotalPages(results.meta.pagination.total_pages)
+            }
 
-        getTotalPages()
-    }, [])
+            getTotalPages()
+        }
+    }, [accessToken])
 
     useEffect(() => {
-        document.title = 'TikTok - Make Your Day'
+        document.title = 'Following - Watch videos from creators you follow | TikTok'
     }, [location.pathname])
 
     const onIntersect = entries => {
@@ -59,7 +62,6 @@ function Home() {
                 observer.disconnect()
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [videoList])
 
     async function getMoreVideoForYou() {
@@ -76,7 +78,7 @@ function Home() {
                 return
             }
 
-            const results = await videoService.getVideoForYou(randomPage, 'for-you')
+            const results = await videoService.getVideoForYou(randomPage, 'following')
 
             if (results.data.length === 0) {
                 setHasMore(false)
@@ -143,4 +145,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Following

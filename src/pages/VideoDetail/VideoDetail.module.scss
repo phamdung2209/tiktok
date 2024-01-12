@@ -609,3 +609,53 @@
         opacity: 0.5;
     }
 }
+
+
+.anchor-tag {
+    display: flex;
+    gap: 2px 6px;
+    flex-wrap: wrap;
+    margin-left: -2px;
+
+    .anchor-container {
+        margin-bottom: 0px;
+        min-width: 0px;
+        height: 22px;
+        padding: 1px 6px 1px 4px;
+        background: rgba(255, 255, 255, 0.04);
+        display: inline-flex;
+        border-radius: 4px;
+        -webkit-box-align: center;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.9);
+        margin-top: 2px;
+
+        display: inline-flex;
+        -webkit-box-align: center;
+        align-items: center;
+        text-decoration: none;
+        transition: all 0.2s linear;
+
+        img {
+            width: 14px;
+            height: 14px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.08);
+            text-decoration: underline;
+        }
+    }
+
+    .anchor-tag-name {
+        font-family: var(--tiktok-font);
+        font-size: 1.3rem;
+        font-weight: 400;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-left: 8px;
+    }
+}

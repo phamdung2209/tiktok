@@ -24,7 +24,6 @@ function UserLogin({ mediaLogin = [] }) {
     const currentMenu = history[history.length - 1]
 
     const handleMenuClick = (item) => {
-        console.log(item)
         const hasChildren = !!item.children
         if (item.children?.data) {
             setIsParent(hasChildren)

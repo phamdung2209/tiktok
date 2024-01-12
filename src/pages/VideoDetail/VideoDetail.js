@@ -25,6 +25,7 @@ import {
     Emotion,
     PrevIcon,
     NextIcon,
+    LocateIcon,
 } from '~/assets/icons'
 import Search from '~/layouts/DefaultLayout/components/Search'
 import Image from '~/components/Image'
@@ -40,6 +41,7 @@ import Login from '~/layouts/Login'
 import VolumeControl from './VolumeControl'
 import { UserContext } from '~/hooks'
 import VideoSetting from './VideoSetting'
+import images from '~/assets/images'
 
 const cx = classNames.bind(styles)
 
@@ -462,11 +464,37 @@ function VideoDetail() {
                                                 original sound -{' '}
                                                 {data && data?.music
                                                     ? data.music
-                                                    : `${data?.user?.first_name} ${data?.user?.last_name}`}
+                                                    : data.user.first_name && data.user.last_name
+                                                        ? `${data?.user?.first_name} ${data?.user?.last_name}`
+                                                        : data.user.nickname}
                                             </Link>
                                         </div>
 
-                                        <div className={cx('AnchorTagWrapper')}></div>
+                                        {data.allows.includes('duet') && (
+                                            <div className={cx('anchor-tag')}>
+                                                <Link to='#' className={cx('anchor-container')}>
+                                                    <Image
+                                                        src={images.capCut}
+                                                        alt=' '
+                                                        fallBack='https://p9-sg.tiktokcdn.com/obj/tiktok-obj/capcut_logo_64px_bk.png'
+                                                    />
+
+                                                    <div className={cx('anchor-tag-name')}>
+                                                        CapCut | Try this template
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        )}
+
+                                        <div className={cx('anchor-tag')}>
+                                            <Link to='#' className={cx('anchor-container')}>
+                                                <LocateIcon />
+
+                                                <div className={cx('anchor-tag-name')}>
+                                                    Viet Nam
+                                                </div>
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
 

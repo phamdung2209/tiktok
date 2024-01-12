@@ -143,12 +143,12 @@ export const getVideoForYou = async (page, type) => {
             },
 
             params: {
-                page,
-                type: 'for-you'
+                type: type,
+                page
             }
         })
 
-        return res.data
+        return res
     } catch (err) {
         console.log(err)
     }

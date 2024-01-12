@@ -27,15 +27,11 @@ export const FormattedTime = ({ seconds }) => {
         return '0:00'
     }
 
-    // const hours = Math.floor(seconds / 3600)
-    // const minutes = Math.floor(seconds % 3600 / 60)
-    // const secondsLeft = Math.floor(seconds % 3600 % 60)
-
-    const hours = Math.round(seconds / 3600);
-    const minutes = Math.round(seconds % 3600 / 60);
-    const secondsLeft = Math.round(seconds % 60);
+    const hours = Math.round(seconds / 3600)
+    const minutes = Math.round(seconds % 3600 / 60)
+    const secondsLeft = Math.round(seconds % 60)
 
     return `${hours ? hours + ':' : ''}${minutes}:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`
 }
 
-export default ConvertData;
+export default ConvertData

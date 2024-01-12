@@ -266,10 +266,7 @@ function ControlsVideo({ data, ...props }) {
                         seconds={progress}
                     />
                     <span>/</span>
-                    <FormattedTime
-                        // seconds={data.meta.playtime_seconds}
-                        seconds={duration}
-                    />
+                    <FormattedTime seconds={duration} />
                 </div>
             </div>
 

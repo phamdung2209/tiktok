@@ -314,7 +314,6 @@ function ControlVideo({ data }) {
                                 ...prev,
                                 progress: e
                             }))
-                            console.log(e)
                         }}
 
                         config={{

@@ -23,14 +23,14 @@ function Menu({ children, menuItems = [], onChange = defaultFn }) {
     const RenderMenuItems = () => {
         return currentMenu.data.map((item, index) => {
             const isParent = !!item.children
+
             return (
-                <MenuItem history key={index} data={item} onClick={() => {
+                <MenuItem key={index} data={item} onClick={() => {
                     if (isParent) {
                         setHistory(prev => [...prev, item.children])
                     } else if (item.separate) {
                         logout()
-                    } else
-                     {
+                    } else {
                         onChange(item)
                     }
                 }} />

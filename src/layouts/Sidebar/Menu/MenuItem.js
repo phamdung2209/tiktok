@@ -17,9 +17,11 @@ function MenuItem({ icon, title, to, activeIcon, onClick = () => { } }) {
             <span className={cx('icon-notActive', 'icon')}>
                 {icon}
             </span>
+
             <span className={cx('icon-active', 'icon')}>
                 {activeIcon}
             </span>
+
             <div className={cx('title')}>{title}</div>
         </NavLink>
     )

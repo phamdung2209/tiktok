@@ -8,7 +8,7 @@ import LoadingSuggestAccount from "./LoadingSuggestAccount";
 
 const cx = classNames.bind(styles);
 
-function SuggestAccounts({ label, data = [], onSeeUser, loading }) {
+function SuggestAccounts({ label, data = [], onSeeUser, loading, ...props }) {
     return (
         <div className={cx('wrapper')}>
             <h2 className={cx('label')}>
@@ -21,10 +21,11 @@ function SuggestAccounts({ label, data = [], onSeeUser, loading }) {
 
             {loading && <LoadingSuggestAccount />}
 
-
-            <button className={cx('see-more')} onClick={onSeeUser}>
-                See more
-            </button>
+            {props.pagesControl?.renderedPages.length < props.pagesControl?.totalPage && (
+                <button className={cx('see-more')} onClick={onSeeUser}>
+                    See more
+                </button>
+            )}
         </div>
     )
 }
