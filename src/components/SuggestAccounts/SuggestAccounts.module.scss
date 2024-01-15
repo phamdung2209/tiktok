@@ -56,8 +56,8 @@
 .label {
     padding: 0px 8px;
     margin-bottom: 8px;
-    font-family: var(--font-family);
-    font-weight: 600;
+    font-family: var(--tiktok-font);
+    font-weight: 500;
     font-size: 14px;
     line-height: 18px;
     color: rgba(255, 255, 255, 0.75);
@@ -73,4 +73,13 @@
     font-size: 14px;
     line-height: 18px;
     font-weight: 600;
+}
+
+.no-data {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: var(--tiktok-font);
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 18px;
+    padding: 0px 8px;
 }

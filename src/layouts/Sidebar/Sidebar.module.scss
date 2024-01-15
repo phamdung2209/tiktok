@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
     overflow: hidden auto;
     overscroll-behavior-y: contain;
     top: 60px;
@@ -18,7 +18,7 @@
     min-height: 100%;
 }
 
-.avatar-nav{
+.avatar-nav {
     width: 27px;
     height: 27px;
     object-fit: cover;
@@ -27,4 +27,55 @@
 
 .modal {
     background-color: red;
+}
+
+.frame-container {
+    position: relative;
+    padding: 20px 8px 24px;
+    margin: 0px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        height: 1px;
+        left: 8px;
+        right: 8px;
+        background: rgba(22, 24, 35, 0.12);
+        transform: scaleY(0.5);
+        top: 0px;
+    }
+
+    p {
+        color: rgba(255, 255, 255, 0.5);
+        font-family: var(--tiktok-font);
+        font-size: 1.6rem;
+        line-height: 21px;
+    }
+
+    Button {
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 4px;
+        color: rgb(255, 59, 92);
+        border-color: rgb(255, 59, 92);
+        background-color: rgba(255, 255, 255, 0.08);
+        min-width: 168px;
+        min-height: 48px;
+        font-size: 18px;
+        line-height: 25px;
+        font-weight: 500;
+        font-family: TikTokDisplayFont, PingFangSC, sans-serif;
+        display: flex;
+        position: relative;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        padding: 6px 8px;
+        user-select: none;
+        cursor: pointer;
+        box-sizing: border-box;
+        margin-top: 20px;
+        width: 100%;
+    }
 }

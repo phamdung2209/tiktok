@@ -32,7 +32,7 @@ export const getVideoComments = async ({ uuid }, page) => {
     try {
         const res = await request.get(`videos/${uuid}/comments`, {
             headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             },
 
             params: {
@@ -40,7 +40,7 @@ export const getVideoComments = async ({ uuid }, page) => {
             }
         })
 
-        return res.data
+        return res
     } catch (err) {
         console.log(err)
     }
@@ -139,7 +139,7 @@ export const getVideoForYou = async (page, type) => {
     try {
         const res = await request.get(`videos`, {
             headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             },
 
             params: {

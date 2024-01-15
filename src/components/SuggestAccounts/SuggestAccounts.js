@@ -15,6 +15,12 @@ function SuggestAccounts({ label, data = [], onSeeUser, loading, ...props }) {
                 {label}
             </h2>
 
+            {data.length === 0 && (
+                <div className={cx('no-data')}>
+                    Accounts you follow will appear here
+                </div>
+            )}
+
             {data.map((account, index) => (
                 <AccountItem key={index} to={`/@${account.nickname}`} data={account} />
             ))}

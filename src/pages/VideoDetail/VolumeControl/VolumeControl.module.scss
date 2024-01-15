@@ -43,7 +43,6 @@
     top: 8px;
     bottom: 8px;
     cursor: pointer;
-    transition: all 0.05s ease-out;
 }
 
 .volume-circle {
@@ -56,7 +55,6 @@
     bottom: 0px;
     cursor: pointer;
     z-index: 1;
-    transition: all 0.05s ease-out;
 }
 
 .volume-control-bar {
@@ -69,5 +67,4 @@
     cursor: pointer;
     transform: scaleY(0);
     transform-origin: center bottom;
-    transition: all 0.05s ease-out;
 }

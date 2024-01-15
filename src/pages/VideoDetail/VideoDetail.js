@@ -62,7 +62,7 @@ function VideoDetail() {
         validText: false,
     })
 
-    const { loggedInUserData } = useContext(UserContext)
+    const { loggedInUserData, user } = useContext(UserContext)
 
     const navigator = useNavigate()
     const accessToken = localStorage.getItem('accessToken')
@@ -420,7 +420,6 @@ function VideoDetail() {
                                                         </span>
                                                         <span style={{ margin: '0px 4px' }}> · </span>
                                                         <span>
-                                                            {/* {formattedDate()} */}
                                                             <FormattedDate data={data && data?.published_at} />
                                                         </span>
                                                     </div>
@@ -530,7 +529,7 @@ function VideoDetail() {
                                             <div
                                                 className={cx('btn-copy-link')}
                                                 onClick={() => {
-                                                    navigator.clipboard.writeText(window.location.href)
+                                                    navigator.clipboard.writeText('window.location.href')
                                                     console.log(navigator.clipboard)
                                                     // ??
                                                     alert('Copied!')
@@ -568,8 +567,12 @@ function VideoDetail() {
 
                             <div className={cx('comment-wrapper')}>
                                 {line === 0 ? (
-                                    // <Comment comments={comments} />
-                                    <Comment postComment={postComment} isDelete={isDelete} setIsDelete={setIsDelete} />
+                                    <Comment
+                                        data={data}
+                                        postComment={postComment}
+                                        isDelete={isDelete}
+                                        setIsDelete={setIsDelete}
+                                    />
                                 ) : (
                                     <CreatorVideos />
                                 )}
@@ -578,44 +581,52 @@ function VideoDetail() {
                     </div>
 
                     <div className={cx('des-bottom')}>
-                        <div className={cx('comment-by-me')}>
-                            <input
-                                type="text"
-                                placeholder="Add comment..."
-                                spellCheck={false}
-                                onChange={handleTextChange}
-                                value={commentValue}
-                                ref={postRef}
-                                onKeyPress={(e) => {
-                                    if (e.key === 'Enter') {
-                                        handleSubmitComment()
-                                    }
-                                }}
-                                onFocus={() => {
-                                    setAttrs({
-                                        ...attrs,
-                                        isFocusText: true,
-                                    })
-                                }}
+                        {user.auth ? (
+                            <>
+                                <div className={cx('comment-by-me')}>
+                                    <input
+                                        type="text"
+                                        placeholder="Add comment..."
+                                        spellCheck={false}
+                                        onChange={handleTextChange}
+                                        value={commentValue}
+                                        ref={postRef}
+                                        onKeyPress={(e) => {
+                                            if (e.key === 'Enter') {
+                                                handleSubmitComment()
+                                            }
+                                        }}
+                                        onFocus={() => {
+                                            setAttrs({
+                                                ...attrs,
+                                                isFocusText: true,
+                                            })
+                                        }}
 
-                                onBlur={() => {
-                                    setAttrs({
-                                        ...attrs,
-                                        isFocusText: false,
-                                    })
-                                }}
-                            />
-                            <A />
-                            <Emotion />
-                        </div>
+                                        onBlur={() => {
+                                            setAttrs({
+                                                ...attrs,
+                                                isFocusText: false,
+                                            })
+                                        }}
+                                    />
+                                    <A />
+                                    <Emotion />
+                                </div>
 
-                        <div className={cx(
-                            'post',
-                            { disabled: !attrs.validText })}
-                            onClick={handleSubmitComment}
-                        >
-                            Post
-                        </div>
+                                <div className={cx(
+                                    'post',
+                                    { disabled: !attrs.validText })}
+                                    onClick={handleSubmitComment}
+                                >
+                                    Post
+                                </div>
+                            </>
+                        ) : (
+                            <div className={cx('login-require')}>
+                                Log in to comment
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,0 +1,62 @@
+.wrapper {
+    position: fixed;
+    font-family: var(--tiktok-font);
+    font-weight: 600;
+    position: fixed;
+    top: 16px;
+    left: 0px;
+    color: rgb(255, 255, 255);
+    z-index: 99003;
+    width: 100%;
+    pointer-events: none;
+    user-select: none;
+    animation: fadeIn 0.2s linear, fadeOut 0.4s ease-in-out 3s forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+.container {
+    padding: 8px 0px;
+    text-align: center;
+}
+
+.notice-content {
+    background-color: rgba(84, 84, 84, 0.92);
+    display: inline-block;
+    padding: 10px 8px;
+    pointer-events: all;
+    max-width: 100%;
+    border-radius: 2px;
+}
+
+.message {
+    width: 50vw;
+    direction: ltr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 1.4rem;
+}

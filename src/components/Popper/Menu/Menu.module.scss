@@ -1,26 +1,26 @@
 .content {
     width: 230px;
+}
 
-    .menu-items {
-        background-color: transparent;
-        padding: 10px 8px 10px 16px;
-        color: var(--font-color);
-        width: 100%;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 1.5rem;
-        font-family: var(--font-family);
-        line-height: 21px;
-        display: flex;
-        align-items: center;
+.menu-items {
+    background-color: transparent;
+    padding: 10px 8px 10px 16px;
+    color: var(--font-color);
+    width: 100%;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.5rem;
+    font-family: var(--font-family);
+    line-height: 21px;
+    display: flex;
+    align-items: center;
 
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
 
-        &.separate {
-            border-top: 1px solid rgba(255, 255, 255, 0.12);
-        }
+    &.separate {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
     }
 }
 

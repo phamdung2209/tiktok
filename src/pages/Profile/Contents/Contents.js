@@ -17,7 +17,6 @@ function Contents({ tabClick }) {
     const [dataVideo, setDataVideo] = useState([])
     const [dataUser, setDataUser] = useState({})
     const [playVideo, setPlayVideo] = useState(0)
-    const [resetPoster, setResetPoster] = useState(true)
     const playerRef = useRef(null)
     const location = useLocation()
 
@@ -62,8 +61,7 @@ function Contents({ tabClick }) {
                                                 url={video.file_url}
 
                                                 onPause={() => {
-                                                    playerRef[index].player.player.player.currentTime = 0
-                                                    setResetPoster(true)
+                                                    playerRef[index].getInternalPlayer().load()
                                                 }}
 
                                                 config={{
@@ -74,6 +72,7 @@ function Contents({ tabClick }) {
                                                     },
                                                 }}
                                             />
+
                                             <div className={cx('count-viewer')}>
                                                 <PlayIcon />
                                                 <span>

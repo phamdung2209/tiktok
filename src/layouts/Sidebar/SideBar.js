@@ -25,6 +25,7 @@ import { UserContext } from '~/hooks/userContext'
 import Image from '~/components/Image'
 import images from '~/assets/images'
 import Login from '../Login'
+import Button from '~/components/Button'
 
 const cx = classNames.bind(styles)
 const INIT_PAGE = 1
@@ -41,7 +42,6 @@ function Sidebar() {
     const [loading, setLoading] = useState(false)
     const { user, loggedInUserData } = useContext(UserContext)
     const [openModal, setOpenModal] = useState(false)
-
 
     const getRandomPage = () => {
         let randomPage = Math.floor(Math.random() * pagesControl.totalPage) + 1
@@ -130,15 +130,30 @@ function Sidebar() {
                     ) : (
                         <>
                             <MenuItem icon={<UserLargeIcon />} title='Profile' to='/@' onClick={handleOpenModal} />
-                            {/* {openModal && <Login openModal={openModal} setOpenModal={setOpenModal} />} */}
                             {openModal && ReactDOM.createPortal(<Login setOpenModal={setOpenModal} />, document.body)}
                         </>
                     )}
                 </Menu>
 
-                <SuggestAccounts pagesControl={pagesControl} label='Suggested accounts' data={suggestedUser} loading={loading} onSeeUser={handleSeeUser} />
+                {user.auth ? (
+                    <>
+                        <SuggestAccounts pagesControl={pagesControl} label='Suggested accounts' data={suggestedUser} loading={loading} onSeeUser={handleSeeUser} />
 
-                <SuggestAccounts label='Following accounts' />
+                        <SuggestAccounts label='Following accounts' />
+                    </>
+                ) : (
+                    <div className={cx('frame-container')}>
+                        <p>
+                            Log in to follow creators, like videos, and view comments.
+                        </p>
+                        <Button
+                            outline
+                            onClick={handleOpenModal}
+                        >
+                            Log in
+                        </Button>
+                    </div>
+                )}
 
                 {/* Footer */}
                 <Footer />

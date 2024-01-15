@@ -265,19 +265,19 @@ function ControlVideo({ data }) {
             type: 'share',
             icon: <ShareLargeIcon />,
             count: <ConvertData data={dataVideo.shares_count} />
-        },
+        }
     ]
 
     const ITEM_ACTIONs = [
         {
-            icon: <NotInterestIcon />,
             title: 'Not interested',
+            icon: <NotInterestIcon />,
         },
         {
-            icon: <FlagLargeIcon />,
             title: 'Report',
+            icon: <FlagLargeIcon />,
             separate: true,
-            to: '/report'
+            // to: '/report'
         }
     ]
 

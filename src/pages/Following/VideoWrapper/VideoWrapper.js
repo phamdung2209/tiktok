@@ -11,7 +11,6 @@ import ControlVideo from './ControlVideo'
 import Image from '~/components/Image'
 import images from '~/assets/images'
 import * as followService from '~/services/followService'
-import AccountPreview from '~/components/SuggestAccounts/AccountPreview'
 
 const cx = classNames.bind(styles)
 

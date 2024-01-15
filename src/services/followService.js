@@ -23,7 +23,7 @@ export const followUser = async ({ idUser }) => {
     try {
         const res = await request.post(`users/${idUser}/follow`, {}, {
             headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             }
         })
 
@@ -37,7 +37,7 @@ export const unfollowUser = async ({ idUser }) => {
     try {
         const res = await request.post(`users/${idUser}/unfollow`, {}, {
             headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             }
         })
 
