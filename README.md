@@ -30,4 +30,4 @@ This project is a clone of the TikTok platform, built using HTML, CSS (SCSS), an
 
 ## Issues
 
-If you encounter any issues while running the project, please [open an issue] on GitHub.
+If you encounter any issues while running the project, please [open an issue](https://github.com/phamdung2209/tiktok/issues).
