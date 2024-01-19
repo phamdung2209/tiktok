@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect, memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Tippy from '@tippyjs/react/headless'
 import { useInView } from 'react-intersection-observer'
+import ReactDOM from 'react-dom'
 
 import styles from './ControlVideo.module.scss'
 import Button from '~/components/Button'
@@ -19,6 +20,7 @@ import {
     PauseMdIcon,
     UnMutedMdIcon,
     NotInterestIcon,
+    Report
 } from '~/assets/icons'
 import ConvertData from '~/components/ConvertData'
 import * as videoService from '~/services/videoService'
@@ -26,6 +28,7 @@ import { Wrapper as WapperPopper } from '~/components/Popper'
 import ShareGroup from '~/pages/Profile/ShareGroup'
 import MenuItem from '~/components/Popper/Menu/MenuItem'
 import { FormattedTime } from '~/components/ConvertData/ConvertData'
+import ToastMessage from '~/components/ToastMessage'
 
 const cx = classNames.bind(styles)
 
@@ -275,7 +278,7 @@ function ControlVideo({ data }) {
         },
         {
             title: 'Report',
-            icon: <FlagLargeIcon />,
+            icon: <Report />,
             separate: true,
             // to: '/report'
         }
@@ -449,11 +452,33 @@ function ControlVideo({ data }) {
                                             e.stopPropagation()
                                         }}
                                     >
-                                        <WapperPopper>
+                                        {/* <WapperPopper> */}
+                                        <div className='btn-more-video'>
                                             {ITEM_ACTIONs.map((item, index) => (
-                                                <MenuItem key={index} data={item} onClick={() => alert('ok')} />
+                                                <MenuItem
+                                                    key={index}
+                                                    data={item}
+                                                    onClick={() => {
+                                                        if (videoControls.isShowToast) return
+
+                                                        setVideoControls({
+                                                            ...videoControls,
+                                                            showToasts: true,
+                                                            isShowToast: true
+                                                        })
+
+                                                        setTimeout(() => {
+                                                            setVideoControls({
+                                                                ...videoControls,
+                                                                showToasts: false,
+                                                                isShowToast: false
+                                                            })
+                                                        }, 5000)
+                                                    }}
+                                                />
                                             ))}
-                                        </WapperPopper>
+                                        </div>
+                                        {/* </WapperPopper> */}
                                     </div>
                                 )}
                             >
@@ -493,7 +518,7 @@ function ControlVideo({ data }) {
                                             {...attrs}
                                         >
                                             <WapperPopper>
-                                                <ShareGroup />
+                                                <ShareGroup data={dataVideo} />
                                             </WapperPopper>
                                         </div>
                                     )}
@@ -529,6 +554,10 @@ function ControlVideo({ data }) {
                         </React.Fragment>
                     ))}
                 </div>
+
+                {videoControls.showToasts && (
+                    ReactDOM.createPortal(<ToastMessage message='The function is not working yet!' />, document.body)
+                )}
             </div>
         )
     )

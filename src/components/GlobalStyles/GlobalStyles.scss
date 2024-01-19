@@ -393,3 +393,16 @@ button {
         r: 36px;
     }
 }
+
+.btn-more-video {
+    background-color: rgb(37, 37, 37);
+    left: 0px;
+
+    padding: 8px 0px;
+    margin: 0px;
+    min-width: 200px;
+    list-style: none;
+    box-sizing: border-box;
+    border-radius: 8px;
+    user-select: none;
+}

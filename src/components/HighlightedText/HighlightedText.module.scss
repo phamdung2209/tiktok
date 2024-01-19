@@ -1,0 +1,12 @@
+.highlighted {
+    font-weight: 600;
+    color: rgb(143, 190, 233);
+
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: var(--font-color);
+    }
+}
+
+.wrapper {}

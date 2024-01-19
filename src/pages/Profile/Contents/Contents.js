@@ -7,6 +7,7 @@ import style from './Contents.module.scss'
 import { LockIcon, PlayIcon, MoreIconProfile, NoContent } from '~/assets/icons'
 import ConvertData from '~/components/ConvertData'
 import * as videoService from '~/services/videoService'
+import HighlightedText from "~/components/HighlightedText"
 
 const cx = classNames.bind(style)
 

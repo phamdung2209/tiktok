@@ -11,6 +11,7 @@ import ControlVideo from './ControlVideo'
 import Image from '~/components/Image'
 import images from '~/assets/images'
 import * as followService from '~/services/followService'
+import HighlightedText from '~/components/HighlightedText'
 
 const cx = classNames.bind(styles)
 
@@ -86,7 +87,7 @@ function VideoWrapper({ data, ...props }) {
 
                     <div className={cx('info-des')}>
                         <div className=''>
-                            {data.description}
+                            <HighlightedText data={data.description} />
                         </div>
                     </div>
 

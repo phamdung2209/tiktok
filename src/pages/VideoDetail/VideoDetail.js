@@ -42,6 +42,8 @@ import VolumeControl from './VolumeControl'
 import { UserContext } from '~/hooks'
 import VideoSetting from './VideoSetting'
 import images from '~/assets/images'
+import ToastMessage from '~/components/ToastMessage'
+import HighlightedText from '~/components/HighlightedText'
 
 const cx = classNames.bind(styles)
 
@@ -55,6 +57,10 @@ function VideoDetail() {
         prev: false,
         next: false,
     })
+    const [actions, setActions] = useState({
+        showToast: false,
+        isCopyLink: false,
+    })
 
     const [volume, setVolume] = useState(JSON.parse(localStorage.getItem('volume')) ?? 0.5)
     const [attrs, setAttrs] = useState({
@@ -64,7 +70,7 @@ function VideoDetail() {
 
     const { loggedInUserData, user } = useContext(UserContext)
 
-    const navigator = useNavigate()
+    const navigate = useNavigate()
     const accessToken = localStorage.getItem('accessToken')
 
     // post comment
@@ -112,7 +118,7 @@ function VideoDetail() {
     }, [data, location.pathname])
 
     const handleCloseTab = () => {
-        navigator(`/@${data.user.nickname}`)
+        navigate(`/@${data.user.nickname}`)
     }
 
     const handleLikeVideos = (item) => {
@@ -261,7 +267,7 @@ function VideoDetail() {
 
                 if (index > 0) {
                     setData(results.videos[index - 1])
-                    navigator(`/@${data.user.nickname}/video/${results.videos[index - 1].uuid}`)
+                    navigate(`/@${data.user.nickname}/video/${results.videos[index - 1].uuid}`)
                 }
             }
         }
@@ -278,7 +284,7 @@ function VideoDetail() {
 
                 if (index < results.videos.length - 1) {
                     setData(results.videos[index + 1])
-                    navigator(`/@${data.user.nickname}/video/${results.videos[index + 1].uuid}`)
+                    navigate(`/@${data.user.nickname}/video/${results.videos[index + 1].uuid}`)
                 }
             }
         }
@@ -453,8 +459,7 @@ function VideoDetail() {
 
                                     <div className={cx('pro-des-content')}>
                                         <div className={cx('main-content')}>
-                                            {data && data.description} #couple #lovestory
-                                            {/* startsWith('#') -> add <Link to="/tag">tag</Link> */}
+                                            <HighlightedText data={data && data.description} />
                                         </div>
 
                                         <div className={cx('music')}>
@@ -529,14 +534,28 @@ function VideoDetail() {
                                             <div
                                                 className={cx('btn-copy-link')}
                                                 onClick={() => {
-                                                    navigator.clipboard.writeText('window.location.href')
-                                                    console.log(navigator.clipboard)
-                                                    // ??
-                                                    alert('Copied!')
+                                                    if (actions.isCopyLink) return
+
+                                                    navigator.clipboard.writeText(window.location.href)
+                                                    setActions(prev => ({
+                                                        ...prev,
+                                                        showToast: true,
+                                                        isCopyLink: true,
+                                                    }))
+
+                                                    setTimeout(() => {
+                                                        setActions(prev => ({
+                                                            ...prev,
+                                                            showToast: false,
+                                                            isCopyLink: false,
+                                                        }))
+                                                    }, 5000)
                                                 }}
                                             >
                                                 Copy Link
                                             </div>
+
+                                            {actions.showToast && (ReactDOM.createPortal(<ToastMessage message='Link copied to clipboard!' />, document.body))}
                                         </div>
                                     </div>
                                 </div>
