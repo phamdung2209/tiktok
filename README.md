@@ -31,3 +31,5 @@ This project is a clone of the TikTok platform, built using HTML, CSS (SCSS), an
 ## Issues
 
 If you encounter any issues while running the project, please [open an issue](https://github.com/phamdung2209/tiktok/issues).
+
+### This project is intended solely for educational and research purposes. It is not authorized for commercial use, profit-making activities, or any other business-related endeavors. The primary focus is on learning and exploration within the scope of the project's goals. Please be aware of and adhere to the terms and conditions outlined in the relevant legal and ethical guidelines. Any use of this project for business, monetary gains, or any related purposes is strictly prohibited.
