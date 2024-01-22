@@ -48,7 +48,8 @@ function Menu({ children, menuItems = [], onChange = defaultFn }) {
                 <div className={cx('content')} tabIndex='-1' {...attrs}>
                     <WapperPopper>
                         {history.length > 1 && <Header title={currentMenu.title} onBack={() => {
-                            setHistory(prev => prev.splice(prev.length - 1, 1))
+                            // setHistory(prev => prev.splice(prev.length - 1, 1))
+                            setHistory((prev) => prev.slice(0, prev.length - 1))
                         }} />}
 
                         <div className={cx('menu-scroll')}>
