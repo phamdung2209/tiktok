@@ -36,8 +36,7 @@ function ControlVideo({ data }) {
     const [videoControls, setVideoControls] = useState(() => {
         return {
             isPlaying: false,
-            // isMuted: false,
-            isMuted: JSON.parse(localStorage.getItem('isMuted')) ?? true,
+            isMuted: false,
             duration: 0,
             progress: 0,
             volume: JSON.parse(localStorage.getItem('volume') ?? 0.5),
@@ -185,15 +184,11 @@ function ControlVideo({ data }) {
                 ...prev,
                 isMuted: true
             }))
-
-            localStorage.setItem('isMuted', JSON.stringify(true))
         } else {
             setVideoControls(prev => ({
                 ...prev,
                 isMuted: false
             }))
-
-            localStorage.setItem('isMuted', JSON.stringify(false))
         }
 
         localStorage.setItem('volume', JSON.stringify(valueVolume))
@@ -394,12 +389,12 @@ function ControlVideo({ data }) {
                                             if (videoControls.isMuted) {
                                                 setVideoControls(prev => ({
                                                     ...prev,
-                                                    volume: JSON.parse(localStorage.getItem('volume') ?? 0.5)
+                                                    volume: JSON.parse(localStorage.getItem('volume') ?? 0.5),
                                                 }))
                                             } else {
                                                 setVideoControls(prev => ({
                                                     ...prev,
-                                                    volume: 0
+                                                    volume: 0,
                                                 }))
                                             }
                                         }}

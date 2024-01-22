@@ -284,22 +284,6 @@ function ControlVideo({ data }) {
         }
     ]
 
-    // useEffect(() => {
-    //     if (videoControls.isMuted) {
-    //         setVideoControls(prev => ({
-    //             ...prev,
-    //             volume: 0
-    //         }))
-    //     } else {
-    //         setVideoControls(prev => ({
-    //             ...prev,
-    //             volume: JSON.parse(localStorage.getItem('volume') ?? 0.5)
-    //         }))
-    //     }
-
-    //     // console.log('change mute');
-    // }, [videoControls.isMuted])
-
     return (
         data && (
             <div className={cx('wrapper')}>
