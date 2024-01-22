@@ -364,7 +364,7 @@ function VideoDetail() {
 
                     <ControlsVideo
                         postRef={postRef}
-                        setMuted={setMuted}
+                        // setMuted={setMuted}
                         data={data}
                         muted={muted}
                         setVolume={setVolume}

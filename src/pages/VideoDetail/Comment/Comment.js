@@ -55,9 +55,9 @@ function Comment({ postComment, isDelete, setIsDelete, data, ...props }) {
         })
     }
 
-    useEffect(() => {
-        console.log(action.showMessage);
-    }, [action.showMessage])
+    // useEffect(() => {
+    //     console.log(action.showMessage);
+    // }, [action.showMessage])
 
     const handleLikeComments = (comment) => {
         if (comment.is_liked) {
