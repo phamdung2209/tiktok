@@ -3,16 +3,6 @@
 }
 
 .header {
-    // height: 60px;
-    // padding: 0 24px;
-    // position: fixed;
-    // top: 0;
-    // left: 0;
-    // right: 0;
-    // z-index: 100;
-    // background-color: var(--backgroud-color);
-    // box-shadow: rgba(255, 255, 255, 0.12) 0px 1px 1px;
-
     justify-content: space-around;
     box-shadow: rgba(255, 255, 255, 0.12) 0px 1px 1px;
     height: 60px;
@@ -37,7 +27,7 @@
             align-items: center;
         }
 
-        
+
 
         .action {
             display: flex;
@@ -72,7 +62,7 @@
     height: 32px;
 }
 
-.action-btn + .action-btn {
+.action-btn+.action-btn {
     margin-left: 10px;
 }
 
@@ -80,7 +70,7 @@
     margin-left: 10px;
 }
 
-.user-avatar{
+.user-avatar {
     width: 32px;
     height: 32px;
     margin-left: 12px;

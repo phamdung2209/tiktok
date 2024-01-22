@@ -14,7 +14,11 @@
 
 .search {
     height: 70%;
-    width: 37%;
+    // width: 37%;
+    min-width: 200px;
+    width: 516px;
+    margin: 0 10px;
+
     display: flex;
     justify-content: center;
     align-items: center;
