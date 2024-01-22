@@ -35,7 +35,8 @@ function UserLogin({ mediaLogin = [] }) {
     }
 
     const handleBackBtn = () => {
-        setHistory(prev => prev.splice(prev.length - 1, 1))
+        // setHistory(prev => prev.splice(prev.length - 1, 1))
+        setHistory((prev) => prev.slice(0, prev.length - 1))
         setIsParent(false)
     }
 
