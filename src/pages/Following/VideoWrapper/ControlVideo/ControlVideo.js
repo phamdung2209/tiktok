@@ -36,7 +36,7 @@ function ControlVideo({ data }) {
     const [videoControls, setVideoControls] = useState(() => {
         return {
             isPlaying: false,
-            isMuted: true,
+            isMuted: false,
             duration: 0,
             progress: 0,
             volume: JSON.parse(localStorage.getItem('volume') ?? 0.5),
@@ -95,15 +95,6 @@ function ControlVideo({ data }) {
             window.removeEventListener('visibilitychange', handleChangView)
         }
     }, [inView])
-
-    useEffect(() => {
-        if (videoControls.isMuted) {
-            setVideoControls(prev => ({
-                ...prev,
-                volume: 0
-            }))
-        }
-    }, [])
 
     const handleActionClick = type => {
         switch (type) {
@@ -292,6 +283,22 @@ function ControlVideo({ data }) {
             // to: '/report'
         }
     ]
+
+    // useEffect(() => {
+    //     if (videoControls.isMuted) {
+    //         setVideoControls(prev => ({
+    //             ...prev,
+    //             volume: 0
+    //         }))
+    //     } else {
+    //         setVideoControls(prev => ({
+    //             ...prev,
+    //             volume: JSON.parse(localStorage.getItem('volume') ?? 0.5)
+    //         }))
+    //     }
+
+    //     // console.log('change mute');
+    // }, [videoControls.isMuted])
 
     return (
         data && (
