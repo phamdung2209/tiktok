@@ -20,7 +20,7 @@ function FollowingUnLogin() {
     const [data, setData] = useState([])
     const [videoControl, setVideoControl] = useState({
         playing: 0,
-        isLoading: false
+        isLoading: false,
     })
     const [openModal, setOpenModal] = useState(false)
 
@@ -31,7 +31,7 @@ function FollowingUnLogin() {
         const apiSuggestedUser = async () => {
             setVideoControl({
                 ...videoControl,
-                isLoading: true
+                isLoading: true,
             })
 
             let INIT_PAGE = 1
@@ -60,7 +60,7 @@ function FollowingUnLogin() {
 
             setVideoControl({
                 ...videoControl,
-                isLoading: false
+                isLoading: false,
             })
         }
         apiSuggestedUser()
@@ -72,16 +72,18 @@ function FollowingUnLogin() {
                 const results = await followService.followUser({ idUser })
 
                 if (results) {
-                    setData(data.map(item => {
-                        if (item.id === idUser) {
-                            return {
-                                ...item,
-                                followed: true
+                    setData(
+                        data.map((item) => {
+                            if (item.id === idUser) {
+                                return {
+                                    ...item,
+                                    followed: true,
+                                }
                             }
-                        }
 
-                        return item
-                    }))
+                            return item
+                        }),
+                    )
                 }
             }
 
@@ -96,103 +98,92 @@ function FollowingUnLogin() {
             const results = await followService.unfollowUser({ idUser })
 
             if (results) {
-                setData(data.map(item => {
-                    if (item.id === idUser) {
-                        return {
-                            ...item,
-                            followed: false
+                setData(
+                    data.map((item) => {
+                        if (item.id === idUser) {
+                            return {
+                                ...item,
+                                followed: false,
+                            }
                         }
-                    }
 
-                    return item
-                }))
+                        return item
+                    }),
+                )
             }
         }
 
         unFollowUser({ idUser })
     }
 
-    return (
-        videoControl.isLoading ? (<LoadingWrapper />) : (
-            <div className={cx('wrapper')}>
-                <div className={cx('container')}>
-                    {data.map((item, index) => (
-                        <div
-                            key={index}
-                            className={cx('user-card')}
-                            onMouseEnter={() => {
-                                setVideoControl({
-                                    ...videoControl,
-                                    playing: index
-                                })
-                            }}
-                        >
-                            <Link to={`/@${item.nickname}`} target='_blank'>
-                                <div className={cx('video')}>
-                                    <ReactPlayer
-                                        ref={ref => (playerRef[index] = ref)}
-                                        url={item.popular_video.file_url}
-                                        muted={true}
-                                        playing={videoControl.playing === index}
-                                        loop={true}
-
-                                        onPause={() => playerRef[index]?.getInternalPlayer()?.load()}
-
-                                        config={{
-                                            file: {
-                                                attributes: {
-                                                    poster: item.popular_video.thumb_url
-                                                }
+    return videoControl.isLoading ? (
+        <LoadingWrapper />
+    ) : (
+        <div className={cx('wrapper')}>
+            <div className={cx('container')}>
+                {data.map((item, index) => (
+                    <div
+                        key={index}
+                        className={cx('user-card')}
+                        onMouseEnter={() => {
+                            setVideoControl({
+                                ...videoControl,
+                                playing: index,
+                            })
+                        }}
+                    >
+                        <Link to={`/@${item.nickname}`} target="_blank">
+                            <div className={cx('video')}>
+                                <ReactPlayer
+                                    ref={(ref) => (playerRef[index] = ref)}
+                                    url={item.popular_video.file_url}
+                                    muted={true}
+                                    playing={videoControl.playing === index}
+                                    loop={true}
+                                    onPause={() => playerRef[index]?.getInternalPlayer()?.load()}
+                                    config={{
+                                        file: {
+                                            attributes: {
+                                                poster: item.popular_video.thumb_url,
                                             },
-                                        }}
-                                    />
+                                        },
+                                    }}
+                                />
+                            </div>
+
+                            <div className={cx('info')}>
+                                <div className={cx('avatar')}>
+                                    <Image src={item.avatar} alt=" " />
                                 </div>
 
-                                <div className={cx('info')}>
-                                    <div className={cx('avatar')}>
-                                        <Image src={item.avatar} alt=' ' />
-                                    </div>
+                                <h3>
+                                    {item.first_name} {item.last_name}
+                                </h3>
 
-                                    <h3>
-                                        {item.first_name} {item.last_name}
-                                    </h3>
+                                <h4>
+                                    <span>{item.nickname}</span>
+                                    {item.tick && <TickSmall />}
+                                </h4>
 
-                                    <h4>
-                                        <span>{item.nickname}</span>
-                                        {item.tick && <TickSmall />}
-                                    </h4>
-
-                                    <div
-                                        className={cx('btn-follow')}
-                                        onClick={e => e.preventDefault()}
-                                    >
-                                        {item.followed ? (
-                                            <Button
-                                                outline
-                                                onClick={() => handleBtnUnFollow(item.id)}
-                                            >
-                                                Following
-                                            </Button>
-                                        ) : (
-                                            <Button
-                                                primary
-                                                onClick={() => handleBtnFollow(item.id)}
-                                            >
-                                                Follow
-                                            </Button>
-                                        )}
-
-                                    </div>
-
+                                <div className={cx('btn-follow')} onClick={(e) => e.preventDefault()}>
+                                    {item.followed ? (
+                                        <Button outline onClick={() => handleBtnUnFollow(item.id)}>
+                                            Following
+                                        </Button>
+                                    ) : (
+                                        <Button primary onClick={() => handleBtnFollow(item.id)}>
+                                            Follow
+                                        </Button>
+                                    )}
                                 </div>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-
-                {openModal && ReactDOM.createPortal(<Login setOpenModal={setOpenModal} />, document.body)}
+                            </div>
+                        </Link>
+                    </div>
+                ))}
             </div>
-        )
+
+            {openModal && ReactDOM.createPortal(<Login setOpenModal={setOpenModal} />, document.body)}
+        </div>
     )
 }
 

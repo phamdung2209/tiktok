@@ -435,26 +435,23 @@ function VideoDetail() {
 
                                         {loggedInUserData.nickname === data.user.nickname ? (
                                             <VideoSetting />
+                                        ) : data.user.is_followed ? (
+                                            <Button dark onClick={handleUnfollowUser}>
+                                                Following
+                                            </Button>
                                         ) : (
-                                            data.user.is_followed ? (
-                                                <Button dark onClick={handleUnfollowUser}>
-                                                    Following
+                                            <>
+                                                <Button primary onClick={handleFollowUser}>
+                                                    Follow
                                                 </Button>
-                                            ) : (
-                                                <>
-                                                    <Button primary onClick={handleFollowUser}>
-                                                        Follow
-                                                    </Button>
 
-                                                    {openModal &&
-                                                        ReactDOM.createPortal(
-                                                            <Login setOpenModal={setOpenModal} />,
-                                                            document.body,
-                                                        )}
-                                                </>
-                                            )
+                                                {openModal &&
+                                                    ReactDOM.createPortal(
+                                                        <Login setOpenModal={setOpenModal} />,
+                                                        document.body,
+                                                    )}
+                                            </>
                                         )}
-
                                     </div>
 
                                     <div className={cx('pro-des-content')}>
@@ -469,18 +466,18 @@ function VideoDetail() {
                                                 {data && data?.music
                                                     ? data.music
                                                     : data.user.first_name && data.user.last_name
-                                                        ? `${data?.user?.first_name} ${data?.user?.last_name}`
-                                                        : data.user.nickname}
+                                                    ? `${data?.user?.first_name} ${data?.user?.last_name}`
+                                                    : data.user.nickname}
                                             </Link>
                                         </div>
 
                                         {data.allows.includes('duet') && (
                                             <div className={cx('anchor-tag')}>
-                                                <Link to='#' className={cx('anchor-container')}>
+                                                <Link to="#" className={cx('anchor-container')}>
                                                     <Image
                                                         src={images.capCut}
-                                                        alt=' '
-                                                        fallBack='https://p9-sg.tiktokcdn.com/obj/tiktok-obj/capcut_logo_64px_bk.png'
+                                                        alt=" "
+                                                        fallBack="https://p9-sg.tiktokcdn.com/obj/tiktok-obj/capcut_logo_64px_bk.png"
                                                     />
 
                                                     <div className={cx('anchor-tag-name')}>
@@ -491,12 +488,10 @@ function VideoDetail() {
                                         )}
 
                                         <div className={cx('anchor-tag')}>
-                                            <Link to='#' className={cx('anchor-container')}>
+                                            <Link to="#" className={cx('anchor-container')}>
                                                 <LocateIcon />
 
-                                                <div className={cx('anchor-tag-name')}>
-                                                    Viet Nam
-                                                </div>
+                                                <div className={cx('anchor-tag-name')}>Viet Nam</div>
                                             </Link>
                                         </div>
                                     </div>
@@ -537,14 +532,14 @@ function VideoDetail() {
                                                     if (actions.isCopyLink) return
 
                                                     navigator.clipboard.writeText(window.location.href)
-                                                    setActions(prev => ({
+                                                    setActions((prev) => ({
                                                         ...prev,
                                                         showToast: true,
                                                         isCopyLink: true,
                                                     }))
 
                                                     setTimeout(() => {
-                                                        setActions(prev => ({
+                                                        setActions((prev) => ({
                                                             ...prev,
                                                             showToast: false,
                                                             isCopyLink: false,
@@ -555,7 +550,11 @@ function VideoDetail() {
                                                 Copy Link
                                             </div>
 
-                                            {actions.showToast && (ReactDOM.createPortal(<ToastMessage message='Link copied to clipboard!' />, document.body))}
+                                            {actions.showToast &&
+                                                ReactDOM.createPortal(
+                                                    <ToastMessage message="Link copied to clipboard!" />,
+                                                    document.body,
+                                                )}
                                         </div>
                                     </div>
                                 </div>
@@ -621,7 +620,6 @@ function VideoDetail() {
                                                 isFocusText: true,
                                             })
                                         }}
-
                                         onBlur={() => {
                                             setAttrs({
                                                 ...attrs,
@@ -633,18 +631,15 @@ function VideoDetail() {
                                     <Emotion />
                                 </div>
 
-                                <div className={cx(
-                                    'post',
-                                    { disabled: !attrs.validText })}
+                                <div
+                                    className={cx('post', { disabled: !attrs.validText })}
                                     onClick={handleSubmitComment}
                                 >
                                     Post
                                 </div>
                             </>
                         ) : (
-                            <div className={cx('login-require')}>
-                                Log in to comment
-                            </div>
+                            <div className={cx('login-require')}>Log in to comment</div>
                         )}
                     </div>
                 </div>

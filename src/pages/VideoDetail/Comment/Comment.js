@@ -22,7 +22,7 @@ const options = {
     content: 'Are you sure you want to delete this comment?',
     action: 'Delete',
     cancel: 'Cancel',
-    onConfirm: () => { },
+    onConfirm: () => {},
 }
 
 function Comment({ postComment, isDelete, setIsDelete, data, ...props }) {
@@ -105,20 +105,11 @@ function Comment({ postComment, isDelete, setIsDelete, data, ...props }) {
         }
     }
 
-
-
-
-
-
-
-
-
-
     // test
     const loadingRef = useRef(null)
     const [hasMore, setHasMore] = useState(true)
     const [page, setPage] = useState(1)
-    const onIntersect = entries => {
+    const onIntersect = (entries) => {
         const firstEntry = entries[0]
         if (firstEntry.isIntersecting && hasMore) {
             getMoreComments()
@@ -153,7 +144,6 @@ function Comment({ postComment, isDelete, setIsDelete, data, ...props }) {
     }, [comments])
 
     async function getMoreComments() {
-
         if (comments.length === data.comments_count) {
             setHasMore(false)
             return
@@ -165,7 +155,7 @@ function Comment({ postComment, isDelete, setIsDelete, data, ...props }) {
             if (results.data.length === 0) {
                 setHasMore(false)
             } else {
-                setComments(prev => [...prev, ...results.data])
+                setComments((prev) => [...prev, ...results.data])
                 setPage(page + 1)
             }
         } catch (err) {
@@ -175,17 +165,38 @@ function Comment({ postComment, isDelete, setIsDelete, data, ...props }) {
     // end
 
     return (
-        comments && (
-            user.auth ? (
-                <div className={cx('wrapper')}>
-                    {comments.map((comment, index) => (
-                        <div className={cx('container')} key={index}>
+        comments &&
+        (user.auth ? (
+            <div className={cx('wrapper')}>
+                {comments.map((comment, index) => (
+                    <div className={cx('container')} key={index}>
+                        <div>
+                            <Tippy
+                                placement="bottom-start"
+                                interactive={true}
+                                delay={[800, 0]}
+                                offset={[0, 50]}
+                                render={(attrs) => (
+                                    <div tabIndex="-1" {...attrs}>
+                                        <WrapperPopper>
+                                            <AccountPreview data={comment.user} />
+                                        </WrapperPopper>
+                                    </div>
+                                )}
+                            >
+                                <Link to={`/@${comment.user.nickname}`} className={cx('--hover-user')}>
+                                    <Image src={comment?.user?.avatar} alt=" " />
+                                </Link>
+                            </Tippy>
+                        </div>
+
+                        <div className={cx('content')}>
                             <div>
                                 <Tippy
                                     placement="bottom-start"
+                                    offset={[-52, 29]}
                                     interactive={true}
                                     delay={[800, 0]}
-                                    offset={[0, 50]}
                                     render={(attrs) => (
                                         <div tabIndex="-1" {...attrs}>
                                             <WrapperPopper>
@@ -194,166 +205,129 @@ function Comment({ postComment, isDelete, setIsDelete, data, ...props }) {
                                         </div>
                                     )}
                                 >
-                                    <Link to={`/@${comment.user.nickname}`} className={cx('--hover-user')}>
-                                        <Image src={comment?.user?.avatar} alt=" " />
+                                    <Link to={`/@${comment.user.nickname}`}>
+                                        <div className={cx('link-user')}>
+                                            {`${comment.user.first_name} ${comment.user.last_name}`}
+                                            {comment.user.tick && <Tick />}
+                                        </div>
+                                        {data?.user?.nickname === comment.user.nickname && (
+                                            <div className="div--notUnderline">
+                                                <span style={{ margin: '0px 4px' }}>·</span>
+                                                <span
+                                                    style={{
+                                                        fontSize: '1.4rem',
+                                                        color: 'rgb(255, 59, 92)',
+                                                        fontWeight: 400,
+                                                    }}
+                                                >
+                                                    Creator
+                                                </span>
+                                            </div>
+                                        )}
                                     </Link>
                                 </Tippy>
                             </div>
 
-                            <div className={cx('content')}>
-                                <div>
-                                    <Tippy
-                                        placement="bottom-start"
-                                        offset={[-52, 29]}
-                                        interactive={true}
-                                        delay={[800, 0]}
-                                        render={(attrs) => (
-                                            <div tabIndex="-1" {...attrs}>
-                                                <WrapperPopper>
-                                                    <AccountPreview data={comment.user} />
-                                                </WrapperPopper>
-                                            </div>
-                                        )}
-                                    >
-                                        <Link to={`/@${comment.user.nickname}`} >
-                                            <div className={cx('link-user')}>
-                                                {`${comment.user.first_name} ${comment.user.last_name}`}
-                                                {comment.user.tick && <Tick />}
-                                            </div>
-                                            {data?.user?.nickname === comment.user.nickname && (
-                                                <div className='div--notUnderline'>
-                                                    <span style={{ margin: '0px 4px' }}>·</span>
-                                                    <span
-                                                        style={{
-                                                            'fontSize': '1.4rem',
-                                                            color: 'rgb(255, 59, 92)',
-                                                            'fontWeight': 400,
-                                                        }}
-                                                    >Creator</span>
-                                                </div>
-                                            )}
-                                        </Link>
-                                    </Tippy>
+                            <div className={cx('content-comment')}>{comment.comment}</div>
+
+                            <div className={cx('sub-content')}>
+                                <div className={cx('time')}>
+                                    <FormattedDate data={comment.created_at} />
                                 </div>
 
-                                <div className={cx('content-comment')}>{comment.comment}</div>
-
-                                <div className={cx('sub-content')}>
-                                    <div className={cx('time')}>
-                                        <FormattedDate data={comment.created_at} />
-                                    </div>
-
-                                    <div className={cx('reply')}>Reply</div>
-                                </div>
+                                <div className={cx('reply')}>Reply</div>
                             </div>
+                        </div>
 
-                            <div className={cx('action')}>
-                                <Tippy
-                                    hideOnClick={false}
-                                    interactive={true}
-                                    delay={[100, 100]}
-                                    placement="bottom-end"
-                                    offset={[0, 0]}
-                                    onHide={() => {
-                                        setAction({
-                                            ...action,
-                                            showBtn: true,
-                                        })
-                                    }}
-                                    render={(attrs) => (
-                                        <div tabIndex="-1" {...attrs}>
-                                            {action.showBtn && (
-                                                <WrapperPopper>
-                                                    <div className={cx('popper')}>
-                                                        <div className={cx('popper-item')}>
-                                                            {comment.user.id === loggedInUserData.id ? (
-                                                                <span
-                                                                    onClick={() => {
-                                                                        setAction({
-                                                                            ...action,
-                                                                            showComfirm: true,
-                                                                        })
+                        <div className={cx('action')}>
+                            <Tippy
+                                hideOnClick={false}
+                                interactive={true}
+                                delay={[100, 100]}
+                                placement="bottom-end"
+                                offset={[0, 0]}
+                                onHide={() => {
+                                    setAction({
+                                        ...action,
+                                        showBtn: true,
+                                    })
+                                }}
+                                render={(attrs) => (
+                                    <div tabIndex="-1" {...attrs}>
+                                        {action.showBtn && (
+                                            <WrapperPopper>
+                                                <div className={cx('popper')}>
+                                                    <div className={cx('popper-item')}>
+                                                        {comment.user.id === loggedInUserData.id ? (
+                                                            <span
+                                                                onClick={() => {
+                                                                    setAction({
+                                                                        ...action,
+                                                                        showComfirm: true,
+                                                                    })
 
-                                                                        options.onConfirm = () => {
-                                                                            handleDeleteComment(comment)
+                                                                    options.onConfirm = () => {
+                                                                        handleDeleteComment(comment)
 
-                                                                            setTimeout(() => {
-                                                                                setAction({
-                                                                                    ...action,
-                                                                                    showMessage: false,
-                                                                                })
-                                                                            }, 5000)
-                                                                        }
-                                                                    }}
-                                                                    style={{ display: 'flex', alignItems: 'center' }}
-                                                                >
-                                                                    <DeleteIcon />
-                                                                    <span>
-                                                                        Delete
-                                                                    </span>
-                                                                </span>
-                                                            ) : (
-                                                                <>
-                                                                    <Flag />
-                                                                    <span>
-                                                                        Report
-                                                                    </span>
-                                                                </>
-                                                            )}
-                                                        </div>
+                                                                        setTimeout(() => {
+                                                                            setAction({
+                                                                                ...action,
+                                                                                showMessage: false,
+                                                                            })
+                                                                        }, 5000)
+                                                                    }
+                                                                }}
+                                                                style={{ display: 'flex', alignItems: 'center' }}
+                                                            >
+                                                                <DeleteIcon />
+                                                                <span>Delete</span>
+                                                            </span>
+                                                        ) : (
+                                                            <>
+                                                                <Flag />
+                                                                <span>Report</span>
+                                                            </>
+                                                        )}
                                                     </div>
-                                                </WrapperPopper>
-                                            )}
-                                        </div>
-                                    )}
-                                    appendTo={() => document.body}
-                                >
-                                    <div className={cx('more')}>
-                                        <MoreIconW />
+                                                </div>
+                                            </WrapperPopper>
+                                        )}
                                     </div>
-                                </Tippy>
-
-                                <div className={cx('liked')}>
-                                    <span onClick={() => handleLikeComments(comment)}>
-                                        {comment && comment.is_liked ? <Liked /> : <Like />}
-                                    </span>
-                                    <span>{comment.likes_count}</span>
+                                )}
+                                appendTo={() => document.body}
+                            >
+                                <div className={cx('more')}>
+                                    <MoreIconW />
                                 </div>
+                            </Tippy>
+
+                            <div className={cx('liked')}>
+                                <span onClick={() => handleLikeComments(comment)}>
+                                    {comment && comment.is_liked ? <Liked /> : <Like />}
+                                </span>
+                                <span>{comment.likes_count}</span>
                             </div>
                         </div>
-                    ))}
+                    </div>
+                ))}
 
-                    {hasMore && comments && (
-                        <div ref={loadingRef}>
-                            <LoadingWrapper />
-                        </div>
+                {hasMore && comments && (
+                    <div ref={loadingRef}>
+                        <LoadingWrapper />
+                    </div>
+                )}
+
+                {action.showComfirm &&
+                    ReactDOM.createPortal(
+                        <Confirm action={action} setAction={setAction} options={options} />,
+                        document.body,
                     )}
 
-                    {action.showComfirm &&
-                        ReactDOM.createPortal(
-                            <Confirm
-                                action={action}
-                                setAction={setAction}
-                                options={options}
-                            />,
-                            document.body,
-                        )
-                    }
-
-                    {action.showMessage && (
-                        ReactDOM.createPortal(
-                            <ToastMessage message='Deleted' />,
-                            document.body,
-                        )
-                    )}
-
-                </div>
-            ) : (
-                <div className={cx('no-data')}>
-                    Log in to like or comment!
-                </div>
-            )
-        )
+                {action.showMessage && ReactDOM.createPortal(<ToastMessage message="Deleted" />, document.body)}
+            </div>
+        ) : (
+            <div className={cx('no-data')}>Log in to like or comment!</div>
+        ))
     )
 }
 

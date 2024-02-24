@@ -15,13 +15,11 @@ const publicRoutes = [
     { path: config.routes.profile, component: Profile },
     { path: config.routes.upload, component: Upload, layout: HeaderOnly },
     { path: config.routes.search, component: Search, layout: null },
-    { path: config.routes.live, component: Live, },
-    { path: config.routes.explore, component: Explore, },
-    { path: config.routes.videoDetail, component: VideoDetail, layout: null }
+    { path: config.routes.live, component: Live },
+    { path: config.routes.explore, component: Explore },
+    { path: config.routes.videoDetail, component: VideoDetail, layout: null },
 ]
 
-const privateRoutes = [
-
-]
+const privateRoutes = []
 
 export { publicRoutes, privateRoutes }

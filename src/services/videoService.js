@@ -36,8 +36,8 @@ export const getVideoComments = async ({ uuid }, page) => {
             },
 
             params: {
-                page
-            }
+                page,
+            },
         })
 
         return res
@@ -49,7 +49,7 @@ export const getVideoComments = async ({ uuid }, page) => {
 export const postComment = async (uuid, comment) => {
     const body = {
         uuid,
-        comment
+        comment,
     }
     try {
         const res = await request.post(`videos/${uuid}/comments`, body, {
@@ -76,16 +76,19 @@ export const deletePostComment = async (idComment) => {
     } catch (err) {
         console.log(err)
     }
-
 }
 
 export const actionLikeVideos = async ({ uuid }) => {
     try {
-        const res = await request.post(`videos/${uuid}/like`, {}, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
+        const res = await request.post(
+            `videos/${uuid}/like`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
             },
-        })
+        )
 
         return res.data
     } catch (err) {
@@ -95,11 +98,15 @@ export const actionLikeVideos = async ({ uuid }) => {
 
 export const actionUnLikeVideos = async ({ uuid }) => {
     try {
-        const res = await request.post(`videos/${uuid}/unlike`, {}, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
+        const res = await request.post(
+            `videos/${uuid}/unlike`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
             },
-        })
+        )
 
         return res.data
     } catch (err) {
@@ -109,11 +116,15 @@ export const actionUnLikeVideos = async ({ uuid }) => {
 
 export const actionLikeComments = async ({ idComment }) => {
     try {
-        const res = await request.post(`comments/${idComment}/like`, {}, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
+        const res = await request.post(
+            `comments/${idComment}/like`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
             },
-        })
+        )
 
         return res.data
     } catch (err) {
@@ -123,11 +134,15 @@ export const actionLikeComments = async ({ idComment }) => {
 
 export const actionUnLikeComments = async ({ idComment }) => {
     try {
-        const res = await request.post(`comments/${idComment}/unlike`, {}, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
+        const res = await request.post(
+            `comments/${idComment}/unlike`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
             },
-        })
+        )
 
         return res.data
     } catch (err) {
@@ -144,8 +159,8 @@ export const getVideoForYou = async (page, type) => {
 
             params: {
                 type: type,
-                page
-            }
+                page,
+            },
         })
 
         return res

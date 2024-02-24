@@ -4,7 +4,7 @@ export const login = async (email, password) => {
     try {
         const body = {
             email,
-            password
+            password,
         }
         const res = await request.post('auth/login', body)
         return res
@@ -19,10 +19,10 @@ export const getUserData = async (accessToken) => {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
-        });
-        return res.data;
+        })
+        return res.data
     } catch (err) {
-        console.log('Error fetching user data:', err);
-        throw err; 
+        console.log('Error fetching user data:', err)
+        throw err
     }
-};
+}
