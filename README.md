@@ -1,5 +1,7 @@
 # TikTok Clone
 
+![Demo App](https://res.cloudinary.com/den0awox0/image/upload/v1709350109/qkaxk6xcztpxp8q95qt2.png)
+
 ## Introduction
 
 This project is a clone of the TikTok platform, built using HTML, CSS (SCSS), and JavaScript with ReactJS. The focus of the project is primarily on the user interface (frontend), utilizing APIs from external sources to fetch data.
@@ -18,15 +20,22 @@ This project is a clone of the TikTok platform, built using HTML, CSS (SCSS), an
     ```bash
     cd tiktok-ui
     ```
-3. Install the project dependencies:
+3. Setup .env file
+
+```js
+REACT_APP_BASE_URL = ...
+
+```
+
+4. Install the project dependencies:
     ```bash
     npm install
     ```
-4. Run the project:
+5. Run the project:
     ```bash
     npm start
     ```
-5. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+6. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Issues
 
