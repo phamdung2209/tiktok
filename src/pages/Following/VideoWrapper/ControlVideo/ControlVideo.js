@@ -20,7 +20,7 @@ import {
     PauseMdIcon,
     UnMutedMdIcon,
     NotInterestIcon,
-    Report
+    Report,
 } from '~/assets/icons'
 import ConvertData from '~/components/ConvertData'
 import * as videoService from '~/services/videoService'
@@ -53,9 +53,9 @@ function ControlVideo({ data }) {
     const navigator = useNavigate()
 
     useEffect(() => {
-        setVideoControls(prev => ({
+        setVideoControls((prev) => ({
             ...prev,
-            volume: JSON.parse(localStorage.getItem('volume') ?? 0.5)
+            volume: JSON.parse(localStorage.getItem('volume') ?? 0.5),
         }))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [JSON.parse(localStorage.getItem('volume') ?? 0.5)])
@@ -70,21 +70,21 @@ function ControlVideo({ data }) {
     })
 
     useEffect(() => {
-        setVideoControls(prev => ({
+        setVideoControls((prev) => ({
             ...prev,
-            isPlaying: inView
+            isPlaying: inView,
         }))
 
         const handleChangView = () => {
             if (document.visibilityState === 'hidden') {
-                setVideoControls(prev => ({
+                setVideoControls((prev) => ({
                     ...prev,
-                    isPlaying: false
+                    isPlaying: false,
                 }))
             } else {
-                setVideoControls(prev => ({
+                setVideoControls((prev) => ({
                     ...prev,
-                    isPlaying: inView
+                    isPlaying: inView,
                 }))
             }
         }
@@ -96,7 +96,7 @@ function ControlVideo({ data }) {
         }
     }, [inView])
 
-    const handleActionClick = type => {
+    const handleActionClick = (type) => {
         switch (type) {
             case 'like':
                 if (dataVideo.is_liked) {
@@ -104,10 +104,10 @@ function ControlVideo({ data }) {
                         const results = await videoService.actionUnLikeVideos({ uuid: dataVideo.uuid })
 
                         if (results) {
-                            setDataVideo(prev => ({
+                            setDataVideo((prev) => ({
                                 ...prev,
                                 is_liked: false,
-                                likes_count: prev.likes_count - 1
+                                likes_count: prev.likes_count - 1,
                             }))
                         }
                     }
@@ -118,10 +118,10 @@ function ControlVideo({ data }) {
                         const results = await videoService.actionLikeVideos({ uuid: dataVideo.uuid })
 
                         if (results) {
-                            setDataVideo(prev => ({
+                            setDataVideo((prev) => ({
                                 ...prev,
                                 is_liked: true,
-                                likes_count: prev.likes_count + 1
+                                likes_count: prev.likes_count + 1,
                             }))
                         }
                     }
@@ -142,16 +142,16 @@ function ControlVideo({ data }) {
 
     const handleChangLinkVideo = () => navigator(`/@${dataVideo.user.nickname}/video/${dataVideo.uuid}`)
 
-    const handleClickVolume = e => {
+    const handleClickVolume = (e) => {
         const rect = e.currentTarget.getBoundingClientRect()
         const offsetY = e.clientY - rect.top
         const height = rect.height
 
         const normalizedClickedHeight = Math.min(height, Math.max(0, offsetY))
 
-        setVideoControls(prev => ({
+        setVideoControls((prev) => ({
             ...prev,
-            volume: (height - normalizedClickedHeight) / height
+            volume: (height - normalizedClickedHeight) / height,
         }))
 
         localStorage.setItem('volume', JSON.stringify((height - normalizedClickedHeight) / height))
@@ -162,7 +162,7 @@ function ControlVideo({ data }) {
         window.addEventListener('mouseup', handleMouseUp)
     }
 
-    const handleMouseMove = e => {
+    const handleMouseMove = (e) => {
         const rect = progressVolumeRef.current.getBoundingClientRect()
         const offsetY = e.clientY - rect.top
         const height = rect.height
@@ -171,21 +171,21 @@ function ControlVideo({ data }) {
 
         const valueVolume = (height - normalizedClickedHeight) / height
 
-        setVideoControls(prev => ({
+        setVideoControls((prev) => ({
             ...prev,
             volume: valueVolume,
-            isDraggingVolume: true
+            isDraggingVolume: true,
         }))
 
         if (valueVolume === 0) {
-            setVideoControls(prev => ({
+            setVideoControls((prev) => ({
                 ...prev,
-                isMuted: true
+                isMuted: true,
             }))
         } else {
-            setVideoControls(prev => ({
+            setVideoControls((prev) => ({
                 ...prev,
-                isMuted: false
+                isMuted: false,
             }))
         }
 
@@ -195,13 +195,13 @@ function ControlVideo({ data }) {
     const handleMouseUp = () => {
         window.removeEventListener('mousemove', handleMouseMove)
         window.removeEventListener('mouseup', handleMouseUp)
-        setVideoControls(prev => ({
+        setVideoControls((prev) => ({
             ...prev,
-            isDraggingVolume: false
+            isDraggingVolume: false,
         }))
     }
 
-    const handleSeekChange = e => {
+    const handleSeekChange = (e) => {
         const rect = e.currentTarget.getBoundingClientRect()
         const offsetX = e.clientX - rect.left
         const width = rect.width
@@ -209,20 +209,20 @@ function ControlVideo({ data }) {
         const normalizedWidth = Math.min(width, Math.max(0, offsetX))
         const seekTime = normalizedWidth / width
 
-        setVideoControls(prev => ({
+        setVideoControls((prev) => ({
             ...prev,
-            progress: { ...prev.progress, played: seekTime }
+            progress: { ...prev.progress, played: seekTime },
         }))
 
         videoPlayerRef.current.seekTo(seekTime)
     }
 
-    const handleDragSeek = e => {
+    const handleDragSeek = (e) => {
         window.addEventListener('mousemove', handleMouseMoveSeek)
         window.addEventListener('mouseup', handleMouseUpSeek)
     }
 
-    const handleMouseMoveSeek = e => {
+    const handleMouseMoveSeek = (e) => {
         const rect = progressRef.current.getBoundingClientRect()
         const offsetX = e.clientX - rect.left
         const width = rect.width
@@ -230,10 +230,10 @@ function ControlVideo({ data }) {
         const normalizedWidth = Math.min(width, Math.max(0, offsetX))
         const seekTime = normalizedWidth / width
 
-        setVideoControls(prev => ({
+        setVideoControls((prev) => ({
             ...prev,
             isDraggingVolume: true,
-            progress: { ...prev.progress, played: seekTime }
+            progress: { ...prev.progress, played: seekTime },
         }))
 
         videoPlayerRef.current.seekTo(seekTime)
@@ -242,9 +242,9 @@ function ControlVideo({ data }) {
     const handleMouseUpSeek = () => {
         window.removeEventListener('mousemove', handleMouseMoveSeek)
         window.removeEventListener('mouseup', handleMouseUpSeek)
-        setVideoControls(prev => ({
+        setVideoControls((prev) => ({
             ...prev,
-            isDraggingVolume: false
+            isDraggingVolume: false,
         }))
     }
 
@@ -252,23 +252,23 @@ function ControlVideo({ data }) {
         {
             type: 'like',
             icon: dataVideo.is_liked ? <LikedLargeIcon /> : <LikeLargeIcon />,
-            count: <ConvertData data={dataVideo.likes_count} />
+            count: <ConvertData data={dataVideo.likes_count} />,
         },
         {
             type: 'comment',
             icon: <CommentLargeIcon />,
-            count: <ConvertData data={dataVideo.comments_count} />
+            count: <ConvertData data={dataVideo.comments_count} />,
         },
         {
             type: 'flag',
             icon: <FlagLargeIcon />,
-            count: <ConvertData data={dataVideo.shares_count} />
+            count: <ConvertData data={dataVideo.shares_count} />,
         },
         {
             type: 'share',
             icon: <ShareLargeIcon />,
-            count: <ConvertData data={dataVideo.shares_count} />
-        }
+            count: <ConvertData data={dataVideo.shares_count} />,
+        },
     ]
 
     const ITEM_ACTIONs = [
@@ -281,7 +281,7 @@ function ControlVideo({ data }) {
             icon: <Report />,
             separate: true,
             // to: '/report'
-        }
+        },
     ]
 
     return (
@@ -292,34 +292,29 @@ function ControlVideo({ data }) {
                         ref={videoPlayerRef}
                         url={dataVideo.file_url}
                         controls={false}
-                        width='100%'
-                        height='100%'
+                        width="100%"
+                        height="100%"
                         playing={videoControls.isPlaying}
                         loop={true}
                         muted={videoControls.isMuted}
                         volume={videoControls.volume}
                         stopOnUnmount={true}
-
                         onClick={handleChangLinkVideo}
-
-                        onMouseEnter={() => setVideoControls(prev => ({ ...prev, isShowAction: true }))}
-                        onMouseLeave={() => setVideoControls(prev => ({ ...prev, isShowAction: false }))}
-
-                        onReady={e => {
-                            setVideoControls(prev => ({
+                        onMouseEnter={() => setVideoControls((prev) => ({ ...prev, isShowAction: true }))}
+                        onMouseLeave={() => setVideoControls((prev) => ({ ...prev, isShowAction: false }))}
+                        onReady={(e) => {
+                            setVideoControls((prev) => ({
                                 ...prev,
                                 duration: e.getDuration(),
                                 // isMuted: true,
                             }))
                         }}
-
-                        onProgress={e => {
-                            setVideoControls(prev => ({
+                        onProgress={(e) => {
+                            setVideoControls((prev) => ({
                                 ...prev,
-                                progress: e
+                                progress: e,
                             }))
                         }}
-
                         config={{
                             file: {
                                 attributes: {
@@ -329,20 +324,21 @@ function ControlVideo({ data }) {
                         }}
                     />
 
-                    {((videoControls.isShowAction && !videoControls.isDraggingVolume) || videoControls.isDraggingVolume) && (
+                    {((videoControls.isShowAction && !videoControls.isDraggingVolume) ||
+                        videoControls.isDraggingVolume) && (
                         <div
-                            onMouseEnter={() => setVideoControls(prev => ({ ...prev, isShowAction: true }))}
-                            onMouseLeave={() => setVideoControls(prev => ({ ...prev, isShowAction: false }))}
+                            onMouseEnter={() => setVideoControls((prev) => ({ ...prev, isShowAction: true }))}
+                            onMouseLeave={() => setVideoControls((prev) => ({ ...prev, isShowAction: false }))}
                         >
                             <div className={cx('mask-overlay')}></div>
 
                             <div className={cx('control-video')}>
                                 <div
-                                    onClick={e => {
+                                    onClick={(e) => {
                                         e.stopPropagation()
-                                        setVideoControls(prev => ({
+                                        setVideoControls((prev) => ({
                                             ...prev,
-                                            isPlaying: !prev.isPlaying
+                                            isPlaying: !prev.isPlaying,
                                         }))
                                     }}
                                 >
@@ -351,11 +347,12 @@ function ControlVideo({ data }) {
 
                                 <div
                                     className={cx('control-volume-wrapper')}
-                                    onClick={e => e.stopPropagation()}
-                                    onMouseEnter={() => setVideoControls(prev => ({ ...prev, isHoverVolume: true }))}
-                                    onMouseLeave={() => setVideoControls(prev => ({ ...prev, isHoverVolume: false }))}
+                                    onClick={(e) => e.stopPropagation()}
+                                    onMouseEnter={() => setVideoControls((prev) => ({ ...prev, isHoverVolume: true }))}
+                                    onMouseLeave={() => setVideoControls((prev) => ({ ...prev, isHoverVolume: false }))}
                                 >
-                                    {((videoControls.isHoverVolume && !videoControls.isDraggingVolume) || videoControls.isDraggingVolume) && (
+                                    {((videoControls.isHoverVolume && !videoControls.isDraggingVolume) ||
+                                        videoControls.isDraggingVolume) && (
                                         <div className={cx('control-volume')}>
                                             <div
                                                 className={cx('volume-bar')}
@@ -380,20 +377,20 @@ function ControlVideo({ data }) {
                                     <div
                                         className={cx('btn-volume')}
                                         onClick={() => {
-                                            setVideoControls(prev => ({
+                                            setVideoControls((prev) => ({
                                                 ...prev,
-                                                isMuted: !prev.isMuted
+                                                isMuted: !prev.isMuted,
                                             }))
 
                                             if (videoControls.isMuted) {
-                                                setVideoControls(prev => ({
+                                                setVideoControls((prev) => ({
                                                     ...prev,
-                                                    volume: JSON.parse(localStorage.getItem('volume') ?? 0.5)
+                                                    volume: JSON.parse(localStorage.getItem('volume') ?? 0.5),
                                                 }))
                                             } else {
-                                                setVideoControls(prev => ({
+                                                setVideoControls((prev) => ({
                                                     ...prev,
-                                                    volume: 0
+                                                    volume: 0,
                                                 }))
                                             }
                                         }}
@@ -403,10 +400,7 @@ function ControlVideo({ data }) {
                                 </div>
                             </div>
 
-                            <div
-                                className={cx('progress-video')}
-                                onClick={e => e.stopPropagation()}
-                            >
+                            <div className={cx('progress-video')} onClick={(e) => e.stopPropagation()}>
                                 <div
                                     className={cx('seekbar-control')}
                                     onClick={handleSeekChange}
@@ -415,19 +409,16 @@ function ControlVideo({ data }) {
                                     <div
                                         className={cx('seekbar-current')}
                                         style={{
-                                            transform: `scaleX(${videoControls.progress.played}) translateY(-50%)`
+                                            transform: `scaleX(${videoControls.progress.played}) translateY(-50%)`,
                                         }}
                                     ></div>
 
-                                    <div
-                                        className={cx('seekbar-progress')}
-                                        ref={progressRef}
-                                    ></div>
+                                    <div className={cx('seekbar-progress')} ref={progressRef}></div>
 
                                     <div
                                         className={cx('seekbar-circle')}
                                         style={{
-                                            left: `${videoControls.progress.played * 100}%`
+                                            left: `${videoControls.progress.played * 100}%`,
                                         }}
                                     ></div>
                                 </div>
@@ -444,17 +435,18 @@ function ControlVideo({ data }) {
                                 interactive={true}
                                 hideOnClick={false}
                                 delay={[0, 800]}
-                                placement='bottom-end'
+                                placement="bottom-end"
                                 appendTo={() => document.body}
-
-                                render={attrs => (
-                                    <div tabIndex='-1' {...attrs}
-                                        onClick={e => {
+                                render={(attrs) => (
+                                    <div
+                                        tabIndex="-1"
+                                        {...attrs}
+                                        onClick={(e) => {
                                             e.stopPropagation()
                                         }}
                                     >
                                         {/* <WapperPopper> */}
-                                        <div className='btn-more-video'>
+                                        <div className="btn-more-video">
                                             {ITEM_ACTIONs.map((item, index) => (
                                                 <MenuItem
                                                     key={index}
@@ -465,14 +457,14 @@ function ControlVideo({ data }) {
                                                         setVideoControls({
                                                             ...videoControls,
                                                             showToasts: true,
-                                                            isShowToast: true
+                                                            isShowToast: true,
                                                         })
 
                                                         setTimeout(() => {
                                                             setVideoControls({
                                                                 ...videoControls,
                                                                 showToasts: false,
-                                                                isShowToast: false
+                                                                isShowToast: false,
                                                             })
                                                         }, 5000)
                                                     }}
@@ -485,7 +477,7 @@ function ControlVideo({ data }) {
                             >
                                 <div
                                     className={cx('action-video')}
-                                    onClick={e => {
+                                    onClick={(e) => {
                                         e.stopPropagation()
                                     }}
                                 >
@@ -496,10 +488,7 @@ function ControlVideo({ data }) {
                     )}
                 </div>
 
-                <span
-                    ref={elementRef}
-                    className={cx('video-overlay')}
-                ></span>
+                <span ref={elementRef} className={cx('video-overlay')}></span>
 
                 <div className={cx('action')}>
                     {ACTION_ITEMS.map((item, index) => (
@@ -508,16 +497,11 @@ function ControlVideo({ data }) {
                                 <Tippy
                                     interactive={true}
                                     appendTo={() => document.body}
-                                    placement='top-start'
+                                    placement="top-start"
                                     delay={[0, 500]}
                                     hideOnClick={false}
-
                                     render={(attrs) => (
-                                        <div
-                                            className="box"
-                                            tabIndex="-1"
-                                            {...attrs}
-                                        >
+                                        <div className="box" tabIndex="-1" {...attrs}>
                                             <WapperPopper>
                                                 <ShareGroup data={dataVideo} />
                                             </WapperPopper>
@@ -526,39 +510,27 @@ function ControlVideo({ data }) {
                                 >
                                     <div className={cx('action-item')}>
                                         <div className={cx('action-icon')}>
-                                            <Button nomal>
-                                                {item.icon}
-                                            </Button>
+                                            <Button nomal>{item.icon}</Button>
                                         </div>
-                                        <div className={cx('action-count')}>
-                                            {item.count}
-                                        </div>
+                                        <div className={cx('action-count')}>{item.count}</div>
                                     </div>
                                 </Tippy>
                             )}
 
                             {item.type !== 'share' && (
-                                <div
-                                    className={cx('action-item')}
-                                    onClick={() => handleActionClick(item.type)}
-                                >
+                                <div className={cx('action-item')} onClick={() => handleActionClick(item.type)}>
                                     <div className={cx('action-icon')}>
-                                        <Button nomal>
-                                            {item.icon}
-                                        </Button>
+                                        <Button nomal>{item.icon}</Button>
                                     </div>
-                                    <div className={cx('action-count')}>
-                                        {item.count}
-                                    </div>
+                                    <div className={cx('action-count')}>{item.count}</div>
                                 </div>
                             )}
                         </React.Fragment>
                     ))}
                 </div>
 
-                {videoControls.showToasts && (
-                    ReactDOM.createPortal(<ToastMessage message='The function is not working yet!' />, document.body)
-                )}
+                {videoControls.showToasts &&
+                    ReactDOM.createPortal(<ToastMessage message="The function is not working yet!" />, document.body)}
             </div>
         )
     )

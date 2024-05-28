@@ -15,7 +15,7 @@ import {
     ExploreActiveIcon,
     LiveActiveIcon,
     UserNotLoginAvtiveIcon,
-    UserNotLoginIcon
+    UserNotLoginIcon,
 } from '~/assets/icons'
 import SuggestAccounts from '~/components/SuggestAccounts'
 import * as userService from '~/services/userService'
@@ -32,7 +32,6 @@ const INIT_PAGE = 1
 const PER_PAGE = 5
 
 function Sidebar() {
-
     const [suggestedUser, setSuggestedUser] = useState([])
     const [pagesControl, setPagesControl] = useState({
         page: INIT_PAGE,
@@ -91,11 +90,10 @@ function Sidebar() {
         apiSuggestedUser()
     }, [pagesControl.page])
 
-
     const handleSeeUser = useCallback(() => {
-        setPagesControl(prev => ({
+        setPagesControl((prev) => ({
             ...prev,
-            page: getRandomPage()
+            page: getRandomPage(),
         }))
     }, [])
 
@@ -105,31 +103,59 @@ function Sidebar() {
     }, [])
 
     return (
-        pagesControl && pagesControl.renderedPages.length > 0 && (
+        pagesControl &&
+        pagesControl.renderedPages.length > 0 && (
             <aside className={cx('navbar')}>
                 <Menu>
-                    <MenuItem activeIcon={<HomeActiveIcon />} icon={<HomeIcon />} title='For You' to={config.routes.home} />
+                    <MenuItem
+                        activeIcon={<HomeActiveIcon />}
+                        icon={<HomeIcon />}
+                        title="For You"
+                        to={config.routes.home}
+                    />
                     <MenuItem
                         activeIcon={user?.auth ? <UserGrActiveIcon /> : <UserNotLoginAvtiveIcon />}
                         icon={user?.auth ? <UserGrIcon /> : <UserNotLoginIcon />}
-                        title='Following'
+                        title="Following"
                         to={config.routes.folowing}
                     />
-                    <MenuItem activeIcon={<ExploreActiveIcon />} icon={<ExploreIcon />} title='Explore' to={config.routes.explore} />
-                    <MenuItem activeIcon={<LiveActiveIcon />} icon={<LiveIcon />} title='LIVE' to={config.routes.live} />
+                    <MenuItem
+                        activeIcon={<ExploreActiveIcon />}
+                        icon={<ExploreIcon />}
+                        title="Explore"
+                        to={config.routes.explore}
+                    />
+                    <MenuItem
+                        activeIcon={<LiveActiveIcon />}
+                        icon={<LiveIcon />}
+                        title="LIVE"
+                        to={config.routes.live}
+                    />
 
                     {user && user.auth ? (
                         <>
                             <MenuItem
-                                activeIcon={<Image className={cx('avatar-nav')} src={loggedInUserData.avatar ?? images.noBg} alt=' ' />}
-                                icon={<Image className={cx('avatar-nav')} src={loggedInUserData.avatar ?? images.noBg} alt=' ' />}
-                                title='Profile'
+                                activeIcon={
+                                    <Image
+                                        className={cx('avatar-nav')}
+                                        src={loggedInUserData.avatar ?? images.noBg}
+                                        alt=" "
+                                    />
+                                }
+                                icon={
+                                    <Image
+                                        className={cx('avatar-nav')}
+                                        src={loggedInUserData.avatar ?? images.noBg}
+                                        alt=" "
+                                    />
+                                }
+                                title="Profile"
                                 to={`/@${loggedInUserData.nickname}`}
                             />
                         </>
                     ) : (
                         <>
-                            <MenuItem icon={<UserLargeIcon />} title='Profile' to='/@' onClick={handleOpenModal} />
+                            <MenuItem icon={<UserLargeIcon />} title="Profile" to="/@" onClick={handleOpenModal} />
                             {openModal && ReactDOM.createPortal(<Login setOpenModal={setOpenModal} />, document.body)}
                         </>
                     )}
@@ -137,19 +163,20 @@ function Sidebar() {
 
                 {user.auth ? (
                     <>
-                        <SuggestAccounts pagesControl={pagesControl} label='Suggested accounts' data={suggestedUser} loading={loading} onSeeUser={handleSeeUser} />
+                        <SuggestAccounts
+                            pagesControl={pagesControl}
+                            label="Suggested accounts"
+                            data={suggestedUser}
+                            loading={loading}
+                            onSeeUser={handleSeeUser}
+                        />
 
-                        <SuggestAccounts label='Following accounts' />
+                        <SuggestAccounts label="Following accounts" />
                     </>
                 ) : (
                     <div className={cx('frame-container')}>
-                        <p>
-                            Log in to follow creators, like videos, and view comments.
-                        </p>
-                        <Button
-                            outline
-                            onClick={handleOpenModal}
-                        >
+                        <p>Log in to follow creators, like videos, and view comments.</p>
+                        <Button outline onClick={handleOpenModal}>
                             Log in
                         </Button>
                     </div>

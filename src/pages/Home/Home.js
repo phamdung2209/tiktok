@@ -40,7 +40,7 @@ function Home() {
         document.title = 'TikTok - Make Your Day'
     }, [location.pathname])
 
-    const onIntersect = entries => {
+    const onIntersect = (entries) => {
         const firstEntry = entries[0]
         if (firstEntry.isIntersecting && hasMore) {
             getMoreVideoForYou()
@@ -81,8 +81,8 @@ function Home() {
             if (results.data.length === 0) {
                 setHasMore(false)
             } else {
-                setVideoList(prev => [...prev, ...results.data])
-                setRenderedPages(prev => [...prev, randomPage])
+                setVideoList((prev) => [...prev, ...results.data])
+                setRenderedPages((prev) => [...prev, randomPage])
             }
 
             if (renderedPages.length < 1) {
@@ -106,9 +106,8 @@ function Home() {
                                     delay={[800, 0]}
                                     // visible={actions.isHoverUser}
                                     offset={[120, 0]}
-
-                                    render={attrs => (
-                                        <div tabIndex='-1' {...attrs}>
+                                    render={(attrs) => (
+                                        <div tabIndex="-1" {...attrs}>
                                             <Wrapper>
                                                 <AccountPreview data={item.user} />
                                             </Wrapper>
@@ -121,7 +120,7 @@ function Home() {
                                         onMouseEnter={() => setActions({ ...actions, isHoverUser: true })}
                                         onMouseLeave={() => setActions({ ...actions, isHoverUser: false })}
                                     >
-                                        <Image src={item.user.avatar} alt=' ' />
+                                        <Image src={item.user.avatar} alt=" " />
                                     </Link>
                                 </Tippy>
 

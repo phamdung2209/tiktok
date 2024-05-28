@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
 function useDebounce(value, delay) {
     const [debounceValue, setDebounceValue] = useState(value)
@@ -7,7 +7,7 @@ function useDebounce(value, delay) {
         const delaySearch = setTimeout(() => {
             setDebounceValue(value)
         }, delay)
-        
+
         return () => {
             clearTimeout(delaySearch)
         }

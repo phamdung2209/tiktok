@@ -1,42 +1,46 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 import 'tippy.js/dist/tippy.css'
-import { useRef } from "react"
+import { useRef } from 'react'
 import { forwardRef } from 'react'
 
 import styles from './Button.module.scss'
-import classNames from "classnames/bind"
+import classNames from 'classnames/bind'
 
 const cx = classNames.bind(styles)
 
-function Button({
-    to,
-    href,
-    children,
-    onClick,
-    primary,
-    outline,
-    small,
-    large,
-    text,
-    disabled,
-    rounded,
-    leftIcon,
-    rightIcon,
-    primaryLonger,
-    nomal,
-    dark,
-    ...passProps }, ref) {
+function Button(
+    {
+        to,
+        href,
+        children,
+        onClick,
+        primary,
+        outline,
+        small,
+        large,
+        text,
+        disabled,
+        rounded,
+        leftIcon,
+        rightIcon,
+        primaryLonger,
+        nomal,
+        dark,
+        ...passProps
+    },
+    ref,
+) {
     const buttonRef = useRef()
     let Comp = 'button'
     const props = {
         onClick,
-        ...passProps
+        ...passProps,
     }
 
     if (disabled) {
-        Object.keys(props).forEach(key => {
+        Object.keys(props).forEach((key) => {
             // if (key.startsWith('on')) {
-            props[key] = e => e.preventDefault()
+            props[key] = (e) => e.preventDefault()
             // }
         })
 
@@ -67,7 +71,9 @@ function Button({
     return (
         <Comp ref={ref} className={classes} {...props}>
             {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
-            <span ref={buttonRef} className={cx('title')}>{children}</span>
+            <span ref={buttonRef} className={cx('title')}>
+                {children}
+            </span>
             {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
         </Comp>
     )
