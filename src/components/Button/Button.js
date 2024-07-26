@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import 'tippy.js/dist/tippy.css'
-import { useRef } from 'react'
-import { forwardRef } from 'react'
+import { useRef, forwardRef } from 'react'
 
 import styles from './Button.module.scss'
 import classNames from 'classnames/bind'

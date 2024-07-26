@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind'
 import { Link, useLocation } from 'react-router-dom'
-import { useEffect, useState, useContext, useRef } from 'react'
+import { useEffect, useState, useContext, useRef, useLayoutEffect } from 'react'
 import ReactDOM from 'react-dom'
 
 import styles from './Comment.module.scss'
@@ -54,10 +54,6 @@ function Comment({ postComment, isDelete, setIsDelete, data, ...props }) {
             showBtn: false,
         })
     }
-
-    // useEffect(() => {
-    //     console.log(action.showMessage);
-    // }, [action.showMessage])
 
     const handleLikeComments = (comment) => {
         if (comment.is_liked) {
@@ -126,7 +122,12 @@ function Comment({ postComment, isDelete, setIsDelete, data, ...props }) {
         setComments([])
         setPage(1)
         setHasMore(true)
-    }, [location.pathname, accessToken, postComment])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location.pathname, accessToken])
+
+    useLayoutEffect(() => {
+        if (Object.keys(postComment).length !== 0) setComments((prev) => [postComment, ...prev])
+    }, [postComment])
 
     useEffect(() => {
         const observer = new IntersectionObserver(onIntersect)
@@ -184,7 +185,7 @@ function Comment({ postComment, isDelete, setIsDelete, data, ...props }) {
                                     </div>
                                 )}
                             >
-                                <Link to={`/@${comment.user.nickname}`} className={cx('--hover-user')}>
+                                <Link to={`/@${comment.user?.nickname}`} className={cx('--hover-user')}>
                                     <Image src={comment?.user?.avatar} alt=" " />
                                 </Link>
                             </Tippy>
@@ -205,12 +206,12 @@ function Comment({ postComment, isDelete, setIsDelete, data, ...props }) {
                                         </div>
                                     )}
                                 >
-                                    <Link to={`/@${comment.user.nickname}`}>
+                                    <Link to={`/@${comment.user?.nickname}`}>
                                         <div className={cx('link-user')}>
-                                            {`${comment.user.first_name} ${comment.user.last_name}`}
-                                            {comment.user.tick && <Tick />}
+                                            {`${comment.user?.first_name} ${comment.user?.last_name}`}
+                                            {comment.user?.tick && <Tick />}
                                         </div>
-                                        {data?.user?.nickname === comment.user.nickname && (
+                                        {data?.user?.nickname === comment.user?.nickname && (
                                             <div className="div--notUnderline">
                                                 <span style={{ margin: '0px 4px' }}>·</span>
                                                 <span

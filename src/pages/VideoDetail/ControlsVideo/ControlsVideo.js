@@ -26,7 +26,7 @@ function ControlsVideo({ data, ...props }) {
         timer: null,
     })
 
-    const handleClickSeekChange = e => {
+    const handleClickSeekChange = (e) => {
         const rect = e.currentTarget.getBoundingClientRect()
         const offsetX = e.clientX - rect.left
         const width = rect.width
@@ -58,20 +58,20 @@ function ControlsVideo({ data, ...props }) {
     }, [])
 
     useEffect(() => {
-        const handleKeyDown = e => {
-            if (props.isFocusText) return;
+        const handleKeyDown = (e) => {
+            if (props.isFocusText) return
 
             if (e.key === ' ') {
-                setPlayVideo(prevPlayVideo => !prevPlayVideo);
+                setPlayVideo((prevPlayVideo) => !prevPlayVideo)
             }
-        };
+        }
 
-        window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('keydown', handleKeyDown)
 
         return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [setPlayVideo, props.isFocusText]);
+            window.removeEventListener('keydown', handleKeyDown)
+        }
+    }, [setPlayVideo, props.isFocusText])
 
     useEffect(() => {
         const handleEsc = (e) => {
@@ -95,7 +95,7 @@ function ControlsVideo({ data, ...props }) {
             }
 
             seekArrow.timer = setTimeout(() => {
-                setSeekArrow(prevState => ({
+                setSeekArrow((prevState) => ({
                     ...prevState,
                     isSeek: false,
                 }))
@@ -105,7 +105,6 @@ function ControlsVideo({ data, ...props }) {
         return () => {
             clearTimeout(seekArrow.timer)
         }
-
     }, [seekArrow.isSeek, seekArrow.timer, seekArrow.timeHide])
 
     useEffect(() => {
@@ -143,7 +142,7 @@ function ControlsVideo({ data, ...props }) {
         window.addEventListener('mouseup', handleMouseUp)
     }
 
-    const handleMouseMove = e => {
+    const handleMouseMove = (e) => {
         const rect = progressRef.current.getBoundingClientRect()
         const offsetX = e.clientX - rect.left
         const width = rect.width
@@ -151,7 +150,7 @@ function ControlsVideo({ data, ...props }) {
         const normalizedWidth = Math.min(width, Math.max(0, offsetX))
 
         setSeekTime(normalizedWidth / width)
-        setProgress(normalizedWidth / width * duration)
+        setProgress((normalizedWidth / width) * duration)
         videoRef.current.seekTo(normalizedWidth / width)
     }
 
@@ -179,25 +178,20 @@ function ControlsVideo({ data, ...props }) {
                 volume={props.volume}
                 loop={true}
                 stopOnUnmount={false}
-
-                onReady={e => {
+                onReady={(e) => {
                     setDuration(e.getDuration())
                     setPlayVideo(true)
                 }}
-
-                onError={e => {
+                onError={(e) => {
                     console.log(e)
                 }}
-
                 onPause={() => {
                     setPlayVideo(false)
                 }}
-
-                onProgress={e => {
+                onProgress={(e) => {
                     setProgress(e.playedSeconds)
                     setSeekTime(e.played)
                 }}
-
                 config={{
                     file: {
                         attributes: {
@@ -212,7 +206,10 @@ function ControlsVideo({ data, ...props }) {
                     {seekArrow.left && (
                         <>
                             <span>Skipped backward 3 seconds</span>
-                            <div className={cx('seek-arrow')} style={{ transform: 'rotateZ(180deg)', translate: '-2px' }}>
+                            <div
+                                className={cx('seek-arrow')}
+                                style={{ transform: 'rotateZ(180deg)', translate: '-2px' }}
+                            >
                                 <SeekIcon />
                             </div>
                         </>
@@ -231,7 +228,7 @@ function ControlsVideo({ data, ...props }) {
 
             <div
                 className={cx('controls-custom')}
-                onClick={e => {
+                onClick={(e) => {
                     e.stopPropagation()
                 }}
             >
@@ -262,9 +259,7 @@ function ControlsVideo({ data, ...props }) {
                 </div>
 
                 <div className={cx('seekbar-time')}>
-                    <FormattedTime
-                        seconds={progress}
-                    />
+                    <FormattedTime seconds={progress} />
                     <span>/</span>
                     <FormattedTime seconds={duration} />
                 </div>
