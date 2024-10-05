@@ -1,4 +1,4 @@
-import { useState, useContext, memo, forwardRef, useImperativeHandle } from 'react'
+import { useState, useContext, memo, forwardRef, useImperativeHandle, useEffect } from 'react'
 import classNames from 'classnames/bind'
 
 import styles from './UserLogin.module.scss'
@@ -94,6 +94,7 @@ function UserLogin(_, ref) {
     const handleBackBtn = () => {
         setHistory((prev) => [prev[0]])
         setIsParent(false)
+        setType('Log in')
     }
 
     const handleInputChange = (e) => {
