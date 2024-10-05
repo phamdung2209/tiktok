@@ -103,13 +103,11 @@ function UserLogin(_, ref) {
         else setPassword(value)
     }
 
-    const handleSubmit = () => {
-        ;(async () => {
-            const results = await (type === 'login' ? loginService.login : loginService.signUp)(username, password)
+    const handleSubmit = async () => {
+        const results = await (type === 'Log in' ? loginService.login : loginService.signUp)(username, password)
 
-            if (results) login(username, results.meta.token)
-            else alert('Login failed')
-        })()
+        if (results) login(username, results.meta.token)
+        else alert('Login failed')
     }
 
     const renderActions = currentMenu.data.map((item, index) => (
