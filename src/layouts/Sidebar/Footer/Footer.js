@@ -6,12 +6,7 @@ import { animateScroll as scroll } from 'react-scroll'
 import styles from './Footer.module.scss'
 import config from '~/config'
 import { EffectIcon } from '~/assets/icons'
-import {
-    GoToTop,
-    DesktopIcon,
-    PhoneIcon,
-    CloseLargeIcon
-} from '~/assets/icons'
+import { GoToTop, DesktopIcon, PhoneIcon, CloseLargeIcon } from '~/assets/icons'
 import MenuItem from '~/components/Popper/Menu/MenuItem'
 
 const cx = classNames.bind(styles)
@@ -27,13 +22,13 @@ function Footer() {
     const EXPAND_ITEMS = [
         {
             title: 'Get TikTok for desktop',
-            icon: <DesktopIcon />
+            icon: <DesktopIcon />,
         },
         {
             title: 'Get TikTok App',
             icon: <PhoneIcon />,
             separate: true,
-        }
+        },
     ]
 
     useEffect(() => {
@@ -42,9 +37,7 @@ function Footer() {
         }
         window.addEventListener('scroll', handleScroll)
 
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
+        return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
     useEffect(() => {
@@ -54,7 +47,6 @@ function Footer() {
             setIsGoToTop(false)
         }
     }, [location])
-
 
     return (
         <>
@@ -66,26 +58,24 @@ function Footer() {
                     </Link>
                 </div>
 
-                <div className={cx('copy-right')}>
-                    © 2023 TikTok
-                </div>
+                <div className={cx('copy-right')}>© 2023 TikTok</div>
             </footer>
 
             {isGoToTop && (
                 <div className={`bottom-container ${isScrolling ? 'tran' : ''}`}>
-                    <div className='get-app'>
+                    <div className="get-app">
                         <button
-                            className='btn-get-app'
-
+                            className="btn-get-app"
                             onClick={() => {
                                 setActions({ showGetApp: !actions.showGetApp })
                             }}
-
                             style={{
                                 transform: actions.showGetApp ? 'scale(0)' : 'none',
                                 position: actions.showGetApp ? 'absolute' : 'relative',
                             }}
-                        >Get App</button>
+                        >
+                            Get App
+                        </button>
 
                         <div
                             className={cx('getApp-expand')}
@@ -130,4 +120,4 @@ function Footer() {
     )
 }
 
-export default Footer;
+export default Footer
