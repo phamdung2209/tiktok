@@ -1,142 +1,164 @@
-import classNames from "classnames/bind"
-import PropTypes from 'prop-types'
-import { useState, useContext } from "react"
+import { useState, useContext, memo, forwardRef, useImperativeHandle } from 'react'
+import classNames from 'classnames/bind'
 
 import styles from './UserLogin.module.scss'
-import { ArrowRightIcon } from '~/assets/icons'
+import {
+    AppleIcon,
+    ArrowRightIcon,
+    FbIcon,
+    GgIcon,
+    KakaotalkIcon,
+    LineIcon,
+    QRIcon,
+    TwitterIcon,
+    UserIcon,
+} from '~/assets/icons'
 import * as loginService from '~/services/loginService'
-import { UserContext } from "~/hooks"
-import config from "~/config"
-
+import { UserContext } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
-function UserLogin({ mediaLogin = [] }) {
+const MEDIA_LOGIN = [
+    {
+        icon: <QRIcon />,
+        title: 'Use QR code',
+    },
+    {
+        icon: <UserIcon />,
+        title: 'Use phone / email / username',
+        children: {
+            title: 'Email or username',
+            data: [
+                {
+                    placeholder: 'Email or username',
+                    type: 'text',
+                    name: 'username',
+                },
+                {
+                    placeholder: 'Password',
+                    type: 'password',
+                    name: 'password',
+                },
+            ],
+        },
+    },
+    {
+        icon: <FbIcon />,
+        title: 'Continue with Facebook',
+    },
+    {
+        icon: <GgIcon />,
+        title: 'Continue with Google',
+    },
+    {
+        icon: <TwitterIcon />,
+        title: 'Continue with Twitter',
+    },
+    {
+        icon: <LineIcon />,
+        title: 'Continue with LINE',
+    },
+    {
+        icon: <KakaotalkIcon />,
+        title: 'Continue with KakaoTalk',
+    },
+    {
+        icon: <AppleIcon />,
+        title: 'Continue with Apple',
+    },
+]
+
+function UserLogin(_, ref) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [history, setHistory] = useState([{ data: mediaLogin }])
+    const [history, setHistory] = useState([{ data: MEDIA_LOGIN }])
     const [isParent, setIsParent] = useState(false)
+    const [type, setType] = useState('Log in')
 
+    useImperativeHandle(ref, () => ({
+        setHistory,
+        setIsParent,
+        setType,
+    }))
 
-    // login
     const { login } = useContext(UserContext)
-
     const currentMenu = history[history.length - 1]
 
     const handleMenuClick = (item) => {
         const hasChildren = !!item.children
-        if (item.children?.data) {
-            setIsParent(hasChildren)
-        }
+        if (item.children?.data) setIsParent(hasChildren)
 
-        if (hasChildren) {
-            setHistory(prev => [...prev, item.children])
-        }
+        if (hasChildren) setHistory((prev) => [...prev, item.children])
     }
 
     const handleBackBtn = () => {
-        // setHistory(prev => prev.splice(prev.length - 1, 1))
-        setHistory((prev) => prev.slice(0, prev.length - 1))
+        setHistory((prev) => [prev[0]])
         setIsParent(false)
     }
 
-    const handleInputChange = e => {
+    const handleInputChange = (e) => {
         const { name, value } = e.target
-        if (name === 'username') {
-            setUsername(value)
-        } else {
-            setPassword(value)
-        }
+        if (name === 'username') setUsername(value)
+        else setPassword(value)
     }
 
     const handleSubmit = () => {
-        const fetchApi = async () => {
-            const results = await loginService.login(username, password)
+        ;(async () => {
+            const results = await (type === 'login' ? loginService.login : loginService.signUp)(username, password)
 
-            if (results) {
-                login(username, results.meta.token)
-            } else {
-                alert('Login failed')
-            }
-        }
-
-        fetchApi()
+            if (results) login(username, results.meta.token)
+            else alert('Login failed')
+        })()
     }
 
-    const renderActions = () => {
-        return (
-            <>
-                {currentMenu.data.map((item, index) => (
-                    <div
-                        key={index}
-                        className={cx('login-option')}
-                        onClick={() => handleMenuClick(item)}
-                    >
-                        {history.length > 1 ? (
-                            <>
-                                <div className={cx('form-submit')}>
-                                    <input
-                                        name={item.name}
-                                        autoComplete="off"
-                                        type={item.type}
-                                        placeholder={item.placeholder}
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <div className={cx('option-icon', 'option-hover')}>
-                                    {item.icon}
-                                </div>
-                                <div className={cx('option-title', 'option-hover')}>
-                                    {item.title}
-                                </div>
-                            </>
-                        )}
-                    </div>
-                ))}
-            </>
-        )
-    }
+    const renderActions = currentMenu.data.map((item, index) => (
+        <div key={index} className={cx('login-option')} onClick={() => handleMenuClick(item)}>
+            {history.length > 1 ? (
+                <div className={cx('form-submit')}>
+                    <input
+                        name={item.name}
+                        autoComplete="off"
+                        type={item.type}
+                        placeholder={item.placeholder}
+                        onChange={handleInputChange}
+                    />
+                </div>
+            ) : (
+                <>
+                    <div className={cx('option-icon', 'option-hover')}>{item.icon}</div>
+                    <div className={cx('option-title', 'option-hover')}>{item.title}</div>
+                </>
+            )}
+        </div>
+    ))
 
     return (
         <>
-            {isParent && <div className={cx('back')}
-                onClick={handleBackBtn}
-            >
-                <ArrowRightIcon className={cx('back-icon')} />
-            </div>}
-            {
-                isParent &&
-                <div className={cx('description')}>
-                    Email or username
-                    <div className={cx('login-other')}>
-                        Log in with phone
-                    </div>
-                </div>
-            }
-            {renderActions()}
-            {
-                isParent &&
+            {isParent && (
                 <>
-                    <div className={cx('login-other')}>
-                        Forgot password?
+                    <div className={cx('back')} onClick={handleBackBtn}>
+                        <ArrowRightIcon className={cx('back-icon')} />
                     </div>
+                    <div className={cx('description')}>
+                        Email or username
+                        <div className={cx('login-other')}>Log in with phone</div>
+                    </div>
+                </>
+            )}
 
-                    <button
-                        onClick={handleSubmit}
-                        className={cx('btn-submit')}>
-                        Log in
+            {renderActions}
+
+            {isParent && (
+                <>
+                    <div className={cx('login-other')}>Forgot password?</div>
+
+                    <button onClick={handleSubmit} className={cx('btn-submit')}>
+                        {type}
                     </button>
                 </>
-            }
+            )}
         </>
     )
 }
 
-UserLogin.propTypes = {
-    mediaLogin: PropTypes.array.isRequired,
-}
-
-export default UserLogin
+export default memo(forwardRef(UserLogin))

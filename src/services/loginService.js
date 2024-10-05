@@ -13,6 +13,20 @@ export const login = async (email, password) => {
     }
 }
 
+export const signUp = async (email, password) => {
+    try {
+        const body = {
+            email,
+            password,
+            type: 'email',
+        }
+        const res = await request.post('auth/register', body)
+        return res
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export const getUserData = async (accessToken) => {
     try {
         const res = await request.get('auth/me', {

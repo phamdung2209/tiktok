@@ -13,7 +13,7 @@ import {
     faCoins,
     faVideo,
     faGear,
-    faSignOut
+    faSignOut,
 } from '@fortawesome/free-solid-svg-icons'
 import 'tippy.js/dist/tippy.css'
 import TippyTooltip from '@tippyjs/react'
@@ -32,7 +32,6 @@ import { UserContext } from '~/hooks'
 
 import MenuItems from './MenuItems'
 import UserItems from './UserItems'
-
 
 const cx = classNames.bind(styles)
 
@@ -55,14 +54,14 @@ function Header() {
                 data: [
                     {
                         code: 'en',
-                        title: 'English'
+                        title: 'English',
                     },
                     {
                         code: 'vi',
-                        title: 'Tiếng Việt'
+                        title: 'Tiếng Việt',
                     },
-                ]
-            }
+                ],
+            },
         },
         {
             icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -77,19 +76,19 @@ function Header() {
                 data: [
                     {
                         code: 'en',
-                        title: 'English'
+                        title: 'English',
                     },
                     {
                         code: 'vi',
-                        title: 'Tiếng Việt'
-                    }
-                ]
-            }
+                        title: 'Tiếng Việt',
+                    },
+                ],
+            },
         },
         {
             icon: <FontAwesomeIcon icon={faCircleHalfStroke} />,
             title: 'Dark mode',
-        }
+        },
     ]
 
     const USER_ITEMS = [
@@ -124,7 +123,7 @@ function Header() {
             icon: <FontAwesomeIcon icon={faSignOut} />,
             title: 'Log out',
             separate: true,
-        }
+        },
     ]
 
     const handleMenuChange = (item) => {
@@ -139,10 +138,9 @@ function Header() {
         <header className={cx('header')}>
             <div className={cx('inner')}>
                 <Link to={config.routes.home}>
-                    <img src={images.logo} alt='tiktok' />
+                    <img src={images.logo} alt="tiktok" />
                 </Link>
 
-                {/* Search */}
                 <Search />
 
                 <div className={cx('action')}>
@@ -152,40 +150,52 @@ function Header() {
                     </Button>
                     {user && currentUser ? (
                         <>
-                            <TippyTooltip delay={[0, 300]} content='Messages'>
+                            <TippyTooltip delay={[0, 300]} content="Messages">
                                 <button className={cx('action-btn', 'btn-left')}>
-                                    <img className={cx('action-btn-mes')} src={images.messages} alt='Messages' />
+                                    <img className={cx('action-btn-mes')} src={images.messages} alt="Messages" />
                                 </button>
                             </TippyTooltip>
 
-                            <TippyTooltip content='Inbox'>
+                            <TippyTooltip content="Inbox">
                                 <button className={cx('action-btn')}>
-                                    <img className={cx('action-btn-inbox')} src={images.inbox} alt='Inbox' />
+                                    <img className={cx('action-btn-inbox')} src={images.inbox} alt="Inbox" />
                                 </button>
                             </TippyTooltip>
                         </>
                     ) : (
                         <>
-                            <Button primary onClick={handleOpenModal}>Log in</Button>
+                            <Button primary onClick={handleOpenModal}>
+                                Log in
+                            </Button>
                             {openModal && ReactDOM.createPortal(<Login setOpenModal={setOpenModal} />, document.body)}
                         </>
                     )}
 
                     {user && currentUser ? (
                         <>
-                            <UserItems USER_ITEMS={USER_ITEMS} user={user} loggedInUserData={loggedInUserData} currentUser={currentUser} handleMenuChange={handleMenuChange} />
+                            <UserItems
+                                USER_ITEMS={USER_ITEMS}
+                                user={user}
+                                loggedInUserData={loggedInUserData}
+                                currentUser={currentUser}
+                                handleMenuChange={handleMenuChange}
+                            />
                         </>
                     ) : (
                         <>
-                            <MenuItems MENU_ITEMS={MENU_ITEMS} user={user} loggedInUserData={loggedInUserData} currentUser={currentUser} handleMenuChange={handleMenuChange} />
+                            <MenuItems
+                                MENU_ITEMS={MENU_ITEMS}
+                                user={user}
+                                loggedInUserData={loggedInUserData}
+                                currentUser={currentUser}
+                                handleMenuChange={handleMenuChange}
+                            />
                         </>
                     )}
                 </div>
             </div>
-        </header >
+        </header>
     )
-
-
 }
 
-export default Header;
+export default Header
