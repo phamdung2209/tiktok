@@ -15,18 +15,15 @@ function DefaultLayout({ children }) {
             <div className={cx('container')}>
                 <Sidebar />
                 <div className={cx('content')}>
-                    <div className={cx('content-inner')}>
-                        {children}
-                    </div>
+                    <div className={cx('content-inner')}>{children}</div>
                 </div>
             </div>
         </div>
     )
-
 }
 
 DefaultLayout.propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
 }
 
 export default DefaultLayout

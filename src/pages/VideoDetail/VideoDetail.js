@@ -117,10 +117,6 @@ function VideoDetail() {
         }
     }, [data, location.pathname])
 
-    const handleCloseTab = () => {
-        navigate(`/@${data.user.nickname}`)
-    }
-
     const handleLikeVideos = (item) => {
         if (item.type === 'like') {
             if (data.is_liked) {
