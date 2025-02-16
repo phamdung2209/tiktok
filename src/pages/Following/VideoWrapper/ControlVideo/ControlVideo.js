@@ -36,7 +36,7 @@ function ControlVideo({ data }) {
     const [videoControls, setVideoControls] = useState(() => {
         return {
             isPlaying: false,
-            isMuted: false,
+            isMuted: true,
             duration: 0,
             progress: 0,
             volume: JSON.parse(localStorage.getItem('volume') ?? 0.5),

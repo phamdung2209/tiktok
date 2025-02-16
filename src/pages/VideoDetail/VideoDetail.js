@@ -347,7 +347,7 @@ function VideoDetail() {
 
                     <div className={cx('header')}>
                         <div className={cx('btn-close')}>
-                            <Button nomal onClick={handleCloseTab}>
+                            <Button nomal onClick={() => navigate(-1)}>
                                 <CloseIconBold />
                             </Button>
                         </div>
